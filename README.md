@@ -1,8 +1,15 @@
-FastLogin
+FastLoginReload!!!
 ======
 "一个强大的轻量级登录插件!"<br>
 FastLogin A powerful lightweight login plugin!<br>
 ![image](https://github.com/ishiyamasayuri/FastLogin/blob/master/FastLogin_LogoRE.png)
+<br>
+注意:
+原FastLogin项目已经不再更新.
+
+!FastLoginReload项目将会在原有FastLogin的基础上继续进行开发。添加更多功能与版本支持。
+
+
 
 
 特性

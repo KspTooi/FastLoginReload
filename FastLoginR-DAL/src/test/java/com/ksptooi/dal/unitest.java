@@ -1,10 +1,8 @@
 package com.ksptooi.dal;
 
-import com.ksptooi.dal.util.MysqlUtil;
-import com.ksptooi.dal.util.SqliteUtil;
-import com.ksptooi.entity.dto.player.Player;
+import com.ksptooi.flr.dal.util.SqliteUtil;
+import com.ksptooi.flr.entity.player.Player;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.junit.Test;
 
 public class unitest {

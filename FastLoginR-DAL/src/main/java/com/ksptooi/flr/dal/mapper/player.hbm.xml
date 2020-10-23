@@ -11,9 +11,9 @@
 
 -->
 
-<hibernate-mapping package="com.ksptooi.entity.dto.player">
+<hibernate-mapping package="com.ksptooi.flr.entity.player">
 
-    <class name="Player" table="Player" lazy="true" >
+    <class name="com.ksptooi.flr.entity.player.Player" table="Player" lazy="true" >
 
         <id name="pid">
             <generator class="native"/>
@@ -29,8 +29,8 @@
         <property name="lastloginDate" column="lastloginDate"/>
 
         <!--DTO单向一对一关系查询-->
-        <one-to-one name="playerDetail" class="com.ksptooi.entity.dto.player.PlayerDetail" property-ref="pid"/>
-        <one-to-one name="playerLocation" class="com.ksptooi.entity.dto.player.PlayerLocation" property-ref="pid"/>
+        <one-to-one name="playerDetail" class="com.ksptooi.flr.entity.player.PlayerDetail" property-ref="pid"/>
+        <one-to-one name="playerLocation" class="com.ksptooi.flr.entity.player.PlayerLocation" property-ref="pid"/>
 
     </class>
 

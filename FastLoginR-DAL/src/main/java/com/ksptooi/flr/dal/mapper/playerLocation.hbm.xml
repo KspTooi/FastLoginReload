@@ -11,9 +11,9 @@
 
 -->
 
-<hibernate-mapping package="com.ksptooi.entity.dto.player">
+<hibernate-mapping package="com.ksptooi.flr.entity.player">
 
-    <class name="PlayerLocation" table="PlayerLocation" lazy="true" >
+    <class name="com.ksptooi.flr.entity.player.PlayerLocation" table="PlayerLocation" lazy="true" >
 
         <id name="id">
             <generator class="native"/>

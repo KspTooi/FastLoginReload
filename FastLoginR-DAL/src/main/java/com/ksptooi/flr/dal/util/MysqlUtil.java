@@ -1,4 +1,4 @@
-package com.ksptooi.dal.util;
+package com.ksptooi.flr.dal.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

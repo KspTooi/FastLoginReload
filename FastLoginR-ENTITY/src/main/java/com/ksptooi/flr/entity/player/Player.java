@@ -1,4 +1,4 @@
-package com.ksptooi.entity.dto.player;
+package com.ksptooi.flr.entity.player;
 
 public class Player {
 

@@ -25,9 +25,9 @@
 
         <property name="hibernate.current_session_context_class">thread</property>
 
-        <mapping resource="com/ksptooi/dal/mapper/player.hbm.xml"></mapping>
-        <mapping resource="com/ksptooi/dal/mapper/playerDetail.hbm.xml"></mapping>
-        <mapping resource="com/ksptooi/dal/mapper/playerLocation.hbm.xml"></mapping>
+        <mapping resource="com/ksptooi/flr/dal/mapper/player.hbm.xml"></mapping>
+        <mapping resource="com/ksptooi/flr/dal/mapper/playerDetail.hbm.xml"></mapping>
+        <mapping resource="com/ksptooi/flr/dal/mapper/playerLocation.hbm.xml"></mapping>
 
     </session-factory>
 

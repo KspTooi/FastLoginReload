@@ -4,13 +4,9 @@ FastLoginReload!!!
 FastLogin A powerful lightweight login plugin!<br>
 ![image](https://github.com/ishiyamasayuri/FastLogin/blob/master/FastLogin_LogoRE.png)
 <br>
-注意:
-原FastLogin项目已经不再更新.
 
-!FastLoginReload项目将会在原有FastLogin的基础上继续进行开发。添加更多功能与版本支持。
-
-
-
+FastLoginR是在FastLogin的基础上进行重构的一个全新项目,相对于原FastLogin 它的性能与扩展性会更加优秀.
+同时也新增了高版本Bukkit的支持与Sponge支持等特性.
 
 特性
 ======

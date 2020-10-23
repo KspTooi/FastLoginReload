@@ -1,16 +1,46 @@
-FastLoginReload!!!
+FastLoginReload
 ======
-"一个强大的轻量级登录插件!"<br>
-FastLogin A powerful lightweight login plugin!<br>
+"一个强大的~~轻量级~~登录插件!"<br>
 ![image](https://github.com/ishiyamasayuri/FastLogin/blob/master/FastLogin_LogoRE.png)
 <br>
 
-FastLoginR是在FastLogin的基础上进行重构的一个全新项目,相对于原FastLogin 它的性能与扩展性会更加优秀.
-同时也新增了高版本Bukkit的支持与Sponge支持等特性.
+FastLoginR(FLR)是在原FastLogin的基础上进行重构的一个全新项目,相对于原FastLogin来说,FLR将会拥有更强大的功能与稳定性,与此同时它也继承了FastLogin轻量化的特性.它多样化的能力使其可以支持各种规模的服务器.
 
 特性
 ======
-FastLogin是一个非常轻量化的登录插件,和同类插件比起来,它非常轻量化,配置简单易上手.命令少,节约内存与CPU开销,也没有许多无用的设置与功能选项,这些特点使它非常适用于中小型服务器。<br>
+* 支持高版本服务端
+* 支持Sponge端!
+* 运行高效,资源占用少.
+* 可以通过电子邮箱找回密码
+* 支持多种密码加密储存算法
+* 支持Sqlite Mysql
+* 能够限制单IP注册数上限
+* 保存玩家退出位置.
+* 可以自定义玩家加入与退出消息
+* 支持未登录状态下的OP与创造保护
+
+基本架构
+======
+
+####MAVEN聚合工程:  
+* DAL------------->数据交互/持久化
+* ENTITY-------->实体模块
+* PROCESS---->主业务模块
+* SECURE------>安全模块
+* UTIL------------>保障模块
+
+####外部框架与库:
+SpringBoot + Hibernate + Sqlite/Mysql/Redis
+
+
+
+
+以下介绍已过期,请勿作参考.
+======
+
+特性
+======
+FastLogin是一个~~非常轻量化~~的登录插件,和同类插件比起来,它~~非常轻量化,~~配置简单易上手.命令少,节约内存与CPU开销,也没有许多无用的设置与功能选项,这些特点使它非常适用于中小型服务器。<br>
 
 * 轻量化 配置简单<br>
 * 运行速度快<br>

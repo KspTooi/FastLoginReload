@@ -11,36 +11,24 @@
 
 -->
 
-<hibernate-mapping package="com.ksptooi.entity.do.player">
+<hibernate-mapping package="com.ksptooi.entity.dto.player">
 
-    <class name="player" lazy="true" table="player">
+    <class name="PlayerLocation" table="PlayerLocation" lazy="true" >
 
-        <!--主键映射，属性名为id，列名也为id-->
-        <id name="uid">
-            <!--根据底层数据库主键自动增长-->
-            <generator class="native"/>
-        </id>
-
-        <!--非主键映射，属性和列名一一对应-->
-        <property name="name" column="name"/>
-        <property name="password" column="password"/>
-
-        <one-to-one name="playerLocation" class="com.ksptooi.h.entity.PlayerLocation" property-ref="pid"></one-to-one>
-
-    </class>
-
-    <class name="PlayerLocation" lazy="true" table="playerLocation">
-
-        <id name="lid">
+        <id name="id">
             <generator class="native"/>
         </id>
 
         <property name="pid" column="pid"/>
-
-
-        <property name="playerLocation" column="playerLocation" />
+        <property name="world" column="world"/>
+        <property name="x" column="x"/>
+        <property name="y" column="y"/>
+        <property name="z" column="z"/>
+        <property name="pitch" column="pitch"/>
+        <property name="yaw" column="yaw"/>
 
     </class>
+
 
 
 </hibernate-mapping>

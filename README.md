@@ -22,7 +22,7 @@ FastLoginR(FLR)是在原FastLogin的基础上进行重构的一个全新项目,�
 基本架构
 ======
 
-####MAVEN聚合工程:  
+MAVEN聚合工程:  
 
 * DAL------------->数据交互/持久化
 * ENTITY-------->实体模块
@@ -30,8 +30,7 @@ FastLoginR(FLR)是在原FastLogin的基础上进行重构的一个全新项目,�
 * SECURE------>安全模块
 * UTIL------------>保障模块
 
-####外部框架与库:
-
+外部框架与库:  
 SpringBoot + Hibernate + Sqlite/Mysql/Redis
 
 前一个版本

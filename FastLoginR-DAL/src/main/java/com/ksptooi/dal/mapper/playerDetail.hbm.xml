@@ -18,7 +18,7 @@
         <id name="id">
             <generator class="native"/>
         </id>
-        
+
         <property name="pid" column="pid"/>
         <property name="foodLevel" column="foodLevel"/>
         <property name="healtLevel" column="healtLevel"/>

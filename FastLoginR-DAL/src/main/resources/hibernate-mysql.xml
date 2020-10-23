@@ -7,13 +7,13 @@
 
     <session-factory>
 
-        <property name="connection.url">jdbc:sqlite://C:Sqlite.db</property>
-        <property name="connection.driver_class">org.sqlite.JDBC</property>
-        <property name="connection.username"></property>
-        <property name="connection.password"></property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/wp1?serverTimezone=UTC</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.username">--</property>
+        <property name="connection.password">--</property>
 
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
-        <property name="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</property>
 
         <property name="hibernate.show_sql">true</property>
 
@@ -25,8 +25,9 @@
 
         <property name="hibernate.current_session_context_class">thread</property>
 
-
-        <mapping resource="com/ksptooi/h/dal/Player.hbm.xml"></mapping>
+        <mapping resource="com/ksptooi/dal/mapper/player.hbm.xml"></mapping>
+        <mapping resource="com/ksptooi/dal/mapper/playerDetail.hbm.xml"></mapping>
+        <mapping resource="com/ksptooi/dal/mapper/playerLocation.hbm.xml"></mapping>
 
     </session-factory>
 

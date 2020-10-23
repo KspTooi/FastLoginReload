@@ -18,11 +18,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.ksptooi</groupId>
-            <artifactId>FastLogin-ENTITY</artifactId>
-            <version>0.5.A</version>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>

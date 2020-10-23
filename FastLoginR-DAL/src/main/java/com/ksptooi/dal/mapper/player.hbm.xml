@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+
+  This mapping demonstrates content-based discrimination for the
+  table-per-hierarchy mapping strategy, using a formula
+  discriminator.
+
+-->
+
+<hibernate-mapping package="com.ksptooi.entity.dto.player">
+
+    <class name="Player" table="Player" lazy="true" >
+
+        <id name="pid">
+            <generator class="native"/>
+        </id>
+
+        <property name="account" column="account"/>
+        <property name="password" column="password"/>
+        <property name="registerstatus" column="registerstatus"/>
+        <property name="registerDate" column="registerDate"/>
+        <property name="registerip" column="registerip"/>
+        <property name="loginstatus" column="loginstatus"/>
+        <property name="logincount" column="logincount"/>
+        <property name="lastloginDate" column="lastloginDate"/>
+
+        <!--DTO单向一对一关系查询-->
+        <one-to-one name="playerDetail" class="com.ksptooi.entity.dto.player.PlayerDetail" property-ref="pid"/>
+        <one-to-one name="playerLocation" class="com.ksptooi.entity.dto.player.PlayerLocation" property-ref="pid"/>
+
+    </class>
+
+
+</hibernate-mapping>

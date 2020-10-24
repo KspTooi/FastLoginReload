@@ -12,9 +12,8 @@ public class FastLogin extends JavaPlugin {
     public void onEnable() {
 
         Logger logger = Bukkit.getLogger();
-        logger.info("[FastLogin]正在初始化");
+        logger.info("[FastLogin]版本:"+currentVersion);
 
-        Bukkit.getLogger().info("FastLogin init");
     }
 
     @Override

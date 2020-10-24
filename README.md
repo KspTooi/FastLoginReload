@@ -1,6 +1,6 @@
 FastLoginReload
 ======
-"一个强大的~~轻量级~~登录插件!"<br>
+"一个强大的登录插件!"<br>
 ![image](https://github.com/ishiyamasayuri/FastLogin/blob/master/FastLogin_LogoRE.png)
 <br>
 

@@ -16,4 +16,5 @@ public class FastLogin extends JavaPlugin {
     public void onDisable() {
         super.onDisable();
     }
+
 }

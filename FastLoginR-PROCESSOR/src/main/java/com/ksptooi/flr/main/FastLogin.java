@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 
 public class FastLogin extends JavaPlugin {
 
+    public static final String currentVersion = "0.5_A";
+
 
     @Override
     public void onEnable() {

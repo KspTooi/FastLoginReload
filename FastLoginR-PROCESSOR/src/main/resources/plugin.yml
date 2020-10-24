@@ -1,0 +1,10 @@
+name: FastLoginR
+main: com.ksptooi.flr.main.FastLogin
+version: 0.5_A
+commands:
+    login:
+    l:
+    logout:
+    register:
+    reg:
+    changepwd:

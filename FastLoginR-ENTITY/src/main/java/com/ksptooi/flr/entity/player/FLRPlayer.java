@@ -1,6 +1,6 @@
 package com.ksptooi.flr.entity.player;
 
-public class Player {
+public class FLRPlayer {
 
     //玩家ID
     private Integer pid;

@@ -8,9 +8,12 @@ public class FastLogin extends JavaPlugin {
 
     public static final String currentVersion = "0.5_A";
 
-
     @Override
     public void onEnable() {
+
+        Logger logger = Bukkit.getLogger();
+        logger.info("[FastLogin]正在初始化");
+
         Bukkit.getLogger().info("FastLogin init");
     }
 

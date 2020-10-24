@@ -1,7 +1,7 @@
 package com.ksptooi.dal;
 
 import com.ksptooi.flr.dal.util.SqliteUtil;
-import com.ksptooi.flr.entity.player.Player;
+import com.ksptooi.flr.entity.player.FLRPlayer;
 import org.hibernate.Session;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class unitest {
 
 
         //定义实体类
-        Player pl = new Player();
+        FLRPlayer pl = new FLRPlayer();
         pl.setAccount("KspTooi");
         pl.setLastloginDate("1");
         pl.setLeaveDate("1");

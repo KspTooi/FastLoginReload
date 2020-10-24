@@ -13,7 +13,7 @@
 
 <hibernate-mapping package="com.ksptooi.flr.entity.player">
 
-    <class name="com.ksptooi.flr.entity.player.Player" table="Player" lazy="true" >
+    <class name="com.ksptooi.flr.entity.player.FLRPlayer" table="Player" lazy="true" >
 
         <id name="pid">
             <generator class="native"/>

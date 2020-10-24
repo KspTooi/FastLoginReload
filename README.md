@@ -1,7 +1,7 @@
 FastLoginReload
 ======
 "一个强大的登录插件!"<br>
-![image](https://github.com/ishiyamasayuri/FastLogin/blob/master/FastLogin_LogoRE.png)
+![image](https://github.com/90neko/FastLoginReload/blob/master/FastLoginR-LOGO-RE.png)
 <br>
 
 FastLoginR(FLR)是在原FastLogin的基础上进行重构的一个全新项目,相对于原FastLogin来说,FLR将会拥有更强大的功能与稳定性,与此同时它也继承了FastLogin轻量化的特性.它多样化的能力使其可以支持各种规模的服务器.

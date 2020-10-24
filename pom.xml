@@ -6,7 +6,7 @@
 
     <groupId>com.ksptooi</groupId>
     <artifactId>FastLoginR</artifactId>
-    <version>0.5.A</version>
+    <version>1.2-S</version>
     <modules>
         <module>FastLoginR-DAL</module>
         <module>FastLoginR-ENTITY</module>

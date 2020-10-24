@@ -5,7 +5,7 @@
     <parent>
         <artifactId>FastLoginR</artifactId>
         <groupId>com.ksptooi</groupId>
-        <version>0.5.A</version>
+        <version>1.2-S</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>FastLoginR-PROCESSOR</artifactId>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.ksptooi</groupId>
             <artifactId>FastLoginR-DAL</artifactId>
-            <version>0.5.A</version>
+            <version>1.2-S</version>
         </dependency>
 
 

@@ -16,6 +16,13 @@
 
         <dependency>
             <groupId>com.ksptooi</groupId>
+            <artifactId>FastLoginR-Util</artifactId>
+            <version>1.2-S</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.ksptooi</groupId>
             <artifactId>FastLoginR-ENTITY</artifactId>
             <version>1.2-S</version>
         </dependency>

@@ -6,6 +6,8 @@ import org.hibernate.cfg.Configuration;
 
 public class SqliteUtil {
 
+
+
     public static SessionFactory sessionFactory = null;
 
     public static Session getSession(){

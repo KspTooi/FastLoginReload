@@ -7,6 +7,37 @@
     <groupId>com.ksptooi</groupId>
     <artifactId>FastLoginR</artifactId>
     <version>1.2-S</version>
+
+    <name>FastLoginReload</name>
+    <description>一个轻量化的登录插件,运行于Bukkit和Sponge</description>
+    <inceptionYear>2016</inceptionYear>
+    <url>https://github.com/90neko/FastLoginReload</url>
+
+    <organization>
+        <name>KspTooi Engineer Team</name>
+        <url>https://github.com/90neko</url>
+    </organization>
+
+
+    <scm>
+        <connection>scm:git:https://github.com/90neko/FastLoginReload.git</connection>
+        <developerConnection>scm:git:git@github.com:90Neko/FastLoginReload.git</developerConnection>
+        <url>https://github.com/90neko/FastLoginReload</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/90neko/FastLoginReload/issues</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>The GNU General Public Licence version 3 (GPLv3)</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <modules>
         <module>FastLoginR-DAL</module>
         <module>FastLoginR-ENTITY</module>
@@ -16,6 +47,8 @@
     </modules>
     <packaging>pom</packaging>
 
+
+
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -23,7 +56,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.22</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
@@ -47,7 +80,7 @@
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.32.3.2</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.github.gwenn/sqlite-dialect -->

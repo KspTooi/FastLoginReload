@@ -12,11 +12,9 @@
         <property name="connection.username"></property>
         <property name="connection.password"></property>
 
-
         <property name="hibernate.dialect">com.ksptooi.hibernate.dialect.SqliteDialect</property>
 
         <property name="hibernate.show_sql">true</property>
-
         
         <property name="hibernate.format_sql">true</property>
 

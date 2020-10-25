@@ -16,7 +16,7 @@ public interface PlayerDAO {
     FLRPlayer getPlayerById(Integer userId);
 
     /**
-     * 根据ID获取用户
+     * 根据名称获取用户
      * @param userName
      * @return 用户实例
      */

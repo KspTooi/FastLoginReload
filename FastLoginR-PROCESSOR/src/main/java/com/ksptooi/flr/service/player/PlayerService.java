@@ -2,12 +2,21 @@ package com.ksptooi.flr.service.player;
 
 
 import com.ksptooi.flr.entity.player.FLRPlayer;
+import org.bukkit.entity.Player;
 
 
 /**
  * 用户服务类
  */
 public interface PlayerService {
+
+
+    /**
+     * 玩家注册
+     * @param player
+     * @return 注册
+     */
+    FLRPlayer playerRegister(Player player);
 
 
     /**

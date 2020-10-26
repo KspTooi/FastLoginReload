@@ -15,12 +15,10 @@ public class SqliteUtil {
     }
 
     static{
-
         //加载配置文件管理
         Configuration cfg = new Configuration();
         cfg.configure("hibernate-sqlite.xml");
         sessionFactory = cfg.buildSessionFactory();
-
     }
 
 }

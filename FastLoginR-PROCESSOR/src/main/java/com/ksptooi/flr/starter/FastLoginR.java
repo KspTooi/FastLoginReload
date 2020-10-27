@@ -2,7 +2,6 @@ package com.ksptooi.flr.starter;
 
 import com.ksptooi.flr.service.player.PlayerService;
 import com.ksptooi.flr.starter.spring.ContextR;
-import com.ksptooi.flr.starter.spring.JarUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
@@ -21,9 +20,12 @@ public class FastLoginR extends JavaPlugin {
 
 
 
-/*        PlayerService playerService = ContextR.get(PlayerService.class);
 
-        logger.info("[FastLoginR]"+playerService);
+        PlayerService playerService = ContextR.get(PlayerService.class);
+
+        System.out.println("注入成功:"+playerService);
+
+/*        logger.info("[FastLoginR]"+playerService);
         playerService.playerRegister(null);*/
 
     }

@@ -47,30 +47,26 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
+
+                <configuration>
+
+                    <minimizeJar>false</minimizeJar>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+
+                    <filters>
+                        <filter>
+
+                        </filter>
+                    </filters>
+
+                </configuration>
+
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <minimizeJar>true</minimizeJar>
-                            <filters>
-                                <filter>
-<!--                                    <artifact>org.springframework:spring-context:5.2.9.RELEASE</artifact>
-                                    <includes>
-                                        <include>**</include>
-                                    </includes>-->
-
-                                </filter>
-                            </filters>
-
-<!--
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
--->
-
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

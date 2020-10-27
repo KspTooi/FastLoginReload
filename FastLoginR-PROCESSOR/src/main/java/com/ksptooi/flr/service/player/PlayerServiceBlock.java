@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PlayerServiceBlock implements PlayerService{
 
-    @Autowired
     PlayerDAO playerDAO = null;
-
 
     public FLRPlayer playerRegister(Player player) {
 

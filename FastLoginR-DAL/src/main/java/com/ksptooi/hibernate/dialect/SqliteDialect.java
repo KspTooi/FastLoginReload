@@ -47,24 +47,24 @@ public class SqliteDialect extends Dialect {
         return true;
     }
 
-    /*
      public boolean supportsInsertSelectIdentity() {
      return true; // As specify in NHibernate dialect
      }
-     */
+
+
 
     public boolean hasDataTypeInIdentityColumn() {
         return false; // As specify in NHibernate dialect
     }
 
-    /*
      public String appendIdentitySelectToInsert(String insertString) {
      return new StringBuffer(insertString.length()+30). // As specify in NHibernate dialect
      append(insertString).
      append("; ").append(getIdentitySelectString()).
      toString();
      }
-     */
+
+
 
     public String getIdentityColumnString() {
         // return "integer primary key autoincrement";

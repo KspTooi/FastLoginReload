@@ -1,4 +1,4 @@
-package com.ksptooi.hibernate.dialect;
+package com.ksptooi.flr.dao.access;
 
 import java.sql.Types;
 import org.hibernate.dialect.Dialect;
@@ -8,10 +8,9 @@ import org.hibernate.dialect.function.VarArgsSQLFunction;
 import org.hibernate.type.IntegerType;
 import org.hibernate.type.StringType;
 
-public class SqliteDialect extends Dialect {
+public class HibernateSqliteDialect extends Dialect {
 
-    public SqliteDialect() {
-
+    public HibernateSqliteDialect() {
 
 
         super();

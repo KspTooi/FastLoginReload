@@ -1,4 +1,4 @@
-package com.ksptooi.flr.dal.player;
+package com.ksptooi.flr.mapper.player;
 
 
 import com.ksptooi.flr.entity.player.FLRPlayer;
@@ -6,7 +6,7 @@ import com.ksptooi.flr.entity.player.FLRPlayer;
 /**
  * 用户DAO
  */
-public interface PlayerDAO {
+public interface PlayerMapper {
 
     /**
      * 根据ID获取用户

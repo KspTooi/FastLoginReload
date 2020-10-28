@@ -1,4 +1,4 @@
-package com.ksptooi.flr.dal.config;
+package com.ksptooi.flr.dao.config;
 
 import com.ksptooi.flr.entity.config.PluginConfig;
 import com.ksptooi.flr.entity.language.PluginLang;

@@ -1,10 +1,10 @@
-package com.ksptooi.flr.dal.util;
+package com.ksptooi.flr.dao.access;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class MysqlUtil {
+public class HibernateMysqlAccess {
 
     public static SessionFactory sessionFactory = null;
 

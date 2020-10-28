@@ -1,12 +1,11 @@
-package com.ksptooi.flr.dal.player;
+package com.ksptooi.flr.mapper.player;
 
 import com.ksptooi.flr.entity.player.FLRPlayer;
-import org.springframework.stereotype.Component;
 
 
 
-@Component
-public class PlayerdaoBlock implements PlayerDAO{
+
+public class PlayerMapperBlock implements PlayerMapper {
 
     public FLRPlayer getPlayerById(Integer userId) {
         return null;

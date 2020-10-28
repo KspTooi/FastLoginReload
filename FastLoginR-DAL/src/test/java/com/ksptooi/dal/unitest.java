@@ -1,6 +1,6 @@
 package com.ksptooi.dal;
 
-import com.ksptooi.flr.dal.util.SqliteUtil;
+import com.ksptooi.flr.dao.access.HibernateSqliteAccess;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import org.hibernate.Session;
 import org.junit.Test;
@@ -24,17 +24,19 @@ public class unitest {
         pl.setRegisterstatus(1);
 
 
-        //取到Session
-        Session session = SqliteUtil.getSession();
 
-        //开始事务
+
+        //取到Session
+        Session session = HibernateSqliteAccess.getSession();
+
+/*        //开始事务
         session.beginTransaction();
 
         //加入实体类
         session.save(pl);
 
         //释放session
-        session.close();
+        session.close();*/
 
     }
 

@@ -12,20 +12,21 @@
         <property name="connection.username"></property>
         <property name="connection.password"></property>
 
-        <property name="hibernate.dialect">com.ksptooi.hibernate.dialect.SqliteDialect</property>
+        <property name="hibernate.dialect">com.ksptooi.flr.dao.access.HibernateSqliteDialect</property>
 
         <property name="hibernate.show_sql">true</property>
         
         <property name="hibernate.format_sql">true</property>
 
+<!--        <property name="hibernate.hbm2ddl.auto">update</property>-->
+        
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <property name="hibernate.current_session_context_class">thread</property>
+        <!--<property name="hibernate.current_session_context_class">thread</property>-->
 
-
-        <mapping resource="com/ksptooi/flr/dal/mapper/player.hbm.xml"></mapping>
+<!--        <mapping resource="com/ksptooi/flr/dal/mapper/player.hbm.xml"></mapping>
         <mapping resource="com/ksptooi/flr/dal/mapper/playerDetail.hbm.xml"></mapping>
-        <mapping resource="com/ksptooi/flr/dal/mapper/playerLocation.hbm.xml"></mapping>
+        <mapping resource="com/ksptooi/flr/dal/mapper/playerLocation.hbm.xml"></mapping>-->
 
     </session-factory>
 

@@ -1,15 +1,14 @@
 package com.ksptooi.flr.service.player;
 
-import com.ksptooi.flr.dal.player.PlayerDAO;
+import com.google.inject.Singleton;
+import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import org.bukkit.entity.Player;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+@Singleton
 public class PlayerServiceBlock implements PlayerService{
 
-    PlayerDAO playerDAO = null;
+    PlayerMapper playerDAO = null;
 
     public FLRPlayer playerRegister(Player player) {
 

@@ -8,6 +8,7 @@ FastLoginR(FLR)是在原FastLogin的基础上进行重构的一个全新项目,�
 
 特性
 ======
+* 不支持CatServer端!
 * 支持高版本服务端
 * 支持Sponge端!
 * 运行高效,资源占用少.
@@ -51,3 +52,5 @@ V1.3F.43 Guice+Mybatis + H2/MYSQL
 前一个版本
 =====
 [FastLogin](https://github.com/90neko/FastLogin)
+
+

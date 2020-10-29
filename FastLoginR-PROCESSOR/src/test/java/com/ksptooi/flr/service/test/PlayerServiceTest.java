@@ -9,6 +9,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -40,7 +43,9 @@ public class PlayerServiceTest {
     @Test
     public void regPlayerBatch(){
 
-        for(int i=0;i<2000;i++){
+        Date start = new Date();
+
+        for(int i=0;i<20000;i++){
 
             String uuid = UUID.randomUUID().toString();
 
@@ -49,10 +54,24 @@ public class PlayerServiceTest {
             player.setPassword(uuid);
 
             service.playerRegister(player);
-            System.out.println("已注册玩家:"+uuid);
+            /*System.out.println("已注册玩家:"+uuid);*/
+
+            if(i%50==0){
+                System.out.println("已注册:"+i);
+            }
+
         }
 
+
+        System.out.println(calLastedTime(start));
     }
 
+
+    public int calLastedTime(Date startDate) {
+        long a = new Date().getTime();
+        long b = startDate.getTime();
+        int c = (int)((a - b) / 1000);
+        return c;
+    }
 
 }

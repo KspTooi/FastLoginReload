@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.3F.43";
+    public static final String currentVersion = "1.3F.56";
 
     @Override
     public void onEnable() {

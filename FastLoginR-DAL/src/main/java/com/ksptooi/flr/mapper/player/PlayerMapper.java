@@ -38,7 +38,6 @@ public interface PlayerMapper {
      */
     Integer removePlayer(@Param("id") String userId);
 
-
     /**
      * 更新用户
      * @param player

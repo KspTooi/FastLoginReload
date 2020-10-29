@@ -35,6 +35,19 @@ V1.2F ~~SpringBoot + Hibernate + Sqlite/Mysql/Redis~~
 V1.3F ~~Guice+Mybatis + SQLITE/MYSQL~~  
 V1.3F.43 Guice+Mybatis + H2/MYSQL
 
+开发版本号说明
+======
+
+(A)Alpha测试 
+(F)快速迭代  
+(S)集成测试  
+(P)预发/测试  
+(RE)发行版  
+(L)提供旧版本服务端支持
+
+
+
+
 前一个版本
 =====
 [FastLogin](https://github.com/90neko/FastLogin)

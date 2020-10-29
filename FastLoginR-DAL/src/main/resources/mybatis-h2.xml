@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+
+    <!-- 连接管理 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED"> <!--com.ksptooi.libs.sqlite.JDBC-->
+                <property name="driver" value="org.h2.Driver" />
+                <property name="url" value="jdbc:h2:C:/db" />
+<!--                <property name="username" value="" />
+                <property name="password" value="" />-->
+                <property name="poolMaximumActiveConnections" value="8"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 映射器文件地址 -->
+    <mappers>
+        <!--<package name="com.ksptooi.flr.mapper.player"/>-->
+        <mapper class="com.ksptooi.flr.mapper.player.PlayerMapper"></mapper>
+    </mappers>
+
+</configuration>

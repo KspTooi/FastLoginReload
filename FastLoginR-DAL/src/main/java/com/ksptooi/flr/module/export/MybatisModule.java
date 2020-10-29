@@ -44,6 +44,11 @@ public class MybatisModule extends XMLMyBatisModule {
             return;
         }
 
+        if(dbType.equals(DatabaseType.H2)){
+            setClassPathResource("mybatis-h2.xml");
+            return;
+        }
+
         throw new RuntimeException("无效的DatabaseType!");
     }
 

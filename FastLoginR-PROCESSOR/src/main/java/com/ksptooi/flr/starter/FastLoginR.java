@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.3F.29";
+    public static final String currentVersion = "1.3F.43";
 
     @Override
     public void onEnable() {
@@ -44,7 +44,7 @@ public class FastLoginR extends JavaPlugin {
         }*/
 
 
-        DalModule.install(DatabaseType.SQLITE);
+        DalModule.install(DatabaseType.H2);
 
         Injector inject = DalModule.getInject();
 
@@ -53,8 +53,6 @@ public class FastLoginR extends JavaPlugin {
         FLRPlayer playerById = instance1.getPlayerById(1);
 
         System.out.println(playerById);
-
-
 
 
 

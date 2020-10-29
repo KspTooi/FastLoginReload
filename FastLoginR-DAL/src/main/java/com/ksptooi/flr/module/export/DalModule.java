@@ -31,8 +31,6 @@ public class DalModule extends AbstractModule{
     }
 
 
-
-
     public static Injector getInject() {
 
         if(inject == null){

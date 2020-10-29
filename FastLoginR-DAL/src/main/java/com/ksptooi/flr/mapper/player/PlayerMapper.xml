@@ -5,7 +5,7 @@
 <mapper namespace="com.ksptooi.flr.mapper.player.PlayerMapper">
 
 	<select id="getPlayerById" resultType="com.ksptooi.flr.entity.player.FLRPlayer">
-		select * from Player where pid = #{id}
+		select * from player where pid = #{id}
 	</select>
 	
   

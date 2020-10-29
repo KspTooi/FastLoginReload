@@ -3,6 +3,7 @@ package com.ksptooi.flr.module.export;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
+import com.ksptooi.flr.dao.access.DatabaseType;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -18,17 +19,32 @@ import java.util.Properties;
 public class MybatisModule extends XMLMyBatisModule {
 
 
+    private String dbType = DatabaseType.SQLITE;
+
     public MybatisModule(){
 
     }
 
+    public MybatisModule(String dataBaseType){
+        this.dbType = dataBaseType;
+    }
 
 
     protected void initialize() {
 
         setEnvironmentId("development");
-        setClassPathResource("mybatis-mysql.xml");
 
+        if(dbType.equals(DatabaseType.MYSQL)){
+            setClassPathResource("mybatis-mysql.xml");
+            return;
+        }
+
+        if(dbType.equals(DatabaseType.SQLITE)){
+            setClassPathResource("mybatis-sqlite.xml");
+            return;
+        }
+
+        throw new RuntimeException("无效的DatabaseType!");
     }
 
     private Properties createProperties(String configFile) {

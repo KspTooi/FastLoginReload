@@ -59,7 +59,15 @@
                         </filter>
                     </filters>
 
+                    <relocations>
+                        <relocation>
+                            <pattern>org.sqlite</pattern>
+                            <shadedPattern>com.ksptooi.libs.sqlite</shadedPattern>
+                        </relocation>
+                    </relocations>
+
                 </configuration>
+
 
                 <executions>
                     <execution>

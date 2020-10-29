@@ -11,7 +11,7 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED"> <!--com.ksptooi.libs.sqlite.JDBC-->
                 <property name="driver" value="org.h2.Driver" />
-                <property name="url" value="jdbc:h2:C:/db" />
+                <property name="url" value="jdbc:h2:./plugins/FastLoginR" />
 <!--                <property name="username" value="" />
                 <property name="password" value="" />-->
                 <property name="poolMaximumActiveConnections" value="8"/>

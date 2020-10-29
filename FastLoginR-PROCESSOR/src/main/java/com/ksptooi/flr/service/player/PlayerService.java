@@ -18,7 +18,6 @@ public interface PlayerService {
      */
     FLRPlayer playerRegister(Player player);
 
-
     /**
      * 玩家登录
      * @param playerName
@@ -33,6 +32,13 @@ public interface PlayerService {
      * @return 成功返回true 失败返回false
      */
     boolean playerLogout(String playerName);
+
+    /**
+     * 根据玩家名称获取玩家数据对象
+     * @param playerName
+     * @return 玩家数据对象
+     */
+    FLRPlayer getFLRPlayer(String playerName);
 
 
 }

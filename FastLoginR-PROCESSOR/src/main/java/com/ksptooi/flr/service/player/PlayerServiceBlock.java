@@ -9,9 +9,10 @@ import org.bukkit.entity.Player;
 public class PlayerServiceBlock implements PlayerService{
 
 
+
+
     /**
      * 玩家注册
-     *
      * @param player
      * @return 注册
      */
@@ -22,7 +23,6 @@ public class PlayerServiceBlock implements PlayerService{
 
     /**
      * 玩家登录
-     *
      * @param playerName
      * @param pwd
      * @return 成功返回玩家实例 失败返回null
@@ -34,7 +34,6 @@ public class PlayerServiceBlock implements PlayerService{
 
     /**
      * 玩家登出
-     *
      * @param playerName
      * @return 成功返回true 失败返回false
      */
@@ -45,7 +44,6 @@ public class PlayerServiceBlock implements PlayerService{
 
     /**
      * 根据玩家名称获取玩家数据对象
-     *
      * @param playerName
      * @return 玩家数据对象
      */

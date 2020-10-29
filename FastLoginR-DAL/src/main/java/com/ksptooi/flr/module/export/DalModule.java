@@ -11,7 +11,7 @@ public class DalModule extends AbstractModule{
 
     private static Injector inject = null;
 
-    private static String dbType = DatabaseType.SQLITE;
+    private static String dbType = DatabaseType.H2;
 
 
 

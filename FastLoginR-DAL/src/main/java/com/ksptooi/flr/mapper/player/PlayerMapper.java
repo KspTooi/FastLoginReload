@@ -3,6 +3,7 @@ package com.ksptooi.flr.mapper.player;
 
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import org.apache.ibatis.annotations.Param;
+import org.omg.PortableInterceptor.INACTIVE;
 
 /**
  * 用户DAO
@@ -21,34 +22,28 @@ public interface PlayerMapper {
      * @param userName
      * @return 用户实例
      */
-    FLRPlayer getPlayerByName(String userName);
-
-    /**
-     * 检查用户名字是否已经存在
-     * @return 已存在返回true 不存在返回false
-     */
-    boolean checkPlayerName(String userName);
+    FLRPlayer getPlayerByName(@Param("account") String userName);
 
     /**
      * 加入新的用户
      * @param player
-     * @return 成功返回true 失败返回false
+     * @return 受影响行数
      */
-    boolean insertPlayer(FLRPlayer player);
+    Integer insertPlayer(FLRPlayer player);
 
     /**
      * 移除用户
      * @param userId
-     * @return 成功返回true 失败返回false
+     * @return 受影响行数
      */
-    boolean removePlayer(String userId);
+    Integer removePlayer(@Param("id") String userId);
 
 
     /**
      * 更新用户
      * @param player
-     * @return 成功返回true 失败返回false
+     * @return 受影响行数
      */
-    boolean updatePlayer(FLRPlayer player);
+    Integer updatePlayer(FLRPlayer player);
 
 }

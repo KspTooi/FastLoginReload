@@ -4,9 +4,58 @@
 
 <mapper namespace="com.ksptooi.flr.mapper.player.PlayerMapper">
 
+
+
+
 	<select id="getPlayerById" resultType="com.ksptooi.flr.entity.player.FLRPlayer">
-		select * from player where pid = #{id}
+		SELECT * FROM PLAYER WHERE PID = #{id}
 	</select>
-	
-  
+
+    <select id="getPlayerByName" resultType="com.ksptooi.flr.entity.player.FLRPlayer">
+		SELECT * FROM PLAYER WHERE ACCOUNT = #{account}
+	</select>
+
+	<!--使用主键回填-->
+	<insert id="insertPlayer" useGeneratedKeys="true" keyProperty="pid" keyColumn="pid">
+		INSERT INTO PLAYER(
+		     ACCOUNT
+		    ,PASSWORD
+		    ,REGISTERSTATUS
+		    ,REGISTERDATE
+		    ,REGISTERIP
+		    ,LOGINSTATUS
+		    ,LOGINCOUNT
+		    ,LASTLOGINDATE
+		    ,LEAVEDATE)
+		    VALUES(
+		    #{ACCOUNT}
+		    ,#{PASSWORD}
+		    ,#{REGISTERSTATUS}
+		    ,#{REGISTERDATE}
+		    ,#{REGISTERIP}
+		    ,#{LOGINSTATUS}
+		    ,#{LOGINCOUNT}
+		    ,#{LASTLOGINDATE}
+		    ,#{LEAVEDATE})
+	</insert>
+
+	<delete id="removePlayer">
+		DELETE FROM PLAYER WHERE PID = #{id}
+	</delete>
+
+
+	<update id="updatePlayer">
+		UPDATE PLAYER SET
+			 ACCOUNT = #{account}
+			,PASSWORD = #{password}
+			,REGISTERSTATUS = #{registerstatus}
+			,REGISTERDATE = #{registerDate}
+			,REGISTERIP = #{registerip}
+			,LOGINSTATUS = #{loginstatus}
+			,LOGINCOUNT = #{logincount}
+			,LASTLOGINDATE = #{lastloginDate}
+			,LEAVEDATE = #{leaveDate}
+		WHERE PID = #{pid}
+	</update>
+
 </mapper>

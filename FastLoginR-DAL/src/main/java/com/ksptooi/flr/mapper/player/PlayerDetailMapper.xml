@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.ksptooi.flr.mapper.player.PlayerDetailMapper">
+
+
+	<select id="getDetailByPID" resultType="com.ksptooi.flr.entity.player.PlayerDetail">
+		SELECT * FROM PLAYERDETAIL WHERE PID=#{pid}
+	</select>
+
+
+	<insert id="insertDetail">
+		INSERT INTO PLAYERDETAIL(PID,FOODLEVEL,HEALTLEVEL,OXYGENLEVEL,EXPLEVEL)
+		VALUES (#{pid},#{foodlevel},#{healtlevel},#{oxygenlevel},#{explevel})
+	</insert>
+
+	<delete id="removeDetail">
+		DELETE FROM PLAYERDETAIL WHERE ID = #{id}
+	</delete>
+
+	<update id="updateDetail">
+		UPDATE PLAYERDETAIL SET PID=#{pid},FOODLEVEL=#{foodlevel},HEALTLEVEL=#{healtlevel},OXYGENLEVEL=#{oxygenlevel},EXPLEVEL=#{explevel}
+		WHERE ID=#{id}
+	</update>
+
+
+
+
+
+
+</mapper>

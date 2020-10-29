@@ -7,7 +7,6 @@
 	<select id="getPlayerById" resultType="com.ksptooi.flr.entity.player.FLRPlayer">
 		select * from Player where pid = #{id}
 	</select>
-
 	
   
 </mapper>

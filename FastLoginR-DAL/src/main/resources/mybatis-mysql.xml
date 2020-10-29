@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+
+    <!-- 连接管理 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/smbms?useSSL=false&amp;serverTimezone=UTC" />
+                <property name="username" value="root" />
+                <property name="password" value="Qa2334253462" />
+                <property name="poolMaximumActiveConnections" value="8"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 映射器文件地址 -->
+    <mappers>
+        <package name="com.ksptooi.flr.mapper.player"/>
+    </mappers>
+
+</configuration>

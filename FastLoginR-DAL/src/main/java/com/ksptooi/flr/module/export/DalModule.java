@@ -1,10 +1,7 @@
 package com.ksptooi.flr.module.export;
 
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
+import com.google.inject.*;
 import com.ksptooi.flr.dao.access.MybatisAccess;
 import com.ksptooi.flr.dao.access.MybatisSqliteAccess;
 
@@ -19,10 +16,11 @@ public class DalModule extends AbstractModule{
     }
 
 
-
     //IOC配置
     protected void configure() {
-        bind(MybatisAccess.class).to(MybatisSqliteAccess.class);
+
+        bind(MybatisAccess.class).to(MybatisSqliteAccess.class).in(Scopes.SINGLETON);
+
     }
 
 

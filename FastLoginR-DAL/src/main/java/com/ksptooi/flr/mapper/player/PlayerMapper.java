@@ -2,6 +2,7 @@ package com.ksptooi.flr.mapper.player;
 
 
 import com.ksptooi.flr.entity.player.FLRPlayer;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 用户DAO
@@ -13,7 +14,7 @@ public interface PlayerMapper {
      * @param userId
      * @return 用户实例
      */
-    FLRPlayer getPlayerById(Integer userId);
+    FLRPlayer getPlayerById(@Param("id") Integer userId);
 
     /**
      * 根据名称获取用户

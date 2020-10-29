@@ -31,8 +31,9 @@ MAVEN聚合工程:
 * UTIL------------>保障模块
 
 外部框架与库:  
-~~SpringBoot + Hibernate + Sqlite/Mysql/Redis~~
-Guice+Mybatis+Sqlite+Mysql
+V1.2F ~~SpringBoot + Hibernate + Sqlite/Mysql/Redis~~  
+V1.3F ~~Guice+Mybatis + SQLITE/MYSQL~~  
+V1.3F.43 Guice+Mybatis + H2/MYSQL
 
 前一个版本
 =====

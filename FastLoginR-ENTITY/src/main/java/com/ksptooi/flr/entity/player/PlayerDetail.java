@@ -5,7 +5,7 @@ public class PlayerDetail {
     private Integer id;
     private Integer pid;
     private Double foodLevel;
-    private Double healtLevel;
+    private Double healthLevel;
     private Double oxygenLevel;
     private Double exp;
     private Double level;
@@ -16,7 +16,7 @@ public class PlayerDetail {
                 "id=" + id +
                 ", pid=" + pid +
                 ", foodLevel=" + foodLevel +
-                ", healtLevel=" + healtLevel +
+                ", healtLevel=" + healthLevel +
                 ", oxygenLevel=" + oxygenLevel +
                 ", exp=" + exp +
                 ", level=" + level +
@@ -47,12 +47,12 @@ public class PlayerDetail {
         this.foodLevel = foodLevel;
     }
 
-    public Double getHealtLevel() {
-        return healtLevel;
+    public Double getHealthLevel() {
+        return healthLevel;
     }
 
-    public void setHealtLevel(Double healtLevel) {
-        this.healtLevel = healtLevel;
+    public void setHealthLevel(Double healthLevel) {
+        this.healthLevel = healthLevel;
     }
 
     public Double getOxygenLevel() {

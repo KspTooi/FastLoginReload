@@ -12,22 +12,22 @@ public class FLRPlayer {
     private String password;
 
     //当前注册状态
-    private Integer registerstatus;
+    private Integer registerStatus;
 
     //注册日期
     private String registerDate;
 
     //注册IP地址
-    private String registerip;
+    private String registerIp;
 
     //当前登录状态
-    private Integer loginstatus;
+    private Integer loginStatus;
 
     //登录次数
-    private Integer logincount;
+    private Integer loginCount;
 
     //最后登录日期
-    private String lastloginDate;
+    private String lastLoginDate;
 
     //最后离开日期
     private String leaveDate;
@@ -44,12 +44,12 @@ public class FLRPlayer {
                 "pid=" + pid +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
-                ", registerstatus=" + registerstatus +
+                ", registerstatus=" + registerStatus +
                 ", registerDate='" + registerDate + '\'' +
-                ", registerip='" + registerip + '\'' +
-                ", loginstatus=" + loginstatus +
-                ", logincount=" + logincount +
-                ", lastloginDate='" + lastloginDate + '\'' +
+                ", registerip='" + registerIp + '\'' +
+                ", loginstatus=" + loginStatus +
+                ", logincount=" + loginCount +
+                ", lastloginDate='" + lastLoginDate + '\'' +
                 ", leaveDate='" + leaveDate + '\'' +
                 ", playerDetail=" + playerDetail +
                 ", playerLocation=" + playerLocation +
@@ -80,12 +80,12 @@ public class FLRPlayer {
         this.password = password;
     }
 
-    public Integer getRegisterstatus() {
-        return registerstatus;
+    public Integer getRegisterStatus() {
+        return registerStatus;
     }
 
-    public void setRegisterstatus(Integer registerstatus) {
-        this.registerstatus = registerstatus;
+    public void setRegisterStatus(Integer registerStatus) {
+        this.registerStatus = registerStatus;
     }
 
     public String getRegisterDate() {
@@ -96,36 +96,36 @@ public class FLRPlayer {
         this.registerDate = registerDate;
     }
 
-    public String getRegisterip() {
-        return registerip;
+    public String getRegisterIp() {
+        return registerIp;
     }
 
-    public void setRegisterip(String registerip) {
-        this.registerip = registerip;
+    public void setRegisterIp(String registerIp) {
+        this.registerIp = registerIp;
     }
 
-    public Integer getLoginstatus() {
-        return loginstatus;
+    public Integer getLoginStatus() {
+        return loginStatus;
     }
 
-    public void setLoginstatus(Integer loginstatus) {
-        this.loginstatus = loginstatus;
+    public void setLoginStatus(Integer loginStatus) {
+        this.loginStatus = loginStatus;
     }
 
-    public Integer getLogincount() {
-        return logincount;
+    public Integer getLoginCount() {
+        return loginCount;
     }
 
-    public void setLogincount(Integer logincount) {
-        this.logincount = logincount;
+    public void setLoginCount(Integer loginCount) {
+        this.loginCount = loginCount;
     }
 
-    public String getLastloginDate() {
-        return lastloginDate;
+    public String getLastLoginDate() {
+        return lastLoginDate;
     }
 
-    public void setLastloginDate(String lastloginDate) {
-        this.lastloginDate = lastloginDate;
+    public void setLastLoginDate(String lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
     }
 
     public String getLeaveDate() {

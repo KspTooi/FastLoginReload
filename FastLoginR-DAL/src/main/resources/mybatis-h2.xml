@@ -23,6 +23,8 @@
     <mappers>
         <!--<package name="com.ksptooi.flr.mapper.player"/>-->
         <mapper class="com.ksptooi.flr.mapper.player.PlayerMapper"></mapper>
+        <mapper class="com.ksptooi.flr.mapper.player.PlayerLocationMapper"></mapper>
+        <mapper class="com.ksptooi.flr.mapper.player.PlayerDetailMapper"></mapper>
     </mappers>
 
 </configuration>

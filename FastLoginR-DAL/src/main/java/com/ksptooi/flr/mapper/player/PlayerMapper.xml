@@ -28,15 +28,15 @@
 		    ,LASTLOGINDATE
 		    ,LEAVEDATE)
 		    VALUES(
-		    #{ACCOUNT}
-		    ,#{PASSWORD}
-		    ,#{REGISTERSTATUS}
-		    ,#{REGISTERDATE}
-		    ,#{REGISTERIP}
-		    ,#{LOGINSTATUS}
-		    ,#{LOGINCOUNT}
-		    ,#{LASTLOGINDATE}
-		    ,#{LEAVEDATE})
+		    #{account}
+		    ,#{password}
+		    ,#{registerStatus}
+		    ,#{registerDate}
+		    ,#{registerIp}
+		    ,#{loginStatus}
+		    ,#{loginCount}
+		    ,#{lastLoginDate}
+		    ,#{leaveDate})
 	</insert>
 
 	<delete id="removePlayer">
@@ -48,12 +48,12 @@
 		UPDATE PLAYER SET
 			 ACCOUNT = #{account}
 			,PASSWORD = #{password}
-			,REGISTERSTATUS = #{registerstatus}
+			,REGISTERSTATUS = #{registerStatus}
 			,REGISTERDATE = #{registerDate}
-			,REGISTERIP = #{registerip}
-			,LOGINSTATUS = #{loginstatus}
-			,LOGINCOUNT = #{logincount}
-			,LASTLOGINDATE = #{lastloginDate}
+			,REGISTERIP = #{registerIp}
+			,LOGINSTATUS = #{loginStatus}
+			,LOGINCOUNT = #{loginCount}
+			,LASTLOGINDATE = #{lastLoginDate}
 			,LEAVEDATE = #{leaveDate}
 		WHERE PID = #{pid}
 	</update>

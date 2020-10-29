@@ -11,8 +11,8 @@
 
 
 	<insert id="insertDetail">
-		INSERT INTO PLAYERDETAIL(PID,FOODLEVEL,HEALTLEVEL,OXYGENLEVEL,EXPLEVEL)
-		VALUES (#{pid},#{foodlevel},#{healtlevel},#{oxygenlevel},#{explevel})
+		INSERT INTO PLAYERDETAIL(PID,FOODLEVEL,HEALTLEVEL,OXYGENLEVEL,EXP,LEVEL)
+		VALUES (#{pid},#{foodLevel},#{healthLevel},#{oxygenLevel},#{exp},#{level})
 	</insert>
 
 	<delete id="removeDetail">

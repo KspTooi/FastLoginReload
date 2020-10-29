@@ -21,12 +21,12 @@
 
         <property name="account" column="account"/>
         <property name="password" column="password"/>
-        <property name="registerstatus" column="registerstatus"/>
+        <property name="getRegisterStatus" column="registerstatus"/>
         <property name="registerDate" column="registerDate"/>
-        <property name="registerip" column="registerip"/>
-        <property name="loginstatus" column="loginstatus"/>
-        <property name="logincount" column="logincount"/>
-        <property name="lastloginDate" column="lastloginDate"/>
+        <property name="getRegisterIp" column="registerip"/>
+        <property name="getLoginStatus" column="loginstatus"/>
+        <property name="getLoginCount" column="logincount"/>
+        <property name="getLastLoginDate" column="lastloginDate"/>
 
         <!--DTO单向一对一关系查询-->
         <one-to-one name="playerDetail" class="com.ksptooi.flr.entity.player.PlayerDetail" property-ref="pid"/>

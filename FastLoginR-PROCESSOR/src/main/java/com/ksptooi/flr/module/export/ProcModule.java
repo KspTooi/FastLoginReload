@@ -4,6 +4,8 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.ksptooi.flr.dao.access.DatabaseType;
+import com.ksptooi.flr.service.player.PlayerService;
+import com.ksptooi.flr.service.player.PlayerServiceBlock;
 
 public class ProcModule extends AbstractModule {
 
@@ -13,7 +15,7 @@ public class ProcModule extends AbstractModule {
 
     @Override
     protected void configure() {
-
+        bind(PlayerService.class).to(PlayerServiceBlock.class);
     }
 
 

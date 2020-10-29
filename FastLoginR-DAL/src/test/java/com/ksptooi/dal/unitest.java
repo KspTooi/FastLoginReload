@@ -14,14 +14,14 @@ public class unitest {
         //定义实体类
         FLRPlayer pl = new FLRPlayer();
         pl.setAccount("KspTooi");
-        pl.setLastloginDate("1");
+        pl.setLastLoginDate("1");
         pl.setLeaveDate("1");
-        pl.setLogincount(1);
-        pl.setLoginstatus(1);
+        pl.setLoginCount(1);
+        pl.setLoginStatus(1);
         pl.setPassword("1");
         pl.setRegisterDate("1");
-        pl.setRegisterip("1");
-        pl.setRegisterstatus(1);
+        pl.setRegisterIp("1");
+        pl.setRegisterStatus(1);
 
 
 

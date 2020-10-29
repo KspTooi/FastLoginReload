@@ -1,14 +1,32 @@
 package com.ksptooi.flr.service.player;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.ksptooi.flr.entity.player.PlayerDetail;
+import com.ksptooi.flr.entity.player.PlayerLocation;
+import com.ksptooi.flr.mapper.player.PlayerDetailMapper;
+import com.ksptooi.flr.mapper.player.PlayerLocationMapper;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.entity.player.FLRPlayer;
-import org.bukkit.entity.Player;
+import com.ksptooi.util.dictionary.PlayerStatus;
+import org.mybatis.guice.transactional.Transactional;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Singleton
+@Transactional
 public class PlayerServiceBlock implements PlayerService{
 
 
+    @Inject
+    PlayerMapper mapper = null;
+
+    @Inject
+    PlayerLocationMapper locMapper = null;
+
+    @Inject
+    PlayerDetailMapper detailMapper = null;
 
 
     /**
@@ -17,8 +35,45 @@ public class PlayerServiceBlock implements PlayerService{
      * @return 注册
      */
     @Override
-    public FLRPlayer playerRegister(Player player) {
-        return null;
+    public FLRPlayer playerRegister(FLRPlayer player) {
+
+        FLRPlayer playerByName = mapper.getPlayerByName(player.getAccount());
+
+        if(playerByName != null){
+            throw new RuntimeException("用户名已存在");
+        }
+
+        String presentDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+
+        //注册业务流程
+        player.setLastLoginDate(presentDate);
+        player.setRegisterDate(presentDate);
+        player.setRegisterStatus(PlayerStatus.REG_SUCCESS.getCode());
+        player.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+        player.setLoginCount(1);
+
+        //添加用户进表
+        Integer insertPlayer = mapper.insertPlayer(player);
+
+        //添加用户位置进表(使用主键回填值)
+        PlayerLocation loc = new PlayerLocation();
+        loc.setPid(player.getPid());
+
+        Integer insertPlayerLoc = locMapper.insertLocation(loc);
+
+        //添加用户详细进表
+        PlayerDetail playerDetail = new PlayerDetail();
+        playerDetail.setPid(player.getPid());
+        Integer insertDetail = detailMapper.insertDetail(playerDetail);
+
+        //判断添加是否成功 如果不成功则回滚事务
+
+        if(insertPlayer<1 || insertPlayerLoc<1 || insertDetail<1){
+            throw new RuntimeException("添加玩家数据失败!");
+        }
+
+        //添加成功则返回玩家实例
+        return player;
     }
 
     /**

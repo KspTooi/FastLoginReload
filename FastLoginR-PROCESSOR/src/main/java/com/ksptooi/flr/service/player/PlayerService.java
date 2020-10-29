@@ -16,7 +16,7 @@ public interface PlayerService {
      * @param player
      * @return 注册
      */
-    FLRPlayer playerRegister(Player player);
+    FLRPlayer playerRegister(FLRPlayer player);
 
     /**
      * 玩家登录

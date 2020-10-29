@@ -8,16 +8,17 @@
     <artifactId>FastLoginR</artifactId>
     <version>1.2-S</version>
 
+
     <name>FastLoginReload</name>
     <description>一个轻量化的登录插件,运行于Bukkit和Sponge</description>
     <inceptionYear>2016</inceptionYear>
     <url>https://github.com/90neko/FastLoginReload</url>
 
+
     <organization>
         <name>KspTooi Engineer Team</name>
         <url>https://github.com/90neko</url>
     </organization>
-
 
     <scm>
         <connection>scm:git:https://github.com/90neko/FastLoginReload.git</connection>
@@ -45,9 +46,8 @@
         <module>FastLoginR-SECURE</module>
         <module>FastLoginR-Util</module>
     </modules>
+
     <packaging>pom</packaging>
-
-
 
     <dependencies>
 
@@ -71,6 +71,18 @@
 
 
     <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
         <resources>
 
             <resource>

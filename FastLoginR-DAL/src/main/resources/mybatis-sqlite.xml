@@ -21,7 +21,8 @@
 
     <!-- 映射器文件地址 -->
     <mappers>
-        <package name="com.ksptooi.flr.mapper.player"/>
+        <!--<package name="com.ksptooi.flr.mapper.player"/>-->
+        <mapper class="com.ksptooi.flr.mapper.player.PlayerMapper"></mapper>
     </mappers>
 
 </configuration>

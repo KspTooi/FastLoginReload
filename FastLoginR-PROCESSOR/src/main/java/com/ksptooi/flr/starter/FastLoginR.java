@@ -1,22 +1,21 @@
 package com.ksptooi.flr.starter;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.ksptooi.flr.dao.access.DatabaseType;
-import com.ksptooi.flr.dao.access.MybatisAccess;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.module.export.DalModule;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.3F.2";
+    public static final String currentVersion = "1.3F.29";
 
     @Override
     public void onEnable() {
@@ -29,20 +28,23 @@ public class FastLoginR extends JavaPlugin {
         /*Thread.currentThread().setContextClassLoader(getClass().getClassLoader());*/
 
 
-        try {
+/*        try {
             Class.forName("org.sqlite.JDBC");
 
-            String url = "jdbc:sqlite:plugins/sqlite3.db";
+            String url = "jdbc:sqlite:plugins/sqlite2.db";
             System.out.println("db url "+url);
             Connection conn = DriverManager.getConnection(url);
             System.out.println(conn.getMetaData().getDriverVersion());
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from player");
+            System.out.println(resultSet);
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
 
-/*        DalModule.install(DatabaseType.SQLITE);
+        DalModule.install(DatabaseType.SQLITE);
 
         Injector inject = DalModule.getInject();
 
@@ -50,8 +52,7 @@ public class FastLoginR extends JavaPlugin {
 
         FLRPlayer playerById = instance1.getPlayerById(1);
 
-
-        System.out.println(playerById);*/
+        System.out.println(playerById);
 
 
 

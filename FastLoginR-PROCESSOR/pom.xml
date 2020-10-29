@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>FastLoginR-PROCESSOR</artifactId>
     <packaging>jar</packaging>
-    <version>1.3F.2</version>
+    <version>1.3F.29</version>
 
     <repositories>
         <repository>
@@ -59,12 +59,12 @@
                         </filter>
                     </filters>
 
-                    <relocations>
+<!--                    <relocations>
                         <relocation>
                             <pattern>org.sqlite</pattern>
-                            <shadedPattern>com.ksptooi.libs.sqlite</shadedPattern>
+                            <shadedPattern>com.ksptooi.sqlite</shadedPattern>
                         </relocation>
-                    </relocations>
+                    </relocations>-->
 
                 </configuration>
 

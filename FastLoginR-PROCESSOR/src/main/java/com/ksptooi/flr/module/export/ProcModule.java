@@ -5,6 +5,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Scopes;
 import com.ksptooi.flr.dao.access.DatabaseType;
+import com.ksptooi.flr.input.adapter.CommandAdapter;
+import com.ksptooi.flr.input.adapter.DefaultCommandAdapter;
 import com.ksptooi.flr.service.player.PlayerService;
 import com.ksptooi.flr.service.player.PlayerServiceBlock;
 
@@ -16,8 +18,13 @@ public class ProcModule extends AbstractModule {
 
     @Override
     protected void configure() {
+
         bind(PlayerService.class).to(PlayerServiceBlock.class).in(Scopes.SINGLETON);
+        bind(CommandAdapter.class).to(DefaultCommandAdapter.class).in(Scopes.SINGLETON);
+
     }
+
+
 
 
     //设置数据库的类型

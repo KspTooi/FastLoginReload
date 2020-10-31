@@ -2,6 +2,7 @@ package com.ksptooi.flr.service.player;
 
 
 import com.ksptooi.flr.entity.player.FLRPlayer;
+import com.ksptooi.flr.proc.exception.AuthException;
 import org.bukkit.entity.Player;
 
 
@@ -16,7 +17,7 @@ public interface PlayerService {
      * @param player
      * @return 注册
      */
-    FLRPlayer playerRegister(FLRPlayer player);
+    FLRPlayer playerRegister(FLRPlayer player) throws AuthException;
 
     /**
      * 玩家登录

@@ -26,7 +26,6 @@ public class ProcModule extends AbstractModule {
 
 
 
-
     //设置数据库的类型
     public static void setDatabaseType(String typeString){
         dbType = typeString;

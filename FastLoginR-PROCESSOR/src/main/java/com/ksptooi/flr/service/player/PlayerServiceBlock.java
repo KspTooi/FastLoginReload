@@ -8,6 +8,7 @@ import com.ksptooi.flr.mapper.player.PlayerDetailMapper;
 import com.ksptooi.flr.mapper.player.PlayerLocationMapper;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.entity.player.FLRPlayer;
+import com.ksptooi.flr.proc.exception.AuthException;
 import com.ksptooi.util.dictionary.PlayerStatus;
 import org.bukkit.Bukkit;
 import org.mybatis.guice.transactional.Transactional;
@@ -36,12 +37,12 @@ public class PlayerServiceBlock implements PlayerService{
      * @return 注册
      */
     @Override
-    public FLRPlayer playerRegister(FLRPlayer player) {
+    public FLRPlayer playerRegister(FLRPlayer player) throws AuthException {
 
         FLRPlayer playerByName = mapper.getPlayerByName(player.getAccount());
 
         if(playerByName != null){
-            throw new RuntimeException("用户名已存在");
+            throw new AuthException("用户名已存在");
         }
 
         String presentDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());

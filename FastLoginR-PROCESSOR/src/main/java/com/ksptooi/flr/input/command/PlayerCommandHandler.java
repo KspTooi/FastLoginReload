@@ -9,6 +9,7 @@ import com.ksptooi.flr.input.annotation.PlayerOnly;
 import com.ksptooi.flr.service.player.PlayerService;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 @CommandHandler
 public class PlayerCommandHandler {
@@ -27,13 +28,20 @@ public class PlayerCommandHandler {
     public boolean playerLogin(@Params("sender")CommandSender sender,
                                @Params("params")String[] p){
 
+        Player pl = (Player) sender;
+
         //边界检查
         if(p.length<1){
             sender.sendMessage("请输入密码!");
             return false;
         }
 
-        FLRPlayer player = service.playerLogin(sender.getName(), p[0]);
+        if(service==null){
+            System.out.println("service为空");
+            return false;
+        }
+
+        FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
 
         if(player == null){
             sender.sendMessage("登录失败,密码错误!");
@@ -41,6 +49,7 @@ public class PlayerCommandHandler {
         }
 
         sender.sendMessage("登录成功!");
+
         return true;
     }
 

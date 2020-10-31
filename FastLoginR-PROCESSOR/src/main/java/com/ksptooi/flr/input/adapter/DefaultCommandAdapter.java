@@ -3,6 +3,7 @@ package com.ksptooi.flr.input.adapter;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
+import com.ksptooi.flr.module.export.ProcModule;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -23,6 +24,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
 
 
     private HashMap<Method,Object> handler = new HashMap<Method, Object>();
+
 
     @Override
     public boolean assign(String name, CommandSender sender, Command cmd,String label, String[] params) {
@@ -82,9 +84,9 @@ public class DefaultCommandAdapter implements CommandAdapter{
 
                     System.out.println(invokeParameters.toArray());
 
+                    ProcModule.getInject().injectMembers(e.getValue());
+
                     boolean b=(boolean)e.getKey().invoke(e.getValue(),invokeParameters.toArray());
-
-
 
                 }catch (Exception exception){
                     exception.printStackTrace();

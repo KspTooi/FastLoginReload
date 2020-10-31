@@ -16,7 +16,7 @@ public class DateUtil {
      * 获取当前日期字符串
      * @return 日期字符串
      */
-    public static String getTimeString(){
+    public static String getCurTimeString(){
         return formatter.format(new Date());
     }
 

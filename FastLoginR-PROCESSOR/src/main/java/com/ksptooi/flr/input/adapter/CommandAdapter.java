@@ -1,5 +1,7 @@
 package com.ksptooi.flr.input.adapter;
 
+import com.ksptooi.flr.entity.model.InputModel;
+import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -21,7 +23,7 @@ public interface CommandAdapter {
      * @param params
      * @return 成功返回true 失败返回false
      */
-    boolean assign(String name, CommandSender sender, Command cmd,String label, String[] params);
+    InputModel assign(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundHandlerException;
 
     /**
      * 注册命令处理器

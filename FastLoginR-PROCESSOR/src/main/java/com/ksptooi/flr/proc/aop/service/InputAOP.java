@@ -1,15 +1,16 @@
 package com.ksptooi.flr.proc.aop.service;
 
-
 import com.ksptooi.flr.dao.exception.DBException;
 import com.ksptooi.flr.proc.exception.AuthException;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
+
 /**
- * Input层后处理异常切面
+ * Input层后处理切面
  */
-public class InputExceptionAOP implements MethodInterceptor {
+public class InputAOP implements MethodInterceptor {
+
 
     /**
      * 切面方法
@@ -22,6 +23,7 @@ public class InputExceptionAOP implements MethodInterceptor {
 
         //切面返回值
         Object result = null;
+
 
         try{
 
@@ -38,5 +40,6 @@ public class InputExceptionAOP implements MethodInterceptor {
 
         return result;
     }
+
 
 }

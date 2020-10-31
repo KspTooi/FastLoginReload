@@ -1,10 +1,13 @@
 package com.ksptooi.flr.input.adapter;
 
+import com.ksptooi.flr.entity.model.InputModel;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.module.export.ProcModule;
 import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
+import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
+import com.ksptooi.util.dictionary.Excep;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -30,7 +33,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
 
     @Override
     @MethodJoinPoint
-    public boolean assign(String name, CommandSender sender, Command cmd,String label, String[] params) {
+    public InputModel assign(String name, CommandSender sender, Command cmd,String label, String[] params) throws NotFoundHandlerException {
 
         ArrayList<Object> invokeParameters = null;
 
@@ -83,15 +86,16 @@ public class DefaultCommandAdapter implements CommandAdapter{
                 }
 
 
-                //默认适配器切面
-                ProcModule.getInject().injectMembers(e.getValue());
 
-                boolean b= false;
+
+                InputModel invokeResultModel = null;
 
                 try {
 
+                    //默认适配器切面
+                    ProcModule.getInject().injectMembers(e.getValue());
 
-                    b = (boolean)e.getKey().invoke(e.getValue(),invokeParameters.toArray());
+                    invokeResultModel = (InputModel) e.getKey().invoke(e.getValue(), invokeParameters.toArray());
 
 
                 } catch (IllegalAccessException illegalAccessException) {
@@ -100,7 +104,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
                     invocationTargetException.printStackTrace();
                 }
 
-                return b;
+                return invokeResultModel;
 
 /*                try{
 
@@ -121,7 +125,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
 
         }
 
-        return false;
+        throw new NotFoundHandlerException(Excep.FATAL_NOT_FOUND_HANDLER);
     }
 
 

@@ -2,12 +2,14 @@ package com.ksptooi.flr.starter;
 
 import com.google.inject.Injector;
 import com.ksptooi.flr.dao.access.DatabaseType;
+import com.ksptooi.flr.entity.model.InputModel;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.input.adapter.CommandAdapter;
 import com.ksptooi.flr.input.command.PlayerCommandHandler;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.module.export.DalModule;
 import com.ksptooi.flr.module.export.ProcModule;
+import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -69,9 +71,26 @@ public class FastLoginR extends JavaPlugin {
 
         //获取到适配器
         CommandAdapter adapter = injector.getInstance(CommandAdapter.class);
-        boolean assign = adapter.assign(cmd.getName(), sender, cmd, label, args);
 
-        return assign;
+        InputModel model = null;
+
+        try {
+
+            model = adapter.assign(cmd.getName(), sender, cmd, label, args);
+
+            if(model == null){
+                sender.sendMessage("当前命令执行时出现内部错误,请联系管理员.");
+                return false;
+            }
+
+        } catch (NotFoundHandlerException e) {
+            sender.sendMessage("没有为该命令找到相应的处理器.");
+            e.printStackTrace();
+            return false;
+        }
+
+
+        return model.isFinish();
     }
 
 

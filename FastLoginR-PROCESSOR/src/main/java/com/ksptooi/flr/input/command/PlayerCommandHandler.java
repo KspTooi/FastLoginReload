@@ -44,10 +44,10 @@ public class PlayerCommandHandler {
 
         FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
 
+
         model.addMessage("登录成功!");
         model.setFinish(true);
         return model;
-
     }
 
 

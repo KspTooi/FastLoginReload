@@ -37,21 +37,20 @@ public class PlayerCommandHandler {
             return false;
         }
 
-        if(service==null){
-            System.out.println("service为空");
+
+        try{
+
+            FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
+            sender.sendMessage("登录成功!");
+
+            return true;
+
+        }catch (AuthException authException){
+            sender.sendMessage(authException.getMsg());
             return false;
         }
 
-        FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
 
-        if(player == null){
-            sender.sendMessage("登录失败,密码错误!");
-            return false;
-        }
-
-        sender.sendMessage("登录成功!");
-
-        return true;
     }
 
 
@@ -85,8 +84,6 @@ public class PlayerCommandHandler {
             if(regPlayer!=null){
                 sender.sendMessage("注册成功!");
             }
-
-
 
 
             return true;

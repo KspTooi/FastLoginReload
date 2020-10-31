@@ -43,9 +43,9 @@ public class PlayerServiceTest {
     @Test
     public void regPlayerBatch(){
 
-        Date start = new Date();
+        long startTime = System.currentTimeMillis();
 
-        for(int i=0;i<20000;i++){
+        for(int i=0;i<1280;i++){
 
             String uuid = UUID.randomUUID().toString();
 
@@ -62,16 +62,13 @@ public class PlayerServiceTest {
 
         }
 
-
-        System.out.println(calLastedTime(start));
+        double stopTime = System.currentTimeMillis();
+        double elapsedTime = stopTime - startTime;
+        double time = elapsedTime/1000;
+        System.out.println(time);
     }
 
 
-    public int calLastedTime(Date startDate) {
-        long a = new Date().getTime();
-        long b = startDate.getTime();
-        int c = (int)((a - b) / 1000);
-        return c;
-    }
+
 
 }

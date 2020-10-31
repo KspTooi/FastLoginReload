@@ -40,5 +40,4 @@ public interface PlayerService {
      */
     FLRPlayer getFLRPlayer(String playerName);
 
-
 }

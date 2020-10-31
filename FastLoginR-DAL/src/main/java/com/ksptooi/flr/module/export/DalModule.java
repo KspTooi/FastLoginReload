@@ -14,7 +14,6 @@ public class DalModule extends AbstractModule{
     private static String dbType = DatabaseType.H2;
 
 
-
     public static void install(String dbType){
         DalModule.dbType = dbType;
         Injector injector = Guice.createInjector(new DalModule(), new MybatisModule(dbType));

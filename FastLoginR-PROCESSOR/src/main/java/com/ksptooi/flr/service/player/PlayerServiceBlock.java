@@ -122,7 +122,7 @@ public class PlayerServiceBlock implements PlayerService{
 
         playerByName.setLeaveDate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
         playerByName.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
-        
+
         return true;
     }
 
@@ -133,6 +133,7 @@ public class PlayerServiceBlock implements PlayerService{
      */
     @Override
     public FLRPlayer getFLRPlayer(String playerName) {
-        return null;
+        return mapper.getPlayerByName(playerName);
     }
+
 }

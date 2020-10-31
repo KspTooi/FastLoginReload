@@ -3,7 +3,7 @@ package com.ksptooi.flr.starter.spring.unit;
 
 import org.junit.Test;
 
-public class UTest {
+public class SpringContextTest {
 
 
     @Test

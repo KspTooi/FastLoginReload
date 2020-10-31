@@ -4,7 +4,7 @@ import com.ksptooi.flr.entity.model.InputModel;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
-import com.ksptooi.flr.module.export.ProcModule;
+import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
 import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
 import com.ksptooi.util.dictionary.Excep;

@@ -1,4 +1,4 @@
-package com.ksptooi.flr.service.player;
+package com.ksptooi.flr.proc.service.player;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

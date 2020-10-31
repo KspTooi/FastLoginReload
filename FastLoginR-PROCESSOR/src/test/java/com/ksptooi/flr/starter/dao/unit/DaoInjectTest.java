@@ -1,16 +1,11 @@
 package com.ksptooi.flr.starter.dao.unit;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.ksptooi.flr.dao.access.DatabaseType;
-import com.ksptooi.flr.dao.access.MybatisAccess;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
-import com.ksptooi.flr.module.export.DalModule;
+import com.ksptooi.flr.proc.module.export.DalModule;
 import org.junit.Test;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
 
 public class DaoInjectTest {
 

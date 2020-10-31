@@ -3,8 +3,8 @@ package com.ksptooi.flr.starter;
 import com.google.inject.Injector;
 import com.ksptooi.flr.entity.model.InputModel;
 import com.ksptooi.flr.input.dispatch.adapter.InputAdapter;
-import com.ksptooi.flr.input.command.PlayerCommandHandler;
-import com.ksptooi.flr.module.export.ProcModule;
+import com.ksptooi.flr.input.processor.PlayerCommandProcessor;
+import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.4F.51";
+    public static final String currentVersion = "1.4F.60";
 
     public static final Injector injector= ProcModule.getInject();
 
@@ -31,7 +31,7 @@ public class FastLoginR extends JavaPlugin {
 
         InputAdapter instance = ProcModule.getInject().getInstance(InputAdapter.class);
 
-        instance.regHandler(PlayerCommandHandler.class);
+        instance.regHandler(PlayerCommandProcessor.class);
 /*        instance.assign("login",null,null,null,null);*/
 
 

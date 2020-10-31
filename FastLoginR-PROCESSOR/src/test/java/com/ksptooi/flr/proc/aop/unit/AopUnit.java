@@ -1,17 +1,10 @@
 package com.ksptooi.flr.proc.aop.unit;
 
-import com.google.inject.Injector;
-import com.ksptooi.flr.module.export.ProcModule;
-import com.ksptooi.flr.service.player.PlayerService;
+import com.ksptooi.flr.proc.module.export.ProcModule;
+import com.ksptooi.flr.proc.service.player.PlayerService;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.junit.Test;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 
 
 public class AopUnit implements MethodInterceptor {

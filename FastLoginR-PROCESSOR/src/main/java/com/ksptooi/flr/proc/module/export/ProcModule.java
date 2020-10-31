@@ -1,4 +1,4 @@
-package com.ksptooi.flr.module.export;
+package com.ksptooi.flr.proc.module.export;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -11,8 +11,8 @@ import com.ksptooi.flr.input.dispatch.adapter.DefaultInputAdapter;
 import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
 import com.ksptooi.flr.proc.aop.service.InputAfterAOP;
 import com.ksptooi.flr.proc.aop.service.ServiceExceptionAOP;
-import com.ksptooi.flr.service.player.PlayerService;
-import com.ksptooi.flr.service.player.PlayerServiceBlock;
+import com.ksptooi.flr.proc.service.player.PlayerService;
+import com.ksptooi.flr.proc.service.player.PlayerServiceBlock;
 
 public class ProcModule extends AbstractModule {
 

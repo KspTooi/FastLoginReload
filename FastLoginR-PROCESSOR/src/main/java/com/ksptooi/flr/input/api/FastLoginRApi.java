@@ -1,4 +1,4 @@
-package com.ksptooi.flr.api;
+package com.ksptooi.flr.input.api;
 
 
 import com.ksptooi.flr.entity.player.FLRPlayer;

@@ -1,21 +1,20 @@
-package com.ksptooi.flr.input.command;
+package com.ksptooi.flr.input.processor;
 
 import com.google.inject.Inject;
 import com.ksptooi.flr.dao.exception.DBException;
 import com.ksptooi.flr.entity.model.InputModel;
 import com.ksptooi.flr.entity.player.FLRPlayer;
-import com.ksptooi.flr.entity.player.PlayerLocation;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.input.annotation.PlayerOnly;
 import com.ksptooi.flr.proc.exception.AuthException;
-import com.ksptooi.flr.service.player.PlayerService;
+import com.ksptooi.flr.proc.service.player.PlayerService;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandHandler
-public class PlayerCommandHandler {
+public class PlayerCommandProcessor {
 
     @Inject
     PlayerService service = null;

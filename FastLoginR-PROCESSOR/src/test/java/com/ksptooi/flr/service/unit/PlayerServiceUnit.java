@@ -1,9 +1,9 @@
 package com.ksptooi.flr.service.unit;
 
 import com.ksptooi.flr.entity.player.FLRPlayer;
-import com.ksptooi.flr.module.export.ProcModule;
+import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.exception.AuthException;
-import com.ksptooi.flr.service.player.PlayerService;
+import com.ksptooi.flr.proc.service.player.PlayerService;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -5,7 +5,10 @@ import com.ksptooi.flr.dao.access.DatabaseType;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.module.export.DalModule;
+import com.ksptooi.flr.module.export.ProcModule;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,22 +31,6 @@ public class FastLoginR extends JavaPlugin {
         /*Thread.currentThread().setContextClassLoader(getClass().getClassLoader());*/
 
 
-/*        try {
-            Class.forName("org.sqlite.JDBC");
-
-            String url = "jdbc:sqlite:plugins/sqlite2.db";
-            System.out.println("db url "+url);
-            Connection conn = DriverManager.getConnection(url);
-            System.out.println(conn.getMetaData().getDriverVersion());
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from player");
-            System.out.println(resultSet);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-
         DalModule.install(DatabaseType.H2);
 
         Injector inject = DalModule.getInject();
@@ -54,33 +41,18 @@ public class FastLoginR extends JavaPlugin {
 
         System.out.println(playerById);
 
-
-
-/*        Injector injector = Guice.createInjector(new DalModule());
-        MybatisAccess instance = injector.getInstance(MybatisAccess.class);
-        System.out.println(instance);*/
-
-
-/*        Injector injector = Guice.createInjector();
-        PlayerService instance = injector.getInstance(PlayerService.class);
-        System.out.println(injector);*/
-
-/*        Thread th = new Thread(new HibernateStarter());
-        th.start();*/
-
-
-        /*PlayerService playerService = ContextR.get(PlayerService.class);*/
-
-
-
-/*        logger.info("[FastLoginR]"+playerService);
-        playerService.playerRegister(null);*/
-
     }
 
     @Override
     public void onDisable() {
         super.onDisable();
     }
+
+    //命令执行器
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+        return false;
+    }
+
 
 }

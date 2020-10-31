@@ -3,6 +3,7 @@ package com.ksptooi.flr.module.export;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Scopes;
 import com.ksptooi.flr.dao.access.DatabaseType;
 import com.ksptooi.flr.service.player.PlayerService;
 import com.ksptooi.flr.service.player.PlayerServiceBlock;
@@ -15,7 +16,7 @@ public class ProcModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(PlayerService.class).to(PlayerServiceBlock.class);
+        bind(PlayerService.class).to(PlayerServiceBlock.class).in(Scopes.SINGLETON);
     }
 
 

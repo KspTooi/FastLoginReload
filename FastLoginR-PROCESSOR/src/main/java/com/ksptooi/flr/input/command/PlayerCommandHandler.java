@@ -28,10 +28,9 @@ public class PlayerCommandHandler {
     @PlayerOnly
     @CommandMapper(value = "login",alias = {"l","log"})
     public InputModel playerLogin(@Params("sender")CommandSender sender,
-                                  @Params("params")String[] p) throws AuthException {
+                                  @Params("params")String[] p) {
 
         InputModel model = new InputModel(sender);
-
 
         Player pl = (Player) sender;
 
@@ -41,13 +40,27 @@ public class PlayerCommandHandler {
             return model;
         }
 
+        try{
 
-        FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
+
+            FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
+
+            model.addMessage("登录成功!");
+            model.setFinish(true);
+            return model;
 
 
-        model.addMessage("登录成功!");
-        model.setFinish(true);
+        }catch (DBException dbException){
+            model.addMessage("严重错误-数据库异常!");
+            dbException.printStackTrace();
+
+        }catch (AuthException authException){
+            model.addMessage(authException.getMsg());
+        }
+
+
         return model;
+
     }
 
 

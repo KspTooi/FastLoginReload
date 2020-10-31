@@ -72,14 +72,18 @@ public class PlayerCommandHandler {
      */
     @PlayerOnly
     @CommandMapper("register")
-    public boolean playerRegister(@Params("sender")CommandSender sender,
-                                  @Params("params")String[] para){
+    public InputModel playerRegister(@Params("sender")CommandSender sender,
+                                     @Params("params")String[] para){
+
+        InputModel model = new InputModel(sender);
+
 
         //边界检查
         if(para.length<2){
-            sender.sendMessage("注册失败,格式:/register 密码 确认密码!");
-            return false;
+            model.addMessage("注册失败,格式:/register 密码 确认密码!");
+            return model;
         }
+
 
         FLRPlayer flrPlayer = new FLRPlayer();
         flrPlayer.setAccount(sender.getName());
@@ -92,18 +96,26 @@ public class PlayerCommandHandler {
             FLRPlayer regPlayer = service.playerRegister(flrPlayer);
 
             if(regPlayer!=null){
-                sender.sendMessage("注册成功!");
+                model.addMessage("注册成功!");
+                model.setFinish(true);
+                return model;
             }
 
 
-            return true;
 
-        }catch (AuthException authException){
-            sender.sendMessage(authException.getMsg());
-            return false;
+
+
+        }catch (DBException dbException){
+            model.addMessage("严重错误-数据库异常!");
+            dbException.printStackTrace();
+
+        }catch (AuthException e){
+            model.addMessage(e.getMsg());
+            return model;
         }
 
 
+        return model;
     }
 
 

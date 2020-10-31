@@ -50,34 +50,26 @@ public class PlayerServiceBlock implements PlayerService{
         Integer insertPlayerLoc = null;
         Integer insertDetail = null;
 
-        try{
+        //注册业务流程
+        player.setLastLoginDate(DateUtil.getCurTimeString());
+        player.setRegisterDate(DateUtil.getCurTimeString());
+        player.setRegisterStatus(PlayerStatus.REG_SUCCESS.getCode());
+        player.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+        player.setLoginCount(1);
 
-            //注册业务流程
-            player.setLastLoginDate(DateUtil.getCurTimeString());
-            player.setRegisterDate(DateUtil.getCurTimeString());
-            player.setRegisterStatus(PlayerStatus.REG_SUCCESS.getCode());
-            player.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
-            player.setLoginCount(1);
+        //添加用户进表
+        insertPlayer = mapper.insertPlayer(player);
 
-            //添加用户进表
-            insertPlayer = mapper.insertPlayer(player);
+        //添加用户位置进表(使用主键回填值)
+        PlayerLocation loc = new PlayerLocation();
+        loc.setPid(player.getPid());
 
-            //添加用户位置进表(使用主键回填值)
-            PlayerLocation loc = new PlayerLocation();
-            loc.setPid(player.getPid());
+        insertPlayerLoc = locMapper.insertLocation(loc);
 
-            insertPlayerLoc = locMapper.insertLocation(loc);
-
-            //添加用户详细进表
-            PlayerDetail playerDetail = new PlayerDetail();
-            playerDetail.setPid(player.getPid());
-            insertDetail = detailMapper.insertDetail(playerDetail);
-
-
-        }catch (RuntimeException runtimeException){
-            runtimeException.printStackTrace();
-            throw new AuthException(Excep.FATAL_DB);
-        }
+        //添加用户详细进表
+        PlayerDetail playerDetail = new PlayerDetail();
+        playerDetail.setPid(player.getPid());
+        insertDetail = detailMapper.insertDetail(playerDetail);
 
 
         //判断添加是否成功 如果不成功则回滚事务

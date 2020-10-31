@@ -85,9 +85,6 @@ public class DefaultCommandAdapter implements CommandAdapter{
 
                 }
 
-
-
-
                 InputModel invokeResultModel = null;
 
                 try {
@@ -96,7 +93,6 @@ public class DefaultCommandAdapter implements CommandAdapter{
                     ProcModule.getInject().injectMembers(e.getValue());
 
                     invokeResultModel = (InputModel) e.getKey().invoke(e.getValue(), invokeParameters.toArray());
-
 
                 } catch (IllegalAccessException illegalAccessException) {
                     illegalAccessException.printStackTrace();

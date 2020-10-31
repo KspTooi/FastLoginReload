@@ -5,19 +5,42 @@ import com.ksptooi.util.dictionary.Excep;
 /**
  * 系统严重异常 - 数据库
  */
-public class DBException extends FLRException{
+public class DBException extends RuntimeException{
 
 
-    public DBException(Excep status) {
-        super(status);
+    private String msg = "严重异常,数据库连接失败!";
+    private Integer errorCode = 509;
+
+    public DBException(){
+        this.msg = Excep.FATAL_DB.getMessage();
+        this.errorCode = Excep.FATAL_DB.getErrorCode();
     }
 
-    public DBException(String msg) {
-        super(msg);
+
+    public DBException(Excep status){
+        this.msg = status.getMessage();
+        this.errorCode = status.getErrorCode();
     }
 
-    public DBException() {
-        super("致命错误 - 连接数据库异常!");
+    public DBException(String msg){
+        this.msg = msg;
+    }
+
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public Integer getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(Integer errorCode) {
+        this.errorCode = errorCode;
     }
 
 }

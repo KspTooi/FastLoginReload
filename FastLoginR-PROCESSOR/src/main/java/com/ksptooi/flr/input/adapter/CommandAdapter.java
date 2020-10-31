@@ -22,14 +22,14 @@ public interface CommandAdapter {
     boolean assign(String name, CommandSender sender, Command cmd, String[] params);
 
     /**
-     * 注册命令执行器
+     * 注册命令处理器
      * @param handler 执行器类名
      */
     void regHandler(Class handler);
 
 
     /**
-     * 注册命令执行器
+     * 注册命令处理器
      * @param path 执行器类路径
      */
     void regHandler(String path);

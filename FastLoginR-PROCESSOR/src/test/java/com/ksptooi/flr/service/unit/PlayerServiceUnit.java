@@ -32,7 +32,7 @@ public class PlayerServiceUnit {
     }
 
     @Test
-    public void login() {
+    public void login() throws AuthException {
         assertNotNull(service.playerLogin("KspTooi", "123456"));
     }
 

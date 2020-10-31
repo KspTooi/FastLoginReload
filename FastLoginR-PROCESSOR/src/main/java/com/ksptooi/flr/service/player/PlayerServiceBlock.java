@@ -84,7 +84,30 @@ public class PlayerServiceBlock implements PlayerService{
      */
     @Override
     public FLRPlayer playerLogin(String playerName, String pwd) {
-        return null;
+
+        FLRPlayer playerByName = mapper.getPlayerByName(playerName);
+
+        //玩家不存在
+        if(playerByName == null){
+            return null;
+        }
+
+        //登录逻辑
+
+
+        if(!playerByName.getPassword().equals(pwd)){
+            return null;
+        }
+
+        //修改数据库中玩家的状态
+        playerByName.setLastLoginDate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+        playerByName.setLoginCount(playerByName.getLoginCount()+1);
+
+        //修改数据库中的登录状态
+        playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+
+
+        return playerByName;
     }
 
     /**
@@ -94,7 +117,13 @@ public class PlayerServiceBlock implements PlayerService{
      */
     @Override
     public boolean playerLogout(String playerName) {
-        return false;
+
+        FLRPlayer playerByName = mapper.getPlayerByName(playerName);
+
+        playerByName.setLeaveDate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+        playerByName.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
+        
+        return true;
     }
 
     /**

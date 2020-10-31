@@ -75,8 +75,8 @@ public class PlayerServiceBlock implements PlayerService{
             insertDetail = detailMapper.insertDetail(playerDetail);
 
 
-        }catch (Exception e){
-            e.printStackTrace();
+        }catch (RuntimeException runtimeException){
+            runtimeException.printStackTrace();
             throw new AuthException(Excep.FATAL_DB);
         }
 
@@ -99,31 +99,42 @@ public class PlayerServiceBlock implements PlayerService{
     @Override
     public FLRPlayer playerLogin(String playerName, String pwd) throws AuthException {
 
-        FLRPlayer playerByName = mapper.getPlayerByName(playerName);
+        try{
 
-        //玩家不存在
-        if(playerByName == null){
-            throw new AuthException(Excep.AUTH_NO_REG);
+            FLRPlayer playerByName = mapper.getPlayerByName(playerName);
+
+            //玩家不存在
+            if(playerByName == null){
+                throw new AuthException(Excep.AUTH_NO_REG);
+            }
+
+            //密码判断
+            if(!playerByName.getPassword().equals(pwd)){
+                throw new AuthException(Excep.AUTH_PWD_INVALID);
+            }
+
+            //已经登录
+            if(!playerByName.isLogin()){
+                throw new AuthException(Excep.AUTH_ALREADY_LOG);
+            }
+
+
+            //修改数据库中玩家的状态
+            playerByName.setLastLoginDate(DateUtil.getCurTimeString());
+            playerByName.setLoginCount(playerByName.getLoginCount()+1);
+
+            //修改数据库中的登录状态
+            playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+
+
+
+            return playerByName;
+
+        }catch (Exception runtimeException) {
+            runtimeException.printStackTrace();
+            throw new AuthException(Excep.FATAL_DB);
         }
 
-        //密码判断
-        if(!playerByName.getPassword().equals(pwd)){
-            throw new AuthException(Excep.AUTH_PWD_INVALID);
-        }
-
-        //已经登录
-        if(!playerByName.isLogin()){
-            throw new AuthException(Excep.AUTH_ALREADY_LOG);
-        }
-
-        //修改数据库中玩家的状态
-        playerByName.setLastLoginDate(DateUtil.getCurTimeString());
-        playerByName.setLoginCount(playerByName.getLoginCount()+1);
-
-        //修改数据库中的登录状态
-        playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
-
-        return playerByName;
     }
 
     /**

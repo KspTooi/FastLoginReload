@@ -2,6 +2,7 @@ package com.ksptooi.flr.input.adapter;
 
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
+import com.ksptooi.flr.input.annotation.Params;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -28,6 +29,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
     @Override
     public boolean assign(String name, CommandSender sender, Command cmd, String[] params) {
 
+        ArrayList<Object> invokeParameters = null;
 
         for(Map.Entry<Method,Object> e:handler.entrySet()){
 
@@ -37,9 +39,47 @@ public class DefaultCommandAdapter implements CommandAdapter{
             //如果命令名与注解名相符 则将命令分配到该处理器
             if(name.equals(mapper.value())){
 
+                //准备注入参数
+                invokeParameters = new ArrayList<Object>();
+
+
+                //解析参数注解
+                for(Annotation[] parameterAnnotation:e.getKey().getParameterAnnotations()){
+
+                    System.out.println(parameterAnnotation[0]);
+
+                    for (Annotation annotation : parameterAnnotation) {
+
+                        if (annotation instanceof Params) {
+                            Params param = (Params) annotation;
+
+                            if(param.value().equalsIgnoreCase("name")){
+                                invokeParameters.add(name);
+                            }
+
+                            if(param.value().equalsIgnoreCase("sender")){
+                                invokeParameters.add(sender);
+                            }
+
+                            if(param.value().equalsIgnoreCase("cmd")){
+                                invokeParameters.add(cmd);
+                            }
+
+                            if(param.value().equalsIgnoreCase("params")){
+                                invokeParameters.add(param);
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
                 try{
 
-                    boolean b=(boolean)e.getKey().invoke(e.getValue(),"aaaa");
+
+                    boolean b=(boolean)e.getKey().invoke(e.getValue(),invokeParameters.toArray());
 
                     System.out.println("执行完成:"+b);
 

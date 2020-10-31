@@ -27,6 +27,8 @@ import java.util.logging.Logger;
 public class FastLoginR extends JavaPlugin {
 
     public static final String currentVersion = "1.3F.104";
+    
+
 
     @Override
     public void onEnable() {
@@ -63,63 +65,13 @@ public class FastLoginR extends JavaPlugin {
 
     //命令执行器
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+
+
+
         return false;
     }
 
 
-    public static void scanner(String pack) throws IOException, ClassNotFoundException {
-
-        System.out.println(pack);
-        String packageDirName = pack.replace('.', '/');
-
-
-
-        Enumeration<URL> dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
-        System.out.println(dirs);
-
-
-
-        for (; dirs.hasMoreElements(); ) {
-
-            // 获取下一个元素
-            URL url = dirs.nextElement();
-
-            // 得到协议的名称
-            String protocol = url.getProtocol();
-
-
-            if (protocol.equals("file")) {
-                // 获取包的物理路径
-                String filePath = URLDecoder.decode(url.getFile(), "UTF-8");
-
-                // 以文件的方式扫描整个包下的文件 并添加到集合中
-                File dir = new File(filePath);
-                File[] files = dir.listFiles();
-
-
-                for (File f : files) {
-
-                    //是class文件
-                    if (f.getName().endsWith(".class")) {
-
-                        String replace = f.getName().replace(".class", "");
-
-                        System.out.println(replace);
-
-                        Class clazz = Class.forName(pack + "." + replace);
-
-                    }
-
-                }
-
-            }
-
-            if (protocol.equals("jar")) {
-                throw new RuntimeException("扫描包时发生错误! 协议不支持JAR.");
-            }
-
-        }
-    }
 
 }

@@ -4,9 +4,11 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Scopes;
+import com.google.inject.matcher.Matchers;
 import com.ksptooi.flr.dao.access.DatabaseType;
 import com.ksptooi.flr.input.adapter.CommandAdapter;
 import com.ksptooi.flr.input.adapter.DefaultCommandAdapter;
+import com.ksptooi.flr.proc.aop.service.ServeiceExceptionHandlerAOP;
 import com.ksptooi.flr.service.player.PlayerService;
 import com.ksptooi.flr.service.player.PlayerServiceBlock;
 
@@ -21,6 +23,12 @@ public class ProcModule extends AbstractModule {
 
         bind(PlayerService.class).to(PlayerServiceBlock.class).in(Scopes.SINGLETON);
         bind(CommandAdapter.class).to(DefaultCommandAdapter.class).in(Scopes.SINGLETON);
+
+        bindInterceptor(
+                 Matchers.identicalTo(PlayerServiceBlock.class)
+                ,Matchers.any()
+                ,new ServeiceExceptionHandlerAOP()
+        );
 
     }
 

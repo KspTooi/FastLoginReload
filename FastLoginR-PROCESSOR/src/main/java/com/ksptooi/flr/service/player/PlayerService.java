@@ -40,4 +40,7 @@ public interface PlayerService {
      * @return 玩家数据对象
      */
     FLRPlayer getFLRPlayer(String playerName);
+
+
+    boolean serviceMethod();
 }

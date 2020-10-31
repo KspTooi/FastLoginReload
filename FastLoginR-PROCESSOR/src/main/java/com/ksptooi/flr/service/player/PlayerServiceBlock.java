@@ -165,4 +165,12 @@ public class PlayerServiceBlock implements PlayerService{
         return mapper.getPlayerByName(playerName);
     }
 
+    @Override
+    public boolean serviceMethod() {
+
+        System.out.println("方法---->serviceMethod()运行中");
+
+        return false;
+    }
+
 }

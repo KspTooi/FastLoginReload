@@ -38,8 +38,7 @@ public class PlayerCommandHandler {
         }
 
         try{
-
-
+            
             FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
             sender.sendMessage("登录成功!");
 

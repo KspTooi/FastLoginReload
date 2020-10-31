@@ -99,41 +99,44 @@ public class PlayerServiceBlock implements PlayerService{
     @Override
     public FLRPlayer playerLogin(String playerName, String pwd) throws AuthException {
 
-        try{
-
-            FLRPlayer playerByName = mapper.getPlayerByName(playerName);
-
-            //玩家不存在
-            if(playerByName == null){
-                throw new AuthException(Excep.AUTH_NO_REG);
-            }
-
-            //密码判断
-            if(!playerByName.getPassword().equals(pwd)){
-                throw new AuthException(Excep.AUTH_PWD_INVALID);
-            }
-
-            //已经登录
-            if(!playerByName.isLogin()){
-                throw new AuthException(Excep.AUTH_ALREADY_LOG);
-            }
 
 
-            //修改数据库中玩家的状态
-            playerByName.setLastLoginDate(DateUtil.getCurTimeString());
-            playerByName.setLoginCount(playerByName.getLoginCount()+1);
+        FLRPlayer playerByName = mapper.getPlayerByName(playerName);
 
-            //修改数据库中的登录状态
-            playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+        //玩家不存在
+        if(playerByName == null){
+            throw new AuthException(Excep.AUTH_NO_REG);
+        }
+
+        //密码判断
+        if(!playerByName.getPassword().equals(pwd)){
+            throw new AuthException(Excep.AUTH_PWD_INVALID);
+        }
+
+        //已经登录
+        if(!playerByName.isLogin()){
+            throw new AuthException(Excep.AUTH_ALREADY_LOG);
+        }
 
 
+        //修改数据库中玩家的状态
+        playerByName.setLastLoginDate(DateUtil.getCurTimeString());
+        playerByName.setLoginCount(playerByName.getLoginCount()+1);
 
-            return playerByName;
+        //修改数据库中的登录状态
+        playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+
+
+        return playerByName;
+
+/*        try{
+
+
 
         }catch (Exception runtimeException) {
             runtimeException.printStackTrace();
             throw new AuthException(Excep.FATAL_DB);
-        }
+        }*/
 
     }
 

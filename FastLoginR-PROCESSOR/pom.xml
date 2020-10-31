@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>FastLoginR-PROCESSOR</artifactId>
     <packaging>jar</packaging>
-    <version>1.3F.104</version>
+    <version>1.4A.1</version>
 
     <repositories>
         <repository>

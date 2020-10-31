@@ -1,13 +1,11 @@
 package com.ksptooi.flr.input.command;
 
-
 import com.google.inject.Inject;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.input.annotation.PlayerOnly;
 import com.ksptooi.flr.service.player.PlayerService;
-import org.apache.ibatis.annotations.Param;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 

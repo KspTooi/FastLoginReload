@@ -90,7 +90,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
 
                 }catch (Exception exception){
                     exception.printStackTrace();
-                    System.out.println("适配器分配命令时出现错误!");
+                    System.out.println("严重错误,分配处理器时发生异常. 可能是处理器没有成功处理该命令.");
                 }
 
             }

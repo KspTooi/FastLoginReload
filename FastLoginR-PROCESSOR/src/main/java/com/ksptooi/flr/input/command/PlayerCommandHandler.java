@@ -1,15 +1,14 @@
 package com.ksptooi.flr.input.command;
 
 import com.google.inject.Inject;
+import com.ksptooi.flr.dao.exception.DBException;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.input.annotation.PlayerOnly;
 import com.ksptooi.flr.proc.exception.AuthException;
-import com.ksptooi.flr.proc.exception.DBException;
 import com.ksptooi.flr.service.player.PlayerService;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -51,7 +50,7 @@ public class PlayerCommandHandler {
             sender.sendMessage(authException.getMsg());
             return false;
         }catch (DBException dbException){
-            sender.sendMessage(dbException.getMsg());
+            sender.sendMessage("错误");
             return false;
         }
 

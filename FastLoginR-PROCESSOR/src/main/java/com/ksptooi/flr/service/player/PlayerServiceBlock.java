@@ -100,7 +100,6 @@ public class PlayerServiceBlock implements PlayerService{
     public FLRPlayer playerLogin(String playerName, String pwd) throws AuthException {
 
 
-
         FLRPlayer playerByName = mapper.getPlayerByName(playerName);
 
         //玩家不存在

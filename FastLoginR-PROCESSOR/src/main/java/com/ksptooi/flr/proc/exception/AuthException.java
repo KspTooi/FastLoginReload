@@ -2,7 +2,7 @@ package com.ksptooi.flr.proc.exception;
 
 import com.ksptooi.util.dictionary.Excep;
 
-public class AuthException extends FLRException {
+public class AuthException extends ProcException {
 
     public AuthException(Excep status){
         super(status);

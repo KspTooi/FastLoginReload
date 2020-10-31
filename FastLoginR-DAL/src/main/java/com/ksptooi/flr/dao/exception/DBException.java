@@ -1,4 +1,4 @@
-package com.ksptooi.flr.proc.exception;
+package com.ksptooi.flr.dao.exception;
 
 import com.ksptooi.util.dictionary.Excep;
 

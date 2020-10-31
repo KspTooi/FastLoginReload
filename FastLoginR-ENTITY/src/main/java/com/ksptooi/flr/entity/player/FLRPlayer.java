@@ -1,5 +1,7 @@
 package com.ksptooi.flr.entity.player;
 
+import com.ksptooi.util.dictionary.PlayerStatus;
+
 public class FLRPlayer {
 
     //玩家ID
@@ -151,4 +153,33 @@ public class FLRPlayer {
     public void setPlayerLocation(PlayerLocation playerLocation) {
         this.playerLocation = playerLocation;
     }
+
+
+    /**
+     * 玩家当前登录状态
+     * @return 已登录返回true 未登录返回false
+     */
+    public boolean isLogin(){
+
+
+        if(this.loginStatus.equals(PlayerStatus.LOGIN_SUCCESS)){
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * 玩家当前注册状态
+     * @return 已注册返回true 未注册返回false
+     */
+    public boolean isReg(){
+
+        if(this.registerStatus.equals(PlayerStatus.REG_SUCCESS)){
+            return true;
+        }
+
+        return false;
+    }
+
 }

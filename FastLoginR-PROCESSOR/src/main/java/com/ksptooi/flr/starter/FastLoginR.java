@@ -27,8 +27,8 @@ import java.util.logging.Logger;
 public class FastLoginR extends JavaPlugin {
 
     public static final String currentVersion = "1.3F.104";
-    
 
+    public static final Injector injector= ProcModule.getInject();
 
     @Override
     public void onEnable() {
@@ -43,7 +43,7 @@ public class FastLoginR extends JavaPlugin {
         CommandAdapter instance = ProcModule.getInject().getInstance(CommandAdapter.class);
 
         instance.regHandler(PlayerCommandHandler.class);
-        instance.assign("login",null,null,null);
+        instance.assign("login",null,null,null,null);
 
 
 /*        DalModule.install(DatabaseType.H2);
@@ -67,9 +67,11 @@ public class FastLoginR extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
+        //获取到适配器
+        CommandAdapter adapter = injector.getInstance(CommandAdapter.class);
+        boolean assign = adapter.assign(cmd.getName(), sender, cmd, label, args);
 
-
-        return false;
+        return assign;
     }
 
 

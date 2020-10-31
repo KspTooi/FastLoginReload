@@ -22,12 +22,10 @@ import java.util.Map;
 public class DefaultCommandAdapter implements CommandAdapter{
 
 
-    private ArrayList<Method> handlersMethod = new ArrayList<Method>();
-
     private HashMap<Method,Object> handler = new HashMap<Method, Object>();
 
     @Override
-    public boolean assign(String name, CommandSender sender, Command cmd, String[] params) {
+    public boolean assign(String name, CommandSender sender, Command cmd,String label, String[] params) {
 
         ArrayList<Object> invokeParameters = null;
 
@@ -66,7 +64,11 @@ public class DefaultCommandAdapter implements CommandAdapter{
                             }
 
                             if(param.value().equalsIgnoreCase("params")){
-                                invokeParameters.add(param);
+                                invokeParameters.add(params);
+                            }
+
+                            if(param.value().equalsIgnoreCase("label")){
+                                invokeParameters.add(label);
                             }
 
                         }
@@ -78,6 +80,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
 
                 try{
 
+                    System.out.println(invokeParameters.toArray());
 
                     boolean b=(boolean)e.getKey().invoke(e.getValue(),invokeParameters.toArray());
 

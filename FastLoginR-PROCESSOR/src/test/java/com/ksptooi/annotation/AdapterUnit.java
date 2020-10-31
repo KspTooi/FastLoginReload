@@ -29,7 +29,7 @@ public class AdapterUnit {
 
         adapter.regHandler(PlayerCommandHandler.class);
 
-        adapter.assign("login",null,null,null);
+        adapter.assign("login",null,null,null,null);
 
     }
 

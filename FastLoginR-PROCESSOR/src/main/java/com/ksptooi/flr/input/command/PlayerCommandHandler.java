@@ -7,6 +7,7 @@ import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.service.player.PlayerService;
 import org.apache.ibatis.annotations.Param;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 @CommandHandler
@@ -16,19 +17,35 @@ public class PlayerCommandHandler {
     PlayerService service = null;
 
 
-    //玩家登录方法
+    /**
+     * 用于玩家登录
+     * @param name
+     * @param sender
+     * @param p
+     * @param c
+     * @return 成功返回true 失败返回false
+     */
     @CommandMapper(value = "login",alias = {"l","log"})
     public boolean playerLogin(@Params("name")String name,
-                               @Params("sender")CommandSender s,
-                               @Params("params")String[] p){
+                               @Params("sender")CommandSender sender,
+                               @Params("params")String[] p,
+                               @Params("cmd") Command c){
 
 
+        sender.sendMessage("命令名:"+name);
+        sender.sendMessage("命令参数:"+p.toString());
 
-        return false;
+
+        return true;
     }
 
 
-    //玩家注册方法
+    /**
+     * 用于玩家注册
+     * @param s
+     * @param p
+     * @return
+     */
     @CommandMapper("register")
     public boolean playerRegister(@Params("sender")CommandSender s,
                                   @Params("params")String[] p){

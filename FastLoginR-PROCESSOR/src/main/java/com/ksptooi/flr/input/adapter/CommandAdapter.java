@@ -19,7 +19,7 @@ public interface CommandAdapter {
      * @param params
      * @return 成功返回true 失败返回false
      */
-    boolean assign(String name, CommandSender sender, Command cmd, String[] params);
+    boolean assign(String name, CommandSender sender, Command cmd,String label, String[] params);
 
     /**
      * 注册命令处理器

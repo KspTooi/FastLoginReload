@@ -9,8 +9,9 @@ import com.ksptooi.flr.mapper.player.PlayerLocationMapper;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.proc.exception.AuthException;
+import com.ksptooi.util.date.DateUtil;
+import com.ksptooi.util.dictionary.Excep;
 import com.ksptooi.util.dictionary.PlayerStatus;
-import org.bukkit.Bukkit;
 import org.mybatis.guice.transactional.Transactional;
 
 import java.text.SimpleDateFormat;
@@ -42,36 +43,47 @@ public class PlayerServiceBlock implements PlayerService{
         FLRPlayer playerByName = mapper.getPlayerByName(player.getAccount());
 
         if(playerByName != null){
-            throw new AuthException("用户名已存在");
+            throw new AuthException(Excep.AUTH_ALREADY_REG);
         }
 
-        String presentDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 
-        //注册业务流程
-        player.setLastLoginDate(presentDate);
-        player.setRegisterDate(presentDate);
-        player.setRegisterStatus(PlayerStatus.REG_SUCCESS.getCode());
-        player.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
-        player.setLoginCount(1);
+        Integer insertPlayer = null;
+        Integer insertPlayerLoc = null;
+        Integer insertDetail = null;
 
-        //添加用户进表
-        Integer insertPlayer = mapper.insertPlayer(player);
+        try{
 
-        //添加用户位置进表(使用主键回填值)
-        PlayerLocation loc = new PlayerLocation();
-        loc.setPid(player.getPid());
+            //注册业务流程
+            player.setLastLoginDate(DateUtil.getCurTimeString());
+            player.setRegisterDate(DateUtil.getCurTimeString());
+            player.setRegisterStatus(PlayerStatus.REG_SUCCESS.getCode());
+            player.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+            player.setLoginCount(1);
 
-        Integer insertPlayerLoc = locMapper.insertLocation(loc);
+            //添加用户进表
+            insertPlayer = mapper.insertPlayer(player);
 
-        //添加用户详细进表
-        PlayerDetail playerDetail = new PlayerDetail();
-        playerDetail.setPid(player.getPid());
-        Integer insertDetail = detailMapper.insertDetail(playerDetail);
+            //添加用户位置进表(使用主键回填值)
+            PlayerLocation loc = new PlayerLocation();
+            loc.setPid(player.getPid());
+
+            insertPlayerLoc = locMapper.insertLocation(loc);
+
+            //添加用户详细进表
+            PlayerDetail playerDetail = new PlayerDetail();
+            playerDetail.setPid(player.getPid());
+            insertDetail = detailMapper.insertDetail(playerDetail);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new AuthException(Excep.FATAL_DB);
+        }
+
 
         //判断添加是否成功 如果不成功则回滚事务
-
         if(insertPlayer<1 || insertPlayerLoc<1 || insertDetail<1){
-            throw new RuntimeException("添加玩家数据失败!");
+            throw new AuthException(Excep.FATAL_DB);
         }
 
         //添加成功则返回玩家实例

@@ -2,6 +2,7 @@ package com.ksptooi.flr.service.unit;
 
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.module.export.ProcModule;
+import com.ksptooi.flr.proc.exception.AuthException;
 import com.ksptooi.flr.service.player.PlayerService;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,7 @@ public class PlayerServiceUnit {
     }
 
     @Test
-    public void register(){
+    public void register() throws AuthException {
 
         FLRPlayer player = new FLRPlayer();
         player.setAccount("KspTooi0");

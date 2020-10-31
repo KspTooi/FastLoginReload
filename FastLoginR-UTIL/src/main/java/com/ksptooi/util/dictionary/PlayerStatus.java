@@ -1,7 +1,6 @@
 package com.ksptooi.util.dictionary;
 
-public enum
-PlayerStatus {
+public enum PlayerStatus {
 
 
     REG_FAILED("未注册",0)

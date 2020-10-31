@@ -6,6 +6,7 @@ import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.input.annotation.PlayerOnly;
+import com.ksptooi.flr.proc.exception.AuthException;
 import com.ksptooi.flr.service.player.PlayerService;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -76,13 +77,26 @@ public class PlayerCommandHandler {
         flrPlayer.setPassword(para[0]);
 
 
-        FLRPlayer regPlayer = service.playerRegister(flrPlayer);
+        try{
 
-        if(regPlayer!=null){
-           sender.sendMessage("注册成功!");
+
+            FLRPlayer regPlayer = service.playerRegister(flrPlayer);
+
+            if(regPlayer!=null){
+                sender.sendMessage("注册成功!");
+            }
+
+
+
+
+            return true;
+
+        }catch (AuthException authException){
+            sender.sendMessage(authException.getMsg());
+            return false;
         }
 
-        return true;
+
     }
 
 

@@ -1,13 +1,13 @@
 package com.ksptooi.flr.proc.exception;
 
-import com.ksptooi.util.dictionary.ErrorStatus;
+import com.ksptooi.util.dictionary.Excep;
 
-public class AuthException extends Exception{
+public class AuthException extends java.lang.Exception {
 
     private String msg = "在验证时发生异常!";
     private Integer errorCode = -1;
 
-    public AuthException(ErrorStatus status){
+    public AuthException(Excep status){
         this.msg = status.getMessage();
         this.errorCode = status.getErrorCode();
     }
@@ -17,7 +17,7 @@ public class AuthException extends Exception{
     }
 
     public AuthException(){
-        
+
     }
 
 

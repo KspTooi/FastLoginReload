@@ -3,6 +3,8 @@ package com.ksptooi.flr.input.adapter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * 命令适配器 用于和命令处理器配合使用
  *

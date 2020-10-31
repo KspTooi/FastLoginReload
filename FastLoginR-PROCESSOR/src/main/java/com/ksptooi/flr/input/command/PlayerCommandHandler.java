@@ -2,6 +2,7 @@ package com.ksptooi.flr.input.command;
 
 import com.google.inject.Inject;
 import com.ksptooi.flr.dao.exception.DBException;
+import com.ksptooi.flr.entity.model.InputModel;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
@@ -26,33 +27,26 @@ public class PlayerCommandHandler {
      */
     @PlayerOnly
     @CommandMapper(value = "login",alias = {"l","log"})
-    public boolean playerLogin(@Params("sender")CommandSender sender,
-                               @Params("params")String[] p){
+    public InputModel playerLogin(@Params("sender")CommandSender sender,
+                                  @Params("params")String[] p) throws AuthException {
+
+        InputModel model = new InputModel(sender);
+
 
         Player pl = (Player) sender;
 
         //边界检查
         if(p.length<1){
-            sender.sendMessage("请输入密码!");
-            return false;
+            model.addMessage("请输入密码!");
+            return model;
         }
 
-        try{
-            
-            FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
-            sender.sendMessage("登录成功!");
 
-            return true;
+        FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
 
-
-        }catch (AuthException authException){
-            sender.sendMessage(authException.getMsg());
-            return false;
-        }catch (DBException dbException){
-            sender.sendMessage("错误");
-            return false;
-        }
-
+        model.addMessage("登录成功!");
+        model.setFinish(true);
+        return model;
 
     }
 

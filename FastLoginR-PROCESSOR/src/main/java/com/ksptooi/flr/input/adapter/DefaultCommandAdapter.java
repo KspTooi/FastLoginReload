@@ -4,12 +4,14 @@ import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.module.export.ProcModule;
+import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
 
 
     @Override
+    @MethodJoinPoint
     public boolean assign(String name, CommandSender sender, Command cmd,String label, String[] params) {
 
         ArrayList<Object> invokeParameters = null;
@@ -46,7 +49,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
                 //解析参数注解
                 for(Annotation[] parameterAnnotation:e.getKey().getParameterAnnotations()){
 
-                    System.out.println(parameterAnnotation[0]);
+                    /*System.out.println(parameterAnnotation[0]);*/
 
                     for (Annotation annotation : parameterAnnotation) {
 
@@ -80,23 +83,43 @@ public class DefaultCommandAdapter implements CommandAdapter{
                 }
 
 
-                try{
+                //默认适配器切面
+                ProcModule.getInject().injectMembers(e.getValue());
 
-                    System.out.println(invokeParameters.toArray());
+                boolean b= false;
+
+                try {
+
+
+                    b = (boolean)e.getKey().invoke(e.getValue(),invokeParameters.toArray());
+
+
+                } catch (IllegalAccessException illegalAccessException) {
+                    illegalAccessException.printStackTrace();
+                } catch (InvocationTargetException invocationTargetException) {
+                    invocationTargetException.printStackTrace();
+                }
+
+                return b;
+
+/*                try{
+
+                    *//*System.out.println(invokeParameters.toArray());*//*
 
                     ProcModule.getInject().injectMembers(e.getValue());
 
                     boolean b=(boolean)e.getKey().invoke(e.getValue(),invokeParameters.toArray());
 
+                    return b;
+
                 }catch (Exception exception){
                     exception.printStackTrace();
                     System.out.println("严重错误,分配处理器时发生异常. 可能是处理器没有成功处理该命令.");
-                }
+                }*/
 
             }
 
         }
-
 
         return false;
     }
@@ -123,7 +146,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
                 }
 
                 this.handler.put(m,handler.newInstance());
-                System.out.println("已加载:"+handler);
+                /*System.out.println("已加载:"+handler);*/
             }
 
 

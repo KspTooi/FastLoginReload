@@ -8,7 +8,10 @@ import com.google.inject.matcher.Matchers;
 import com.ksptooi.flr.dao.access.DatabaseType;
 import com.ksptooi.flr.input.adapter.CommandAdapter;
 import com.ksptooi.flr.input.adapter.DefaultCommandAdapter;
-import com.ksptooi.flr.proc.aop.service.ServeiceExceptionHandlerAOP;
+import com.ksptooi.flr.input.command.PlayerCommandHandler;
+import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
+import com.ksptooi.flr.proc.aop.service.InputExceptionAOP;
+import com.ksptooi.flr.proc.aop.service.ServiceExceptionAOP;
 import com.ksptooi.flr.service.player.PlayerService;
 import com.ksptooi.flr.service.player.PlayerServiceBlock;
 
@@ -27,7 +30,13 @@ public class ProcModule extends AbstractModule {
         bindInterceptor(
                  Matchers.identicalTo(PlayerServiceBlock.class)
                 ,Matchers.any()
-                ,new ServeiceExceptionHandlerAOP()
+                ,new ServiceExceptionAOP()
+        );
+
+        bindInterceptor(
+                Matchers.any()
+                ,Matchers.annotatedWith(MethodJoinPoint.class)
+                ,new InputExceptionAOP()
         );
 
     }

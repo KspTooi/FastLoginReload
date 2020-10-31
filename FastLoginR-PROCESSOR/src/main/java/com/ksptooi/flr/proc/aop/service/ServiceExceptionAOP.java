@@ -11,13 +11,14 @@ import org.aspectj.lang.annotation.Around;
 /**
  * ServiceLayer 异常处理切面
  */
-public class ServeiceExceptionHandlerAOP implements MethodInterceptor {
+public class ServiceExceptionAOP implements MethodInterceptor {
 
     /**
      * 切面方法
      */
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
+
 
         //切面返回值
         Object result = null;

@@ -43,7 +43,7 @@ public class FastLoginR extends JavaPlugin {
         CommandAdapter instance = ProcModule.getInject().getInstance(CommandAdapter.class);
 
         instance.regHandler(PlayerCommandHandler.class);
-        instance.assign("login",null,null,null,null);
+/*        instance.assign("login",null,null,null,null);*/
 
 
 /*        DalModule.install(DatabaseType.H2);

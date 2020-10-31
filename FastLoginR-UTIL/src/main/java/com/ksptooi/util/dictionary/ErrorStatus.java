@@ -10,7 +10,6 @@ public enum ErrorStatus {
 
 
 
-
     ;
 
     ErrorStatus(String message,Integer errorCode){

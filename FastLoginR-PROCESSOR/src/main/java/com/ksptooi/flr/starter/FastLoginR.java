@@ -3,6 +3,8 @@ package com.ksptooi.flr.starter;
 import com.google.inject.Injector;
 import com.ksptooi.flr.dao.access.DatabaseType;
 import com.ksptooi.flr.entity.player.FLRPlayer;
+import com.ksptooi.flr.input.adapter.CommandAdapter;
+import com.ksptooi.flr.input.command.PlayerCommandHandler;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.module.export.DalModule;
 import com.ksptooi.flr.module.export.ProcModule;
@@ -24,7 +26,7 @@ import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.3F.95";
+    public static final String currentVersion = "1.3F.104";
 
     @Override
     public void onEnable() {
@@ -36,16 +38,10 @@ public class FastLoginR extends JavaPlugin {
 
         /*Thread.currentThread().setContextClassLoader(getClass().getClassLoader());*/
 
-        try {
+        CommandAdapter instance = ProcModule.getInject().getInstance(CommandAdapter.class);
 
-            scanner("com.ksptooi.flr.input.command");
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        instance.regHandler(PlayerCommandHandler.class);
+        instance.assign("login",null,null,null);
 
 
 /*        DalModule.install(DatabaseType.H2);

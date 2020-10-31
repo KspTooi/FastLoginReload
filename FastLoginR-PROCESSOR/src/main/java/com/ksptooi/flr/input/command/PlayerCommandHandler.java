@@ -7,7 +7,7 @@ import com.ksptooi.flr.input.annotation.Params;
 import org.apache.ibatis.annotations.Param;
 import org.bukkit.command.CommandSender;
 
-@CommandHandler()
+@CommandHandler
 public class PlayerCommandHandler {
 
 

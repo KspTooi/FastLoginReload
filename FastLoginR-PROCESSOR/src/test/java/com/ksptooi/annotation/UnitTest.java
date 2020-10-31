@@ -21,7 +21,6 @@ public class UnitTest {
 
         Method[] declaredMethods = c.getDeclaredMethods();
 
-
         for(Method m:declaredMethods){
 
             CommandMapper annotation = m.getAnnotation(CommandMapper.class);

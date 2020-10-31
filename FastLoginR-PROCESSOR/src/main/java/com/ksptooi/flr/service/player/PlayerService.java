@@ -25,7 +25,7 @@ public interface PlayerService {
      * @param pwd
      * @return 成功返回玩家实例 失败返回null
      */
-    FLRPlayer playerLogin(String playerName,String pwd);
+    FLRPlayer playerLogin(String playerName,String pwd) throws AuthException;
 
     /**
      * 玩家登出

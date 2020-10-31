@@ -97,29 +97,31 @@ public class PlayerServiceBlock implements PlayerService{
      * @return 成功返回玩家实例 失败返回null
      */
     @Override
-    public FLRPlayer playerLogin(String playerName, String pwd) {
+    public FLRPlayer playerLogin(String playerName, String pwd) throws AuthException {
 
         FLRPlayer playerByName = mapper.getPlayerByName(playerName);
 
         //玩家不存在
         if(playerByName == null){
-            return null;
+            throw new AuthException(Excep.AUTH_NO_REG);
         }
 
-        //登录逻辑
-
-
+        //密码判断
         if(!playerByName.getPassword().equals(pwd)){
-            return null;
+            throw new AuthException(Excep.AUTH_PWD_INVALID);
+        }
+
+        //已经登录
+        if(!playerByName.isLogin()){
+            throw new AuthException(Excep.AUTH_ALREADY_LOG);
         }
 
         //修改数据库中玩家的状态
-        playerByName.setLastLoginDate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+        playerByName.setLastLoginDate(DateUtil.getCurTimeString());
         playerByName.setLoginCount(playerByName.getLoginCount()+1);
 
         //修改数据库中的登录状态
         playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
-
 
         return playerByName;
     }

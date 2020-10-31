@@ -1,13 +1,9 @@
 package com.ksptooi.flr.starter;
 
 import com.google.inject.Injector;
-import com.ksptooi.flr.dao.access.DatabaseType;
 import com.ksptooi.flr.entity.model.InputModel;
-import com.ksptooi.flr.entity.player.FLRPlayer;
-import com.ksptooi.flr.input.adapter.CommandAdapter;
+import com.ksptooi.flr.input.dispatch.adapter.InputAdapter;
 import com.ksptooi.flr.input.command.PlayerCommandHandler;
-import com.ksptooi.flr.mapper.player.PlayerMapper;
-import com.ksptooi.flr.module.export.DalModule;
 import com.ksptooi.flr.module.export.ProcModule;
 import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
 import org.bukkit.Bukkit;
@@ -15,15 +11,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.Enumeration;
 import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
@@ -42,7 +29,7 @@ public class FastLoginR extends JavaPlugin {
 
         /*Thread.currentThread().setContextClassLoader(getClass().getClassLoader());*/
 
-        CommandAdapter instance = ProcModule.getInject().getInstance(CommandAdapter.class);
+        InputAdapter instance = ProcModule.getInject().getInstance(InputAdapter.class);
 
         instance.regHandler(PlayerCommandHandler.class);
 /*        instance.assign("login",null,null,null,null);*/
@@ -70,7 +57,7 @@ public class FastLoginR extends JavaPlugin {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         //获取到适配器
-        CommandAdapter adapter = injector.getInstance(CommandAdapter.class);
+        InputAdapter adapter = injector.getInstance(InputAdapter.class);
 
         InputModel model = null;
 

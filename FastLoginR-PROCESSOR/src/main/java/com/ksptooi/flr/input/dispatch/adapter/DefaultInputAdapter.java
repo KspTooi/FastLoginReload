@@ -1,4 +1,4 @@
-package com.ksptooi.flr.input.adapter;
+package com.ksptooi.flr.input.dispatch.adapter;
 
 import com.ksptooi.flr.entity.model.InputModel;
 import com.ksptooi.flr.input.annotation.CommandHandler;
@@ -11,21 +11,17 @@ import com.ksptooi.util.dictionary.Excep;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import java.io.File;
-import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 默认的命令适配器 - 不支持包扫描机制仅提供命令的注册与分配
  */
-public class DefaultCommandAdapter implements CommandAdapter{
+public class DefaultInputAdapter implements InputAdapter {
 
 
     private HashMap<Method,Object> handler = new HashMap<Method, Object>();

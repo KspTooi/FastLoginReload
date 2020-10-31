@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.ksptooi.flr.dao.exception.DBException;
 import com.ksptooi.flr.entity.model.InputModel;
 import com.ksptooi.flr.entity.player.FLRPlayer;
+import com.ksptooi.flr.entity.player.PlayerLocation;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
@@ -18,6 +19,8 @@ public class PlayerCommandHandler {
 
     @Inject
     PlayerService service = null;
+
+
 
     /**
      * 用于玩家登录

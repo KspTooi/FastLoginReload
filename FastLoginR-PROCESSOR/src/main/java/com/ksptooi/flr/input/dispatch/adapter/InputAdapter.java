@@ -1,4 +1,4 @@
-package com.ksptooi.flr.input.adapter;
+package com.ksptooi.flr.input.dispatch.adapter;
 
 import com.ksptooi.flr.entity.model.InputModel;
 import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
  * 命令执行流程 Bukkit->CommandAdapter->CommandHandler
  *
  */
-public interface CommandAdapter {
+public interface InputAdapter {
 
     /**
      * 分配命令至命令处理器

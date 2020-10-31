@@ -1,6 +1,7 @@
 package com.ksptooi.flr.input.command;
 
 import com.google.inject.Inject;
+import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
@@ -17,40 +18,62 @@ public class PlayerCommandHandler {
 
     /**
      * 用于玩家登录
-     * @param name
      * @param sender
      * @param p
-     * @param c
      * @return 成功返回true 失败返回false
      */
     @PlayerOnly
     @CommandMapper(value = "login",alias = {"l","log"})
-    public boolean playerLogin(@Params("name")String name,
-                               @Params("sender")CommandSender sender,
-                               @Params("params")String[] p,
-                               @Params("cmd") Command c){
+    public boolean playerLogin(@Params("sender")CommandSender sender,
+                               @Params("params")String[] p){
 
-        sender.sendMessage("命令名:"+name);
-        sender.sendMessage("命令参数:"+p.toString());
+        //边界检查
+        if(p.length<1){
+            sender.sendMessage("请输入密码!");
+            return false;
+        }
 
+        FLRPlayer player = service.playerLogin(sender.getName(), p[0]);
+
+        if(player == null){
+            sender.sendMessage("登录失败,密码错误!");
+            return false;
+        }
+
+        sender.sendMessage("登录成功!");
         return true;
     }
 
 
     /**
      * 用于玩家注册
-     * @param s
-     * @param p
+     * @param sender
+     * @param para
      * @return
      */
     @PlayerOnly
     @CommandMapper("register")
-    public boolean playerRegister(@Params("sender")CommandSender s,
-                                  @Params("params")String[] p){
+    public boolean playerRegister(@Params("sender")CommandSender sender,
+                                  @Params("params")String[] para){
+
+        //边界检查
+        if(para.length<2){
+            sender.sendMessage("注册失败,格式:/register 密码 确认密码!");
+            return false;
+        }
+
+        FLRPlayer flrPlayer = new FLRPlayer();
+        flrPlayer.setAccount(sender.getName());
+        flrPlayer.setPassword(para[0]);
 
 
+        FLRPlayer regPlayer = service.playerRegister(flrPlayer);
 
-        return false;
+        if(regPlayer!=null){
+           sender.sendMessage("注册成功!");
+        }
+
+        return true;
     }
 
 

@@ -84,7 +84,7 @@ public class DefaultCommandAdapter implements CommandAdapter{
 
                     boolean b=(boolean)e.getKey().invoke(e.getValue(),invokeParameters.toArray());
 
-                    System.out.println("执行完成:"+b);
+
 
                 }catch (Exception exception){
                     exception.printStackTrace();

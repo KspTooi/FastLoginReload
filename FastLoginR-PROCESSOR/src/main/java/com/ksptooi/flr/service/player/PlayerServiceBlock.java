@@ -44,6 +44,7 @@ public class PlayerServiceBlock implements PlayerService{
             throw new RuntimeException("用户名已存在");
         }
 
+
         String presentDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 
         //注册业务流程

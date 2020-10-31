@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.3F.81";
+    public static final String currentVersion = "1.3F.90";
 
     @Override
     public void onEnable() {
@@ -29,7 +29,6 @@ public class FastLoginR extends JavaPlugin {
         logger.info("[FastLoginR]");
 
         /*Thread.currentThread().setContextClassLoader(getClass().getClassLoader());*/
-
 
         DalModule.install(DatabaseType.H2);
 

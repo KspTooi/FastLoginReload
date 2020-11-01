@@ -4,7 +4,9 @@ import com.ksptooi.flr.entity.input.proc.InputProcessor;
 import com.ksptooi.flr.entity.model.Model;
 import com.ksptooi.flr.input.annotation.ProcessMapper;
 import com.ksptooi.flr.input.annotation.Processor;
+import com.ksptooi.flr.proc.exception.AdapterParameterException;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
+import com.ksptooi.util.dictionary.Excep;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -25,7 +27,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter{
 
 
     @Override
-    public InputProcessor findProcessor(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundProcessorException {
+    public InputProcessor findProcessor(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundProcessorException, AdapterParameterException {
 
 
         ArrayList<Object> invokeParameters = null;
@@ -37,23 +39,32 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter{
 
             //如果子命令没有参数则直接抛出异常
             if(params==null||params.length<1){
-
+                throw new AdapterParameterException(Excep.NOT_SUB_PARAMETER);
             }
 
+            //找类下面的方法
+            InputProcessor inputProcessor = findProcessMethodByMapper(processClassByMapper, params[0]);
 
+            //如果没有该子命令方法则直接抛出异常
+            if(inputProcessor==null){
+                throw new NotFoundProcessorException(Excep.NOT_FOUND_SUB_PROCESSOR);
+            }
+
+            return inputProcessor;
         }
 
+        //如果没有类注解符合要求则直接遍历所有方法的注解
+        InputProcessor processMethodByMapper = findProcessMethodByMapper(handler, name);
 
+        
 
-
-
-        return null;
+        return processMethodByMapper;
     }
 
 
 
     //根据ProcessMapper查找所有符合要求的处理器
-    public InputProcessor finProcessMethodByMapper(HashMap<Method,Object> search,String mapperName){
+    public InputProcessor findProcessMethodByMapper(HashMap<Method,Object> search,String mapperName){
 
         for(Map.Entry<Method,Object> e:search.entrySet()){
 

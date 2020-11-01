@@ -1,8 +1,10 @@
 package com.ksptooi.flr.input.processor;
 
+import com.ksptooi.flr.input.annotation.ProcessMapper;
 import com.ksptooi.flr.input.annotation.Processor;
 
 @Processor
+@ProcessMapper("")
 public class AdminAccountProcessor {
 
 

@@ -56,7 +56,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter{
         //如果没有类注解符合要求则直接遍历所有方法的注解
         InputProcessor processMethodByMapper = findProcessMethodByMapper(handler, name);
 
-        
+
 
         return processMethodByMapper;
     }

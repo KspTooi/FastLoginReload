@@ -8,6 +8,8 @@ import com.google.inject.matcher.Matchers;
 import com.ksptooi.flr.dao.access.DatabaseType;
 import com.ksptooi.flr.input.dispatch.adapter.InputAdapter;
 import com.ksptooi.flr.input.dispatch.adapter.DefaultInputAdapter;
+import com.ksptooi.flr.input.dispatch.adapter.InternalBukkitStepInputAdapter;
+import com.ksptooi.flr.input.dispatch.adapter.StepInputAdapter;
 import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
 import com.ksptooi.flr.proc.aop.service.InputAfterAOP;
 import com.ksptooi.flr.proc.aop.service.ServiceExceptionAOP;
@@ -25,6 +27,7 @@ public class ProcModule extends AbstractModule {
 
         bind(PlayerService.class).to(PlayerServiceBlock.class).in(Scopes.SINGLETON);
         bind(InputAdapter.class).to(DefaultInputAdapter.class).in(Scopes.SINGLETON);
+        bind(StepInputAdapter.class).to(InternalBukkitStepInputAdapter.class).in(Scopes.SINGLETON);
 
         bindInterceptor(
                  Matchers.identicalTo(PlayerServiceBlock.class)

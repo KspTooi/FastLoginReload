@@ -52,7 +52,7 @@ public class InputProcessor {
 
         try{
 
-            invoke = joinPointMethod.invoke(classInstance, inputParameters.toArray());
+            invoke = joinPointMethod.invoke(classInstance);
 
         }catch (InvocationTargetException | IllegalAccessException e){
            e.printStackTrace();

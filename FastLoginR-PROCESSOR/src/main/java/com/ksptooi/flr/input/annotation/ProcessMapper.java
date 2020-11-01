@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CommandMapper {
+public @interface ProcessMapper {
 
     String value();
     String[] alias()default {};

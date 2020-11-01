@@ -70,4 +70,11 @@ public class InputProcessor {
     }
 
 
+    public Method getJoinPointMethod() {
+        return joinPointMethod;
+    }
+
+    public Object getClassInstance() {
+        return classInstance;
+    }
 }

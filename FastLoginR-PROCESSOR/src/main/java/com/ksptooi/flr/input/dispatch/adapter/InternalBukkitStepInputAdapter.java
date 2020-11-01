@@ -2,6 +2,7 @@ package com.ksptooi.flr.input.dispatch.adapter;
 
 import com.ksptooi.flr.entity.input.proc.InputProcessor;
 import com.ksptooi.flr.entity.model.Model;
+import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.input.annotation.ProcessMapper;
 import com.ksptooi.flr.input.annotation.Processor;
 import com.ksptooi.flr.proc.exception.AdapterParameterException;
@@ -10,6 +11,7 @@ import com.ksptooi.util.dictionary.Excep;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,11 +21,10 @@ import java.util.Map;
 /**
  * 分步命令适配器
  */
-public class InternalBukkitStepInputAdapter implements StepInputAdapter{
+public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
 
-    private HashMap<Method,Object> handler = new HashMap<Method, Object>();
-
+    private HashMap<Method, Object> handler = new HashMap<Method, Object>();
 
 
     @Override
@@ -32,13 +33,13 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter{
 
         ArrayList<Object> invokeParameters = null;
 
-        HashMap<Method, Object> processClassByMapper = findProcessClassByMapper(handler,name);
+        HashMap<Method, Object> processClassByMapper = findProcessClassByMapper(handler, name);
 
         //如果有类注解符合要求 则判断方法命令名
-        if(!(processClassByMapper.size()<1)){
+        if (!(processClassByMapper.size() < 1)) {
 
             //如果子命令没有参数则直接抛出异常
-            if(params==null||params.length<1){
+            if (params == null || params.length < 1) {
                 throw new AdapterParameterException(Excep.NOT_SUB_PARAMETER);
             }
 
@@ -46,20 +47,78 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter{
             InputProcessor inputProcessor = findProcessMethodByMapper(processClassByMapper, params[0]);
 
             //如果没有该子命令方法则直接抛出异常
-            if(inputProcessor==null){
+            if (inputProcessor == null) {
                 throw new NotFoundProcessorException(Excep.NOT_FOUND_SUB_PROCESSOR);
             }
 
-            return inputProcessor;
+            InputProcessor inst = install(inputProcessor, name, sender, cmd, label, params);
+
+            return inst;
         }
 
         //如果没有类注解符合要求则直接遍历所有方法的注解
-        InputProcessor processMethodByMapper = findProcessMethodByMapper(handler, name);
+        InputProcessor installed = install(findProcessMethodByMapper(handler, name), name, sender, cmd, label, params);
 
 
-
-        return processMethodByMapper;
+        return installed;
     }
+
+
+    //根据Processor方法注解准备参数
+    public InputProcessor install(InputProcessor inputProcessor, String name, CommandSender sender, Command cmd, String label, String[] params) {
+
+        ArrayList<Object> invokeParameters = new ArrayList<Object>();
+
+
+        //解析参数注解
+        for (Annotation[] parameterAnnotation : inputProcessor.getJoinPointMethod().getParameterAnnotations()) {
+
+
+            for (Annotation annotation : parameterAnnotation) {
+
+                if (annotation instanceof Params) {
+                    Params param = (Params) annotation;
+
+                    if (param.value().equalsIgnoreCase("name")) {
+                        invokeParameters.add(name);
+                    }
+
+                    if (param.value().equalsIgnoreCase("sender")) {
+                        invokeParameters.add(sender);
+                    }
+
+                    if (param.value().equalsIgnoreCase("cmd")) {
+                        invokeParameters.add(cmd);
+                    }
+
+                    if (param.value().equalsIgnoreCase("params")) {
+                        invokeParameters.add(params);
+                    }
+
+                    if (param.value().equalsIgnoreCase("label")) {
+                        invokeParameters.add(label);
+                    }
+
+                    //自动装配MODEL
+                    if (param.value().equalsIgnoreCase("model")) {
+                        Model model = new Model(sender);
+                        invokeParameters.add(model);
+                    }
+
+                }
+
+            }
+
+        }
+
+        //注入参数
+        inputProcessor.setInputParameters(invokeParameters);
+
+        return inputProcessor;
+
+    }
+
+
 
 
 

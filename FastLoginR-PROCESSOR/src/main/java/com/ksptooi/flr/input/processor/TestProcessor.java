@@ -7,7 +7,7 @@ import com.ksptooi.flr.input.annotation.Processor;
 import org.bukkit.command.CommandSender;
 
 @Processor
-@ProcessMapper("test")
+@ProcessMapper("testProc")
 public class TestProcessor {
 
 

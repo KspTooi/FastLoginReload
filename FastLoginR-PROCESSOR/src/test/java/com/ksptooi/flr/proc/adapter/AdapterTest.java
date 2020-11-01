@@ -19,9 +19,9 @@ public class AdapterTest {
         instance.regHandler(TestProcessor.class);
         instance.regHandler(TestProcessorSingle.class);
 
-        String[] para = {"testProc"};
+        String[] para = {"cmd"};
 
-        InputProcessor ip = instance.findProcessor("cmd", null, null, null, para);
+        InputProcessor ip = instance.findProcessor("testProc", null, null, null, para);
 
         ip.start();
 

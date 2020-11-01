@@ -7,18 +7,18 @@ import java.util.ArrayList;
 /**
  * 返回类型
  */
-public class InputModel {
+public class Model {
 
     private CommandSender sender = null;
     private ArrayList<String> message = new ArrayList<String>();
     private boolean finish = false;
 
 
-    public InputModel(){
+    public Model(){
 
     }
 
-    public InputModel(CommandSender sender){
+    public Model(CommandSender sender){
         this.sender = sender;
     }
 
@@ -49,5 +49,9 @@ public class InputModel {
 
     public void setFinish(boolean finish) {
         this.finish = finish;
+    }
+
+    public void finish(){
+        this.finish = true;
     }
 }

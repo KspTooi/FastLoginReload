@@ -22,6 +22,13 @@ public class InputProcessor {
 
 
     //初始化
+    public InputProcessor(Method joinPointMethod,Object classInstance){
+        this.joinPointMethod = joinPointMethod;
+        this.classInstance = classInstance;
+    }
+
+
+    //初始化
     public InputProcessor(Method joinPointMethod,Object classInstance,ArrayList<Object> inputParameters){
         this.inputParameters = inputParameters;
         this.joinPointMethod = joinPointMethod;
@@ -52,6 +59,14 @@ public class InputProcessor {
         }
 
         return invoke instanceof Model ? (Model)invoke : null;
+    }
+
+    public ArrayList<Object> getInputParameters() {
+        return inputParameters;
+    }
+
+    public void setInputParameters(ArrayList<Object> inputParameters) {
+        this.inputParameters = inputParameters;
     }
 
 

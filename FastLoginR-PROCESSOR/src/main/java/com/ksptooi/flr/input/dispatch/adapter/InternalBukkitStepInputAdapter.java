@@ -9,7 +9,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -26,10 +28,83 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter{
     public InputProcessor findProcessor(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundProcessorException {
 
 
+        ArrayList<Object> invokeParameters = null;
+
+        HashMap<Method, Object> processClassByMapper = findProcessClassByMapper(handler,name);
+
+        //如果有类注解符合要求 则判断方法命令名
+        if(!(processClassByMapper.size()<1)){
+
+            //如果子命令没有参数则直接抛出异常
+            if(params==null||params.length<1){
+
+            }
+
+
+        }
+
+
+
 
 
         return null;
     }
+
+
+
+    //根据ProcessMapper查找所有符合要求的处理器
+    public InputProcessor finProcessMethodByMapper(HashMap<Method,Object> search,String mapperName){
+
+        for(Map.Entry<Method,Object> e:search.entrySet()){
+
+            ProcessMapper methodAnnotation = e.getKey().getAnnotation(ProcessMapper.class);
+
+            if(methodAnnotation == null){
+                continue;
+            }
+
+            if(methodAnnotation.value().equals(mapperName)){
+                return new InputProcessor(e.getKey(),e.getValue());
+            }
+
+
+        }
+
+
+        return null;
+    }
+
+
+
+
+    //根据ProcessMapper查找所有符合要求的处理器[类]
+    public HashMap<Method,Object> findProcessClassByMapper(HashMap<Method,Object> search,String mapperName){
+
+        HashMap<Method,Object> result = new HashMap<Method,Object>();
+
+        for(Map.Entry<Method,Object> e:search.entrySet()){
+
+            ProcessMapper classAnnotation = e.getValue().getClass().getAnnotation(ProcessMapper.class);
+
+            if(classAnnotation==null){
+                continue;
+            }
+
+            if(classAnnotation.value().equalsIgnoreCase(mapperName)){
+                result.put(e.getKey(),e.getValue());
+            }
+
+        }
+
+
+        return result;
+    }
+
+
+
+
+
+
 
 
     @Override

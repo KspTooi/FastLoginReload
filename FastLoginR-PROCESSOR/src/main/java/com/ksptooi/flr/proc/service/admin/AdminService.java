@@ -18,5 +18,12 @@ public interface AdminService {
      */
     FLRPlayer resetPlayerPwd(String playerName,String playerPwd)throws ServiceException;
 
+    /**
+     * 根据玩家名称获取玩家数据对象
+     * @param playerName
+     * @return 玩家数据对象
+     */
+    FLRPlayer getFLRPlayer(String playerName);
+
 
 }

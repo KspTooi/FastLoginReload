@@ -36,9 +36,11 @@ public class AdminAccountProcessor {
 
             if (service.resetPlayerPwd(p[1],p[2]) == null){
                 model.addMessage("玩家不存在!");
-                model.finish();
-                return model;
+            }else {
+                model.addMessage("修改成功! ");
             }
+            model.finish();
+            return model;
 
 
         }catch (ServiceException dbException){

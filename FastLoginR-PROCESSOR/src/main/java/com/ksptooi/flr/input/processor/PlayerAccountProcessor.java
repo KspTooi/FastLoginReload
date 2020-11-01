@@ -4,8 +4,8 @@ import com.google.inject.Inject;
 import com.ksptooi.flr.dao.exception.DBException;
 import com.ksptooi.flr.entity.model.Model;
 import com.ksptooi.flr.entity.player.FLRPlayer;
-import com.ksptooi.flr.input.annotation.CommandHandler;
-import com.ksptooi.flr.input.annotation.CommandMapper;
+import com.ksptooi.flr.input.annotation.Processor;
+import com.ksptooi.flr.input.annotation.ProcessMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.input.annotation.PlayerOnly;
 import com.ksptooi.flr.proc.exception.AuthException;
@@ -13,14 +13,13 @@ import com.ksptooi.flr.proc.service.player.PlayerService;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandHandler
-public class PlayerCommandProcessor {
+@Processor
+public class PlayerAccountProcessor {
 
 
     
     @Inject
     PlayerService service = null;
-
 
 
     /**
@@ -30,12 +29,11 @@ public class PlayerCommandProcessor {
      * @return 成功返回true 失败返回false
      */
     @PlayerOnly
-    @CommandMapper(value = "login",alias = {"l","log"})
+    @ProcessMapper(value = "login",alias = {"l","log"})
     public Model playerLogin(@Params("sender")CommandSender sender
-                                  , @Params("params")String[] p
-                                  , @Params("model") Model Model) {
+                            ,@Params("params")String[] p
+                            ,@Params("model") Model model) {
 
-        com.ksptooi.flr.entity.model.Model model = new Model(sender);
 
         Player pl = (Player) sender;
 
@@ -49,9 +47,8 @@ public class PlayerCommandProcessor {
 
 
             FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
-
             model.addMessage("登录成功!");
-            model.setFinish(true);
+            model.finish();
             return model;
 
 
@@ -76,7 +73,7 @@ public class PlayerCommandProcessor {
      * @return
      */
     @PlayerOnly
-    @CommandMapper("register")
+    @ProcessMapper("register")
     public Model playerRegister(@Params("sender")CommandSender sender,
                                 @Params("params")String[] para){
 

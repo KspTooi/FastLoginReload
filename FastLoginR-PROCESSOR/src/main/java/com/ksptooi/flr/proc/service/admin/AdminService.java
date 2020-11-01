@@ -8,11 +8,13 @@ import com.ksptooi.flr.proc.exception.ServiceException;
  */
 public interface AdminService {
 
+
     /**
-     *
+     * 管理员修改玩家密码
      * @param playerName
      * @param playerPwd
-     * @return
+     * @return 成功返回玩家实例,失败返回NULL
+     * @throws ServiceException 修改失败时抛出该异常
      */
     FLRPlayer resetPlayerPwd(String playerName,String playerPwd)throws ServiceException;
 

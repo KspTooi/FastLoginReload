@@ -162,7 +162,7 @@ public class FLRPlayer {
     public boolean isLogin(){
 
 
-        if(this.loginStatus.equals(PlayerStatus.LOGIN_SUCCESS)){
+        if(this.loginStatus == PlayerStatus.LOGIN_SUCCESS.getCode()){
             return true;
         }
 
@@ -175,7 +175,7 @@ public class FLRPlayer {
      */
     public boolean isReg(){
 
-        if(this.registerStatus.equals(PlayerStatus.REG_SUCCESS)){
+        if(this.registerStatus == PlayerStatus.REG_SUCCESS.getCode()){
             return true;
         }
 

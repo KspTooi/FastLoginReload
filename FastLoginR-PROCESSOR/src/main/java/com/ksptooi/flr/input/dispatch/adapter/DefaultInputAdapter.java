@@ -1,6 +1,6 @@
 package com.ksptooi.flr.input.dispatch.adapter;
 
-import com.ksptooi.flr.entity.model.InputModel;
+import com.ksptooi.flr.entity.model.Model;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
 import com.ksptooi.flr.input.annotation.Params;
@@ -29,7 +29,7 @@ public class DefaultInputAdapter implements InputAdapter {
 
     @Override
     @MethodJoinPoint
-    public InputModel assign(String name, CommandSender sender, Command cmd,String label, String[] params) throws NotFoundHandlerException {
+    public Model assign(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundHandlerException {
 
         ArrayList<Object> invokeParameters = null;
 
@@ -75,20 +75,26 @@ public class DefaultInputAdapter implements InputAdapter {
                                 invokeParameters.add(label);
                             }
 
+                            //自动装配MODEL
+                            if(param.value().equalsIgnoreCase("model")){
+                                Model model = new Model(sender);
+                                invokeParameters.add(model);
+                            }
+
                         }
 
                     }
 
                 }
 
-                InputModel invokeResultModel = null;
+                Model invokeResultModel = null;
 
                 try {
 
                     //默认适配器切面
                     ProcModule.getInject().injectMembers(e.getValue());
 
-                    invokeResultModel = (InputModel) e.getKey().invoke(e.getValue(), invokeParameters.toArray());
+                    invokeResultModel = (Model) e.getKey().invoke(e.getValue(), invokeParameters.toArray());
 
                 } catch (IllegalAccessException illegalAccessException) {
                     illegalAccessException.printStackTrace();

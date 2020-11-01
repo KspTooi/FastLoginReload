@@ -1,11 +1,9 @@
 package com.ksptooi.flr.input.dispatch.adapter;
 
-import com.ksptooi.flr.entity.model.InputModel;
+import com.ksptooi.flr.entity.model.Model;
 import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * 命令适配器 用于和命令处理器配合使用
@@ -23,7 +21,7 @@ public interface InputAdapter {
      * @param params
      * @return 成功返回true 失败返回false
      */
-    InputModel assign(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundHandlerException;
+    Model assign(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundHandlerException;
 
     /**
      * 注册命令处理器

@@ -2,7 +2,7 @@ package com.ksptooi.flr.input.processor;
 
 import com.google.inject.Inject;
 import com.ksptooi.flr.dao.exception.DBException;
-import com.ksptooi.flr.entity.model.InputModel;
+import com.ksptooi.flr.entity.model.Model;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.input.annotation.CommandHandler;
 import com.ksptooi.flr.input.annotation.CommandMapper;
@@ -16,6 +16,8 @@ import org.bukkit.entity.Player;
 @CommandHandler
 public class PlayerCommandProcessor {
 
+
+    
     @Inject
     PlayerService service = null;
 
@@ -29,10 +31,11 @@ public class PlayerCommandProcessor {
      */
     @PlayerOnly
     @CommandMapper(value = "login",alias = {"l","log"})
-    public InputModel playerLogin(@Params("sender")CommandSender sender,
-                                  @Params("params")String[] p) {
+    public Model playerLogin(@Params("sender")CommandSender sender
+                                  , @Params("params")String[] p
+                                  , @Params("model") Model Model) {
 
-        InputModel model = new InputModel(sender);
+        com.ksptooi.flr.entity.model.Model model = new Model(sender);
 
         Player pl = (Player) sender;
 
@@ -74,10 +77,10 @@ public class PlayerCommandProcessor {
      */
     @PlayerOnly
     @CommandMapper("register")
-    public InputModel playerRegister(@Params("sender")CommandSender sender,
-                                     @Params("params")String[] para){
+    public Model playerRegister(@Params("sender")CommandSender sender,
+                                @Params("params")String[] para){
 
-        InputModel model = new InputModel(sender);
+        Model model = new Model(sender);
 
 
         //边界检查

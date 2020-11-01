@@ -1,12 +1,9 @@
 package com.ksptooi.flr.proc.aop.service;
 
 
-import com.ksptooi.flr.dao.exception.DBException;
-import com.ksptooi.flr.entity.model.InputModel;
-import com.ksptooi.flr.proc.exception.AuthException;
+import com.ksptooi.flr.entity.model.Model;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
@@ -25,12 +22,12 @@ public class InputAfterAOP implements MethodInterceptor {
         System.out.println("Input切面");
 
         //切面返回值
-        InputModel result = null;
+        Model result = null;
 
 
 
         //原切面方法
-        result = (InputModel) invocation.proceed();
+        result = (Model) invocation.proceed();
 
         if(result==null){
             return null;

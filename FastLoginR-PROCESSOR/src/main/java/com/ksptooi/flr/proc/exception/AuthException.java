@@ -3,7 +3,7 @@ package com.ksptooi.flr.proc.exception;
 import com.ksptooi.util.dictionary.Excep;
 import org.bukkit.entity.Player;
 
-public class AuthException extends ProcException {
+public class AuthException extends ServiceException {
 
     private Player player = null;
 

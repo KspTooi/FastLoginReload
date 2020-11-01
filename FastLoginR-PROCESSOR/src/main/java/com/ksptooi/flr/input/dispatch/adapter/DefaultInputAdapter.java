@@ -6,7 +6,7 @@ import com.ksptooi.flr.input.annotation.ProcessMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
-import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
+import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import com.ksptooi.util.dictionary.Excep;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -29,7 +29,7 @@ public class DefaultInputAdapter implements InputAdapter {
 
     @Override
     @MethodJoinPoint
-    public Model assign(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundHandlerException {
+    public Model assign(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundProcessorException {
 
         ArrayList<Object> invokeParameters = null;
 
@@ -123,7 +123,7 @@ public class DefaultInputAdapter implements InputAdapter {
 
         }
 
-        throw new NotFoundHandlerException(Excep.FATAL_NOT_FOUND_HANDLER);
+        throw new NotFoundProcessorException(Excep.FATAL_NOT_FOUND_HANDLER);
     }
 
 

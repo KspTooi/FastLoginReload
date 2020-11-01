@@ -1,7 +1,7 @@
 package com.ksptooi.flr.input.dispatch.adapter;
 
 import com.ksptooi.flr.entity.model.Model;
-import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
+import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -21,7 +21,7 @@ public interface InputAdapter {
      * @param params
      * @return 成功返回true 失败返回false
      */
-    Model assign(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundHandlerException;
+    Model assign(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundProcessorException;
 
     /**
      * 注册命令处理器

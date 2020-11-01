@@ -5,7 +5,7 @@ import com.ksptooi.flr.entity.model.Model;
 import com.ksptooi.flr.input.dispatch.adapter.InputAdapter;
 import com.ksptooi.flr.input.processor.PlayerAccountProcessor;
 import com.ksptooi.flr.proc.module.export.ProcModule;
-import com.ksptooi.flr.proc.exception.NotFoundHandlerException;
+import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -72,7 +72,7 @@ public class FastLoginR extends JavaPlugin {
                 return false;
             }
 
-        } catch (NotFoundHandlerException e) {
+        } catch (NotFoundProcessorException e) {
             sender.sendMessage("没有为该命令找到相应的处理器.");
             e.printStackTrace();
             return false;

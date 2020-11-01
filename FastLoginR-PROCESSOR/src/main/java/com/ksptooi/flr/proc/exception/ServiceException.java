@@ -2,17 +2,17 @@ package com.ksptooi.flr.proc.exception;
 
 import com.ksptooi.util.dictionary.Excep;
 
-public class ProcException extends Exception{
+public class ServiceException extends Exception{
 
     private String msg = "发生异常!";
     private Integer errorCode = -1;
 
-    public ProcException(Excep status){
+    public ServiceException(Excep status){
         this.msg = status.getMessage();
         this.errorCode = status.getErrorCode();
     }
 
-    public ProcException(String msg){
+    public ServiceException(String msg){
         this.msg = msg;
     }
 

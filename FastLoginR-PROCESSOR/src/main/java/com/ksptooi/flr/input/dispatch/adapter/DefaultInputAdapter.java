@@ -1,8 +1,8 @@
 package com.ksptooi.flr.input.dispatch.adapter;
 
 import com.ksptooi.flr.entity.model.Model;
-import com.ksptooi.flr.input.annotation.CommandHandler;
-import com.ksptooi.flr.input.annotation.CommandMapper;
+import com.ksptooi.flr.input.annotation.Processor;
+import com.ksptooi.flr.input.annotation.ProcessMapper;
 import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
@@ -35,7 +35,7 @@ public class DefaultInputAdapter implements InputAdapter {
 
         for(Map.Entry<Method,Object> e:handler.entrySet()){
 
-            CommandMapper mapper = e.getKey().getAnnotation(CommandMapper.class);
+            ProcessMapper mapper = e.getKey().getAnnotation(ProcessMapper.class);
 
 
             //如果命令名与注解名相符 则将命令分配到该处理器
@@ -131,7 +131,7 @@ public class DefaultInputAdapter implements InputAdapter {
     public void regHandler(Class handler) {
 
 
-        if(handler.getAnnotation(CommandHandler.class)==null){
+        if(handler.getAnnotation(Processor.class)==null){
             throw new RuntimeException("不支持的操作!");
         }
 
@@ -143,7 +143,7 @@ public class DefaultInputAdapter implements InputAdapter {
             for(Method m:declaredMethods){
 
                 //没有CommandMapper注解的方法 直接进行下一个循环
-                if(m.getAnnotation(CommandMapper.class)==null){
+                if(m.getAnnotation(ProcessMapper.class)==null){
                     continue;
                 }
 

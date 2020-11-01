@@ -1,7 +1,7 @@
 package com.ksptooi.annotation;
 
-import com.ksptooi.flr.input.annotation.CommandMapper;
-import com.ksptooi.flr.input.processor.PlayerCommandProcessor;
+import com.ksptooi.flr.input.annotation.ProcessMapper;
+import com.ksptooi.flr.input.processor.PlayerAccountProcessor;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,7 +12,7 @@ public class UnitTest {
     @Test
     public void test() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
 
-        Class c = PlayerCommandProcessor.class;
+        Class c = PlayerAccountProcessor.class;
 
 
         Object obj1 = c.newInstance();
@@ -23,7 +23,7 @@ public class UnitTest {
 
         for(Method m:declaredMethods){
 
-            CommandMapper annotation = m.getAnnotation(CommandMapper.class);
+            ProcessMapper annotation = m.getAnnotation(ProcessMapper.class);
 
             String cmdName = null;
 

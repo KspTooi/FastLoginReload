@@ -119,7 +119,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
 
     //根据ProcessMapper查找所有符合要求的处理器
-    public InputProcessor findProcessMethodByMapper(HashMap<Method,Object> search,String mapperName,boolean skipClass){
+    public InputProcessor findProcessMethodByMapper(HashMap<Method,Object> search,String mapperName,boolean skipClass) throws NotFoundProcessorException {
 
         for(Map.Entry<Method,Object> e:search.entrySet()){
 
@@ -145,8 +145,8 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
         }
 
-
-        return null;
+        throw new NotFoundProcessorException(Excep.FATAL_NOT_FOUND_HANDLER);
+        /*return null;*/
     }
 
 

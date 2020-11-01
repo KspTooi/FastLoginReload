@@ -44,7 +44,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
             }
 
             //找类下面的方法
-            InputProcessor inputProcessor = findProcessMethodByMapper(processClassByMapper, params[0]);
+            InputProcessor inputProcessor = findProcessMethodByMapper(processClassByMapper, params[0],false);
 
             //如果没有该子命令方法则直接抛出异常
             if (inputProcessor == null) {
@@ -56,9 +56,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
         }
 
         //如果没有类注解符合要求则直接遍历所有方法的注解
-
-
-        return install(findProcessMethodByMapper(handler, name), name, sender, cmd, label, params);
+        return install(findProcessMethodByMapper(handler, name,true), name, sender, cmd, label, params);
     }
 
 
@@ -121,9 +119,18 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
 
     //根据ProcessMapper查找所有符合要求的处理器
-    public InputProcessor findProcessMethodByMapper(HashMap<Method,Object> search,String mapperName){
+    public InputProcessor findProcessMethodByMapper(HashMap<Method,Object> search,String mapperName,boolean skipClass){
 
         for(Map.Entry<Method,Object> e:search.entrySet()){
+
+
+            if(skipClass){
+                //如果方法的类上面有注解值 则跳过
+                if(e.getValue().getClass().getAnnotation(ProcessMapper.class)!=null){
+                    continue;
+                }
+            }
+
 
             ProcessMapper methodAnnotation = e.getKey().getAnnotation(ProcessMapper.class);
 

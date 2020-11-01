@@ -8,7 +8,7 @@ import com.ksptooi.flr.input.annotation.Processor;
 import java.util.Arrays;
 
 @Processor
-@ProcessMapper("cmd")
+@ProcessMapper("cmd1")
 public class TestProcessorSingle {
 
     @ProcessMapper("cmd")

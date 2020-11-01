@@ -1,5 +1,6 @@
 package com.ksptooi.flr.input.dispatch.adapter;
 
+import com.ksptooi.flr.entity.input.proc.InputProcessor;
 import com.ksptooi.flr.entity.model.Model;
 import com.ksptooi.flr.input.annotation.ProcessMapper;
 import com.ksptooi.flr.input.annotation.Processor;
@@ -22,11 +23,12 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter{
 
 
     @Override
-    public void findProcessor(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundProcessorException {
+    public InputProcessor findProcessor(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundProcessorException {
 
 
 
 
+        return null;
     }
 
 

@@ -20,6 +20,15 @@ public class InputProcessor {
     //处理器类实例
     Object classInstance = null;
 
+
+    //初始化
+    public InputProcessor(Method joinPointMethod,Object classInstance,ArrayList<Object> inputParameters){
+        this.inputParameters = inputParameters;
+        this.joinPointMethod = joinPointMethod;
+        this.classInstance = classInstance;
+    }
+
+
     //执行处理器中的方法 并获得返回Model对象
     public Model run() throws InvocationTargetException, IllegalAccessException {
 

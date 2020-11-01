@@ -12,10 +12,13 @@ public class TestProcessor {
 
 
     @ProcessMapper("cmd")
-    public Model testCommandProcessor(){
+    public Model testCommandProcessor(@Params("params")String[] p){
 
-        System.out.println("这是一个测试处理器");
+        for(String e:p){
+            System.out.println(e);
+        }
 
+        System.out.println("这是一个测试处理器11111");
 
         return null;
     }

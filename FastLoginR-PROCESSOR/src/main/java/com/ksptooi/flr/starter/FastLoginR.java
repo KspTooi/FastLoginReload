@@ -2,8 +2,10 @@ package com.ksptooi.flr.starter;
 
 import com.google.inject.Injector;
 import com.ksptooi.flr.entity.model.Model;
+import com.ksptooi.flr.input.dispatch.InputDispatch;
 import com.ksptooi.flr.input.dispatch.adapter.InputAdapter;
 import com.ksptooi.flr.input.processor.PlayerAccountProcessor;
+import com.ksptooi.flr.proc.exception.AdapterParameterException;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import org.bukkit.Bukkit;
@@ -29,9 +31,12 @@ public class FastLoginR extends JavaPlugin {
 
         Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
 
+        InputDispatch instance = injector.getInstance(InputDispatch.class);
+        instance.regProcessor(PlayerAccountProcessor.class);
 
-        InputAdapter instance = ProcModule.getInject().getInstance(InputAdapter.class);
-        instance.regHandler(PlayerAccountProcessor.class);
+
+/*        InputAdapter instance = ProcModule.getInject().getInstance(InputAdapter.class);
+        instance.regHandler(PlayerAccountProcessor.class);*/
 
 
 /*        instance.assign("login",null,null,null,null);*/
@@ -58,7 +63,24 @@ public class FastLoginR extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        //获取到适配器
+
+        //获取到调度器
+        InputDispatch instance = injector.getInstance(InputDispatch.class);
+
+        boolean b = false;
+
+        try {
+
+            b = instance.dispatchInputCommand(cmd.getName(), sender, cmd, label, args);
+
+
+        } catch (AdapterParameterException | NotFoundProcessorException e) {
+            e.printStackTrace();
+        }
+
+        return b;
+
+/*        //获取到适配器
         InputAdapter adapter = injector.getInstance(InputAdapter.class);
 
         Model model = null;
@@ -76,10 +98,10 @@ public class FastLoginR extends JavaPlugin {
             sender.sendMessage("没有为该命令找到相应的处理器.");
             e.printStackTrace();
             return false;
-        }
+        }*/
 
 
-        return model.isFinish();
+        /*return model.isFinish();*/
     }
 
 

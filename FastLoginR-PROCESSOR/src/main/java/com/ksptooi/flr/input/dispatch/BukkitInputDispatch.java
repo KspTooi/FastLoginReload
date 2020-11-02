@@ -24,7 +24,7 @@ public class BukkitInputDispatch implements InputDispatch{
     public boolean dispatchInputCommand(String name, CommandSender sender, Command cmd, String label, String[] params) throws AdapterParameterException, NotFoundProcessorException {
 
         InputProcessor processor = stepInputAdapter.findProcessor(name, sender, cmd, label, params);
-
+        
         Model model = null;
 
         try{

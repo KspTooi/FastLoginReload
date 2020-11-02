@@ -14,8 +14,6 @@ import com.ksptooi.flr.input.dispatch.adapter.InternalBukkitStepInputAdapter;
 import com.ksptooi.flr.input.dispatch.adapter.StepInputAdapter;
 import com.ksptooi.flr.input.dispatch.resolver.DefaultBukkitCommandResultResolver;
 import com.ksptooi.flr.input.dispatch.resolver.InputResultResolver;
-import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
-import com.ksptooi.flr.proc.aop.service.InputAfterAOP;
 import com.ksptooi.flr.proc.aop.service.ServiceExceptionAOP;
 import com.ksptooi.flr.proc.service.player.PlayerService;
 import com.ksptooi.flr.proc.service.player.PlayerServiceBlock;
@@ -48,12 +46,6 @@ public class ProcModule extends AbstractModule {
                 ,Matchers.any()
                 ,new ServiceExceptionAOP()
         );
-
-/*        bindInterceptor(
-                Matchers.any()
-                ,Matchers.annotatedWith(MethodJoinPoint.class)
-                ,new InputAfterAOP()
-        );*/
 
 
     }

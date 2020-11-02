@@ -7,6 +7,7 @@ import com.ksptooi.flr.input.annotation.ProcessMapper;
 import com.ksptooi.flr.input.annotation.Processor;
 import com.ksptooi.flr.proc.exception.AdapterParameterException;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
+import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.util.dictionary.Excep;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -106,6 +107,9 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
         //注入参数
         inputProcessor.setInputParameters(invokeParameters);
+
+        //注入服务
+        ProcModule.getInject().injectMembers(inputProcessor.getClassInstance());
 
         return inputProcessor;
 

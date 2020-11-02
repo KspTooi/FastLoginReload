@@ -63,7 +63,6 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
         ArrayList<Object> invokeParameters = new ArrayList<Object>();
 
-
         //解析参数注解
         for (Annotation[] parameterAnnotation : inputProcessor.getJoinPointMethod().getParameterAnnotations()) {
 
@@ -189,6 +188,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
     @Override
     public void regHandler(Class handler) {
+
         if(handler.getAnnotation(Processor.class)==null){
             throw new RuntimeException("不支持的适配器操作!!");
         }

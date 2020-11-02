@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 public interface StepInputAdapter extends InputAdapter{
 
 
+
+
     InputProcessor findProcessor(String name, CommandSender sender, Command cmd, String label, String[] params) throws NotFoundProcessorException, AdapterParameterException;
 
 

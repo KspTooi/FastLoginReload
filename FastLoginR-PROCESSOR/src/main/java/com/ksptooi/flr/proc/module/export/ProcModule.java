@@ -6,10 +6,14 @@ import com.google.inject.Injector;
 import com.google.inject.Scopes;
 import com.google.inject.matcher.Matchers;
 import com.ksptooi.flr.dao.access.DatabaseType;
+import com.ksptooi.flr.input.dispatch.BukkitInputDispatch;
+import com.ksptooi.flr.input.dispatch.InputDispatch;
 import com.ksptooi.flr.input.dispatch.adapter.InputAdapter;
 import com.ksptooi.flr.input.dispatch.adapter.DefaultInputAdapter;
 import com.ksptooi.flr.input.dispatch.adapter.InternalBukkitStepInputAdapter;
 import com.ksptooi.flr.input.dispatch.adapter.StepInputAdapter;
+import com.ksptooi.flr.input.dispatch.resolver.DefaultBukkitCommandResultResolver;
+import com.ksptooi.flr.input.dispatch.resolver.InputResultResolver;
 import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
 import com.ksptooi.flr.proc.aop.service.InputAfterAOP;
 import com.ksptooi.flr.proc.aop.service.ServiceExceptionAOP;
@@ -26,8 +30,18 @@ public class ProcModule extends AbstractModule {
     protected void configure() {
 
         bind(PlayerService.class).to(PlayerServiceBlock.class).in(Scopes.SINGLETON);
+
+        //旧版适配器
         bind(InputAdapter.class).to(DefaultInputAdapter.class).in(Scopes.SINGLETON);
+
+        //调度器
+        bind(InputDispatch.class).to(BukkitInputDispatch.class).in(Scopes.SINGLETON);
+
+        //适配器
         bind(StepInputAdapter.class).to(InternalBukkitStepInputAdapter.class).in(Scopes.SINGLETON);
+
+        //解析器
+        bind(InputResultResolver.class).to(DefaultBukkitCommandResultResolver.class).in(Scopes.SINGLETON);
 
         bindInterceptor(
                  Matchers.identicalTo(PlayerServiceBlock.class)
@@ -35,11 +49,11 @@ public class ProcModule extends AbstractModule {
                 ,new ServiceExceptionAOP()
         );
 
-        bindInterceptor(
+/*        bindInterceptor(
                 Matchers.any()
                 ,Matchers.annotatedWith(MethodJoinPoint.class)
                 ,new InputAfterAOP()
-        );
+        );*/
 
 
     }

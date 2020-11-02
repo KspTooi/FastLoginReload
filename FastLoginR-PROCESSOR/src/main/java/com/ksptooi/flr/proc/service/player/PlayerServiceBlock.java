@@ -104,7 +104,7 @@ public class PlayerServiceBlock implements PlayerService{
         }
 
         //已经登录
-        if(!playerByName.isLogin()){
+        if(playerByName.isLogin()){
             throw new AuthException(Excep.AUTH_ALREADY_LOG);
         }
 

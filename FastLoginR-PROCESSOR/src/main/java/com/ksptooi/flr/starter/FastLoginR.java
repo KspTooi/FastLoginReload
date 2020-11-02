@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.4F.80";
+    public static final String currentVersion = "1.4F.86";
 
     public static final Injector injector= ProcModule.getInject();
 

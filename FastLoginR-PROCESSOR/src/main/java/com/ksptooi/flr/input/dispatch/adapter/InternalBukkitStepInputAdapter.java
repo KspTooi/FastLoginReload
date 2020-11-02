@@ -10,7 +10,6 @@ import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import com.ksptooi.util.dictionary.Excep;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import java.util.Map;
  * 分步命令适配器
  */
 public class InternalBukkitStepInputAdapter implements StepInputAdapter {
-
 
     private HashMap<Method, Object> handler = new HashMap<Method, Object>();
 

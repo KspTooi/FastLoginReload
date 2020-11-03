@@ -36,10 +36,10 @@ public class PlayerAccountProcessor {
         Player pl = (Player) sender;
 
         //边界检查
-        if(p.length<1){
+/*        if(p.length<1){
             model.addMessage("请输入密码!");
             return model;
-        }
+        }*/
 
         try{
 

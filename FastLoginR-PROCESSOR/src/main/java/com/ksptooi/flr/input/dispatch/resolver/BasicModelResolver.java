@@ -4,7 +4,7 @@ import com.ksptooi.flr.entity.model.Model;
 
 import java.util.ArrayList;
 
-public class DefaultBukkitCommandResultResolver implements InputResultResolver{
+public class BasicModelResolver implements InputResultResolver{
 
 
 

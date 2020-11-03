@@ -6,6 +6,7 @@ import com.ksptooi.flr.input.dispatch.adapter.StepInputAdapter;
 import com.ksptooi.flr.input.processor.TestProcessor;
 import com.ksptooi.flr.proc.exception.AdapterParameterException;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
+import com.ksptooi.flr.proc.exception.ParamsLengthException;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ public class DispatchTest {
 
 
     @Test
-    public void Dispatch() throws AdapterParameterException, NotFoundProcessorException {
+    public void Dispatch() throws AdapterParameterException, NotFoundProcessorException, ParamsLengthException {
 
         InputDispatch instance = ProcModule.getInject().getInstance(InputDispatch.class);
 /*        instance.regHandler(TestProcessor.class);

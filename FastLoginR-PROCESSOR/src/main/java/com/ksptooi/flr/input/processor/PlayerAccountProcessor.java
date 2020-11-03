@@ -26,6 +26,7 @@ public class PlayerAccountProcessor {
      * @return 成功返回true 失败返回false
      */
     @PlayerOnly
+    @Check(value = "请输入密码",length = 1)
     @ProcessMapper(value = "login",alias = {"l","log"})
     public Model playerLogin(@Params("sender")CommandSender sender
                             ,@Params("params")String[] p

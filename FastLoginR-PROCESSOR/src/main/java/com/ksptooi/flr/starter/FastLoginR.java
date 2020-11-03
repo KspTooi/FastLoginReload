@@ -6,6 +6,7 @@ import com.ksptooi.flr.input.dispatch.InputDispatch;
 import com.ksptooi.flr.input.dispatch.adapter.InputAdapter;
 import com.ksptooi.flr.input.processor.PlayerAccountProcessor;
 import com.ksptooi.flr.proc.exception.AdapterParameterException;
+import com.ksptooi.flr.proc.exception.ParamsLengthException;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import org.bukkit.Bukkit;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.4F.87";
+    public static final String currentVersion = "1.4F.88";
 
     public static final Injector injector= ProcModule.getInject();
 
@@ -74,7 +75,7 @@ public class FastLoginR extends JavaPlugin {
             b = instance.dispatchInputCommand(cmd.getName(), sender, cmd, label, args);
 
 
-        } catch (AdapterParameterException | NotFoundProcessorException e) {
+        } catch (AdapterParameterException | NotFoundProcessorException | ParamsLengthException e) {
             e.printStackTrace();
         }
 

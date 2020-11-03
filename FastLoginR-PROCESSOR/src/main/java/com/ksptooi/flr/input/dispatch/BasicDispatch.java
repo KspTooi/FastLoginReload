@@ -26,32 +26,30 @@ public class BasicDispatch implements InputDispatch{
 
 
     @Override
-    public boolean dispatchInputCommand(String name, CommandSender sender, Command cmd, String label, String[] params) throws AdapterParameterException{
+    public boolean dispatchInputCommand(String name, CommandSender sender, Command cmd, String label, String[] params) throws AdapterParameterException, NotFoundProcessorException,ParamsLengthException {
 
-
+        InputProcessor processor = null;
 
         Model model = null;
         ServiceException serviceException = null;
 
+
+        processor = stepInputAdapter.findProcessor(name, sender, cmd, label, params);
+
+
         try{
-            InputProcessor processor = stepInputAdapter.findProcessor(name, sender, cmd, label, params);
 
             methodCheck(processor);
-
             model = processor.run();
 
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
-        } catch (ParamsLengthException | NotFoundProcessorException e){
-            serviceException = e;
         }
-
 
 
         if(model==null){
             return false;
         }
-
 
 
         return inputResultResolver.ResolverModel(model,serviceException);

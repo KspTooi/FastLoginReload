@@ -75,9 +75,12 @@ public class FastLoginR extends JavaPlugin {
             b = instance.dispatchInputCommand(cmd.getName(), sender, cmd, label, args);
 
 
-        } catch (AdapterParameterException | NotFoundProcessorException | ParamsLengthException e) {
+        } catch (AdapterParameterException e) {
             e.printStackTrace();
+        } catch (NotFoundProcessorException | ParamsLengthException e) {
+            sender.sendMessage(e.getMsg());
         }
+
 
         return b;
 

@@ -9,6 +9,7 @@ import com.ksptooi.flr.input.dispatch.resolver.InputResultResolver;
 import com.ksptooi.flr.proc.exception.AdapterParameterException;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import com.ksptooi.flr.proc.exception.ParamsLengthException;
+import com.ksptooi.flr.proc.exception.ServiceException;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import java.lang.reflect.InvocationTargetException;
@@ -25,30 +26,35 @@ public class BasicDispatch implements InputDispatch{
 
 
     @Override
-    public boolean dispatchInputCommand(String name, CommandSender sender, Command cmd, String label, String[] params) throws AdapterParameterException, NotFoundProcessorException ,ParamsLengthException{
+    public boolean dispatchInputCommand(String name, CommandSender sender, Command cmd, String label, String[] params) throws AdapterParameterException{
 
-        InputProcessor processor = stepInputAdapter.findProcessor(name, sender, cmd, label, params);
+
 
         Model model = null;
+        ServiceException serviceException = null;
 
         try{
+            InputProcessor processor = stepInputAdapter.findProcessor(name, sender, cmd, label, params);
+
             methodCheck(processor);
 
             model = processor.run();
 
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
+        } catch (ParamsLengthException | NotFoundProcessorException e){
+            serviceException = e;
         }
+
+
 
         if(model==null){
             return false;
         }
 
 
-        inputResultResolver.ResolverModel(model);
 
-
-        return true;
+        return inputResultResolver.ResolverModel(model,serviceException);
     }
 
 

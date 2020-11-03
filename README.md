@@ -6,6 +6,15 @@ FastLoginReload
 
 FastLoginR(FLR)是在原FastLogin的基础上进行重构的一个全新项目,相对于原FastLogin来说,FLR将会拥有更强大的功能与稳定性,与此同时它也继承了FastLogin轻量化的特性.它多样化的能力使其可以支持各种规模的服务器.
 
+![image](https://img.shields.io/github/v/tag/KspTooi/FastLoginReload)
+![image](https://img.shields.io/github/v/release/KspTooi/FastLoginReload)
+![image](https://img.shields.io/github/downloads/KspTooi/FastLoginReload/total)  
+![image](https://img.shields.io/github/commit-activity/w/KspTooi/FastLoginReload)
+![image](https://img.shields.io/github/license/KspTooi/FastLoginReload)
+
+
+
+
 特性
 ======
 * 不支持CatServer端!

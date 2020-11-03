@@ -4,9 +4,9 @@ import com.google.inject.Inject;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.entity.player.PlayerDetail;
 import com.ksptooi.flr.entity.player.PlayerLocation;
-import com.ksptooi.flr.proc.service.player.PlayerDetailService;
-import com.ksptooi.flr.proc.service.player.PlayerLocationService;
 import com.ksptooi.flr.proc.service.player.PlayerService;
+import com.ksptooi.util.date.DateUtil;
+import com.ksptooi.util.dictionary.PlayerStatus;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,12 +21,6 @@ public class PlayerStateListener implements Listener {
 
     @Inject
     PlayerService service = null;
-    
-    @Inject
-    PlayerLocationService locationService = null;
-    
-    @Inject
-    PlayerDetailService detailService = null;
 
 
     @EventHandler
@@ -44,6 +38,8 @@ public class PlayerStateListener implements Listener {
         Location loc = pl.getLocation();
 
         FLRPlayer flrPlayer = service.getFLRPlayer(pl.getName());
+        flrPlayer.setLeaveDate(DateUtil.getCurTimeString());
+        flrPlayer.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
 
         PlayerLocation playerLocation = flrPlayer.getPlayerLocation();
         playerLocation.setX(loc.getX());
@@ -59,10 +55,13 @@ public class PlayerStateListener implements Listener {
         playerDetail.setLevel((double) pl.getLevel());
 
         //保存玩家位置
-        locationService.updateLocation(playerLocation);
+        //locationService.updateLocation(playerLocation);
 
-        //保存玩家信息
-        detailService.updateDetail(playerDetail);
+        //保存玩家详细
+        //detailService.updateDetail(playerDetail);
+
+        //保存玩家
+
 
 
     }

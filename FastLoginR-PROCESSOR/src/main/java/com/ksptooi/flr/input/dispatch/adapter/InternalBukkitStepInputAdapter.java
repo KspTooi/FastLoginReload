@@ -45,7 +45,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
             //找类下面的方法
             InputProcessor inputProcessor = findProcessMethodByMapper(processClassByMapper, params[0],false);
 
-            //如果没有该子命令方法则直接抛出异常
+            // 如果没有该子命令方法则直接抛出异常
             if (inputProcessor == null) {
                 throw new NotFoundProcessorException(Excep.NOT_FOUND_SUB_PROCESSOR);
             }
@@ -57,7 +57,6 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
         //如果没有类注解符合要求则直接遍历所有方法的注解
         return install(findProcessMethodByMapper(handler, name,true), name, sender, cmd, label, params);
     }
-
 
     //根据Processor方法注解准备参数
     public InputProcessor install(InputProcessor inputProcessor, String name, CommandSender sender, Command cmd, String label, String[] params) {

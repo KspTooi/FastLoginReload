@@ -10,7 +10,7 @@ FastLoginR(FLR)是在原FastLogin的基础上进行重构的一个全新项目,�
 ![image](https://img.shields.io/github/v/release/KspTooi/FastLoginReload)
 ![image](https://img.shields.io/github/downloads/KspTooi/FastLoginReload/total)  
 ![image](https://img.shields.io/github/commit-activity/w/KspTooi/FastLoginReload)
-![image](https://img.shields.io/github/license/KspTooi/FastLoginReload)
+![image](https://img.shields.io/github/license/KspTooi/FastLoginReload?color=blue)
 
 
 

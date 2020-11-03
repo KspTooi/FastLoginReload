@@ -1,9 +1,6 @@
 package com.ksptooi.flr.proc.module.export;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Scopes;
+import com.google.inject.*;
 import com.google.inject.matcher.Matchers;
 import com.ksptooi.flr.dao.access.DatabaseType;
 import com.ksptooi.flr.input.dispatch.BasicDispatch;
@@ -14,6 +11,7 @@ import com.ksptooi.flr.input.dispatch.adapter.InternalBukkitStepInputAdapter;
 import com.ksptooi.flr.input.dispatch.adapter.StepInputAdapter;
 import com.ksptooi.flr.input.dispatch.resolver.BasicModelResolver;
 import com.ksptooi.flr.input.dispatch.resolver.InputResultResolver;
+import com.ksptooi.flr.input.listener.PlayerStateListener;
 import com.ksptooi.flr.proc.aop.service.ServiceExceptionAOP;
 import com.ksptooi.flr.proc.service.player.PlayerService;
 import com.ksptooi.flr.proc.service.player.PlayerServiceBlock;
@@ -28,6 +26,9 @@ public class ProcModule extends AbstractModule {
     protected void configure() {
 
         bind(PlayerService.class).to(PlayerServiceBlock.class).in(Scopes.SINGLETON);
+
+        bind(PlayerStateListener.class).in(Scopes.SINGLETON);
+
 
         //旧版适配器
         bind(InputAdapter.class).to(DefaultInputAdapter.class).in(Scopes.SINGLETON);

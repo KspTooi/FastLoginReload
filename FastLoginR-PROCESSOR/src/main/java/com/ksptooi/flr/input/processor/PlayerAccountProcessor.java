@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
 public class PlayerAccountProcessor {
 
 
-    
     @Inject
     PlayerService service = null;
 
@@ -34,12 +33,6 @@ public class PlayerAccountProcessor {
 
 
         Player pl = (Player) sender;
-
-        //边界检查
-/*        if(p.length<1){
-            model.addMessage("请输入密码!");
-            return model;
-        }*/
 
         try{
 
@@ -71,18 +64,12 @@ public class PlayerAccountProcessor {
      * @return
      */
     @PlayerOnly
+    @Check(value = "注册失败,格式:/register 密码 确认密码!",length = 2)
     @ProcessMapper("register")
     public Model playerRegister(@Params("sender")CommandSender sender,
                                 @Params("params")String[] para){
 
         Model model = new Model(sender);
-
-
-        //边界检查
-        if(para.length<2){
-            model.addMessage("注册失败,格式:/register 密码 确认密码!");
-            return model;
-        }
 
 
         FLRPlayer flrPlayer = new FLRPlayer();
@@ -100,7 +87,6 @@ public class PlayerAccountProcessor {
                 model.setFinish(true);
                 return model;
             }
-
 
 
 

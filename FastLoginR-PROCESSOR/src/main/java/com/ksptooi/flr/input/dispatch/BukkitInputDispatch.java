@@ -13,7 +13,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
+
 
 public class BukkitInputDispatch implements InputDispatch{
 
@@ -32,7 +32,6 @@ public class BukkitInputDispatch implements InputDispatch{
         Model model = null;
 
         try{
-
             methodCheck(processor);
 
             model = processor.run();
@@ -59,25 +58,26 @@ public class BukkitInputDispatch implements InputDispatch{
 
         Check annotation = joinPoint.getAnnotation(Check.class);
 
-        System.out.println("methodCheck(InputProcessor processor)");
-        System.out.println(annotation);
-
         //没有使用Check检查
         if(annotation == null){
             return;
         }
 
         Class<?>[] parameterTypes = joinPoint.getParameterTypes();
-        Parameter[] parameters = joinPoint.getParameters();
 
         for(int i=0;i<joinPoint.getParameterCount();i++){
-
+            // 判断注解参数的类型是否为 命令的参数
             if(parameterTypes[i].equals(String[].class)){
 
-                System.out.println(parameters[i].getName());
+                // 参数集获取成功
+                String[] str = (String[]) processor.getInputParameters().get(i);
+                if (str.length < annotation.length()){
+                    // 如果 注解填入的参数数量小于 当前 命令的参数数量则 抛出异常
+                    throw new ParamsLengthException(annotation.value());
+
+                }
 
             }
-
 
         }
 

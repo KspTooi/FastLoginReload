@@ -5,14 +5,48 @@
 <mapper namespace="com.ksptooi.flr.mapper.player.PlayerMapper">
 
 
+	<resultMap id="playerRM" type="com.ksptooi.flr.entity.player.FLRPlayer" autoMapping="true">
+
+		<association property="playerLocation" autoMapping="true">
+			<id property="id" column="LID"/>
+			<result property="pid" column="LPID"/>
+		</association>
+
+		<association property="playerDetail" autoMapping="true">
+			<id property="id" column="DID"/>
+			<result property="pid" column="DPID"/>
+		</association>
+
+	</resultMap>
+
 
 
 	<select id="getPlayerById" resultType="com.ksptooi.flr.entity.player.FLRPlayer">
-		SELECT * FROM PLAYER WHERE PID = #{id}
+		SELECT p.*
+			 ,LOC.ID AS LID
+			 ,LOC.PID AS LPID
+			 ,LOC.*
+			 ,DET.ID AS DID
+			 ,DET.PID AS DPID
+			 ,DET.*
+		FROM PLAYER p
+				 LEFT JOIN PLAYERLOCATION loc ON p.PID = loc.PID
+				 LEFT JOIN PLAYERDETAIL det ON p.pid = det.PID
+		WHERE P.PID = #{id}
 	</select>
 
     <select id="getPlayerByName" resultType="com.ksptooi.flr.entity.player.FLRPlayer">
-		SELECT * FROM PLAYER WHERE ACCOUNT = #{account}
+		SELECT p.*
+			 ,LOC.ID AS LID
+			 ,LOC.PID AS LPID
+			 ,LOC.*
+			 ,DET.ID AS DID
+			 ,DET.PID AS DPID
+			 ,DET.*
+		FROM PLAYER p
+				 LEFT JOIN PLAYERLOCATION loc ON p.PID = loc.PID
+				 LEFT JOIN PLAYERDETAIL det ON p.pid = det.PID
+		WHERE P.ACCOUNT = #{account}
 	</select>
 
 	<!--使用主键回填-->

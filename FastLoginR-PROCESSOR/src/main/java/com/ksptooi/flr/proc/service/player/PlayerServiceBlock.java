@@ -11,14 +11,14 @@ import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.proc.exception.AuthException;
 import com.ksptooi.util.date.DateUtil;
 import com.ksptooi.util.dictionary.Excep;
-import com.ksptooi.util.dictionary.PlayerStatus;
+import com.ksptooi.flr.entity.status.PlayerStatus;
 import org.mybatis.guice.transactional.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Singleton
 @Transactional
-public class PlayerCommandBlock implements PlayerCommandService {
+public class PlayerServiceBlock implements PlayerService {
 
 
     @Inject

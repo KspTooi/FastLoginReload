@@ -1,4 +1,4 @@
-package com.ksptooi.util.dictionary;
+package com.ksptooi.flr.entity.status;
 
 public enum PlayerStatus {
 

@@ -4,9 +4,10 @@ import com.google.inject.Inject;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.entity.player.PlayerDetail;
 import com.ksptooi.flr.entity.player.PlayerLocation;
-import com.ksptooi.flr.proc.service.player.PlayerCommandService;
+import com.ksptooi.flr.proc.service.player.PlayerService;
+import com.ksptooi.flr.proc.service.player.PlayerStateService;
 import com.ksptooi.util.date.DateUtil;
-import com.ksptooi.util.dictionary.PlayerStatus;
+import com.ksptooi.flr.entity.status.PlayerStatus;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,7 +21,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class PlayerStateListener implements Listener {
 
     @Inject
-    PlayerCommandService service = null;
+    PlayerService service = null;
+
+    @Inject
+    PlayerStateService stateService = null;
 
 
     @EventHandler

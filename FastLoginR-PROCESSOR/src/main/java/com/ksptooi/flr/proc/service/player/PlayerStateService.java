@@ -7,4 +7,5 @@ package com.ksptooi.flr.proc.service.player;
 public interface PlayerStateService{
 
 
+
 }

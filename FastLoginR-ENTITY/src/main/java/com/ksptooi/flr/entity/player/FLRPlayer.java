@@ -1,6 +1,7 @@
 package com.ksptooi.flr.entity.player;
 
-import com.ksptooi.util.dictionary.PlayerStatus;
+
+import com.ksptooi.flr.entity.status.PlayerStatus;
 
 public class FLRPlayer {
 

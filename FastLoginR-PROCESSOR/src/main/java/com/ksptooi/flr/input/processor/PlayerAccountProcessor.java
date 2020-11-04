@@ -6,7 +6,7 @@ import com.ksptooi.flr.entity.model.Model;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.input.annotation.*;
 import com.ksptooi.flr.proc.exception.AuthException;
-import com.ksptooi.flr.proc.service.player.PlayerCommandService;
+import com.ksptooi.flr.proc.service.player.PlayerService;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -15,7 +15,7 @@ public class PlayerAccountProcessor {
 
 
     @Inject
-    PlayerCommandService service = null;
+    PlayerService service = null;
 
 
     /**

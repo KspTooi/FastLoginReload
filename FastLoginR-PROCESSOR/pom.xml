@@ -12,36 +12,14 @@
     <packaging>jar</packaging>
     <version>1.4F.90</version>
 
-    <repositories>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-    </repositories>
 
     <dependencies>
-
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>1.9.6</version>
-        </dependency>
-
 
         <dependency>
             <groupId>com.ksptooi</groupId>
             <artifactId>FastLoginR-DAL</artifactId>
             <version>1.2-S</version>
         </dependency>
-
 
 
 

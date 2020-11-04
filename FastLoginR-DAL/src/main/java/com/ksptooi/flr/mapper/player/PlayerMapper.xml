@@ -7,12 +7,12 @@
 
 	<resultMap id="playerRM" type="com.ksptooi.flr.entity.player.FLRPlayer" autoMapping="true">
 
-		<association property="playerLocation" autoMapping="true">
+		<association property="playerLocation" autoMapping="true" javaType="com.ksptooi.flr.entity.player.PlayerLocation">
 			<id property="id" column="LID"/>
 			<result property="pid" column="LPID"/>
 		</association>
 
-		<association property="playerDetail" autoMapping="true">
+		<association property="playerDetail" autoMapping="true" javaType="com.ksptooi.flr.entity.player.PlayerDetail">
 			<id property="id" column="DID"/>
 			<result property="pid" column="DPID"/>
 		</association>

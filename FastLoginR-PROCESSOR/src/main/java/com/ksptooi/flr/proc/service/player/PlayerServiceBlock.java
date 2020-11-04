@@ -116,6 +116,7 @@ public class PlayerServiceBlock implements PlayerService {
         //修改数据库中的登录状态
         playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
 
+        mapper.updatePlayer(playerByName);
 
         return playerByName;
 

@@ -19,9 +19,7 @@
 
 	</resultMap>
 
-
-
-	<select id="getPlayerById" resultType="com.ksptooi.flr.entity.player.FLRPlayer">
+	<select id="getPlayerById" resultMap="playerRM">
 		SELECT p.*
 			 ,LOC.ID AS LID
 			 ,LOC.PID AS LPID
@@ -35,7 +33,7 @@
 		WHERE P.PID = #{id}
 	</select>
 
-    <select id="getPlayerByName" resultType="com.ksptooi.flr.entity.player.FLRPlayer">
+    <select id="getPlayerByName" resultMap="playerRM">
 		SELECT p.*
 			 ,LOC.ID AS LID
 			 ,LOC.PID AS LPID

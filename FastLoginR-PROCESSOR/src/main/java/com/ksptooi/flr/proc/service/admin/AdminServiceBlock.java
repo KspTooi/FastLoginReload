@@ -3,10 +3,8 @@ package com.ksptooi.flr.proc.service.admin;
 import com.google.inject.Inject;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.mapper.player.PlayerDetailMapper;
-import com.ksptooi.flr.mapper.player.PlayerLocationMapper;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.proc.exception.ServiceException;
-import com.ksptooi.flr.proc.service.player.PlayerService;
 import com.ksptooi.util.dictionary.Excep;
 
 public class AdminServiceBlock implements AdminService {

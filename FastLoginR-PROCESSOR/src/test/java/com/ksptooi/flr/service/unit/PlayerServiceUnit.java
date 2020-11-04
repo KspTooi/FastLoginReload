@@ -3,7 +3,7 @@ package com.ksptooi.flr.service.unit;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.exception.AuthException;
-import com.ksptooi.flr.proc.service.player.PlayerService;
+import com.ksptooi.flr.proc.service.player.PlayerCommandService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,12 +13,12 @@ import static org.junit.Assert.assertTrue;
 public class PlayerServiceUnit {
 
 
-    PlayerService service = null;
+    PlayerCommandService service = null;
 
     @Before
     public void before(){
         System.out.println("初始化Service");
-        this.service = ProcModule.getInject().getInstance(PlayerService.class);
+        this.service = ProcModule.getInject().getInstance(PlayerCommandService.class);
     }
 
     @Test

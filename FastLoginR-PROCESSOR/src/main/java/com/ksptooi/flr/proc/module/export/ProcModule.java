@@ -13,8 +13,8 @@ import com.ksptooi.flr.input.dispatch.resolver.BasicModelResolver;
 import com.ksptooi.flr.input.dispatch.resolver.InputResultResolver;
 import com.ksptooi.flr.input.listener.PlayerStateListener;
 import com.ksptooi.flr.proc.aop.service.ServiceExceptionAOP;
-import com.ksptooi.flr.proc.service.player.PlayerService;
-import com.ksptooi.flr.proc.service.player.PlayerServiceBlock;
+import com.ksptooi.flr.proc.service.player.PlayerCommandService;
+import com.ksptooi.flr.proc.service.player.PlayerCommandBlock;
 
 public class ProcModule extends AbstractModule {
 
@@ -25,7 +25,7 @@ public class ProcModule extends AbstractModule {
     @Override
     protected void configure() {
 
-        bind(PlayerService.class).to(PlayerServiceBlock.class).in(Scopes.SINGLETON);
+        bind(PlayerCommandService.class).to(PlayerCommandBlock.class).in(Scopes.SINGLETON);
 
         bind(PlayerStateListener.class).in(Scopes.SINGLETON);
 
@@ -43,7 +43,7 @@ public class ProcModule extends AbstractModule {
         bind(InputResultResolver.class).to(BasicModelResolver.class).in(Scopes.SINGLETON);
 
         bindInterceptor(
-                 Matchers.identicalTo(PlayerServiceBlock.class)
+                 Matchers.identicalTo(PlayerCommandBlock.class)
                 ,Matchers.any()
                 ,new ServiceExceptionAOP()
         );

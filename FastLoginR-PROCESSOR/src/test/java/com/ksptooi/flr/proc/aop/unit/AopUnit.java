@@ -1,7 +1,7 @@
 package com.ksptooi.flr.proc.aop.unit;
 
 import com.ksptooi.flr.proc.module.export.ProcModule;
-import com.ksptooi.flr.proc.service.player.PlayerService;
+import com.ksptooi.flr.proc.service.player.PlayerCommandService;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class AopUnit implements MethodInterceptor {
     @Test
     public void AOP(){
 
-        PlayerService instance = ProcModule.getInject().getInstance(PlayerService.class);
+        PlayerCommandService instance = ProcModule.getInject().getInstance(PlayerCommandService.class);
 
         instance.serviceMethod();
 

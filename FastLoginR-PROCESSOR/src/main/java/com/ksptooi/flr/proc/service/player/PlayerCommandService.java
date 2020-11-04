@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 /**
  * 用户服务类
  */
-public interface PlayerService {
+public interface PlayerCommandService {
 
 
     /**

@@ -18,7 +18,7 @@ import java.util.Date;
 
 @Singleton
 @Transactional
-public class PlayerServiceBlock implements PlayerService{
+public class PlayerCommandBlock implements PlayerCommandService {
 
 
     @Inject

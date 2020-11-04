@@ -8,7 +8,7 @@ import com.ksptooi.flr.input.annotation.Processor;
 import com.ksptooi.flr.proc.exception.AdapterParameterException;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import com.ksptooi.flr.proc.module.export.ProcModule;
-import com.ksptooi.util.dictionary.Excep;
+import com.ksptooi.flr.entity.status.ErrorStatus;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import java.lang.annotation.Annotation;
@@ -39,7 +39,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
             //如果子命令没有参数则直接抛出异常
             if (params == null || params.length < 1) {
-                throw new AdapterParameterException(Excep.NOT_SUB_PARAMETER);
+                throw new AdapterParameterException(ErrorStatus.NOT_SUB_PARAMETER);
             }
 
             //找类下面的方法
@@ -47,7 +47,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
             // 如果没有该子命令方法则直接抛出异常
             if (inputProcessor == null) {
-                throw new NotFoundProcessorException(Excep.NOT_FOUND_SUB_PROCESSOR);
+                throw new NotFoundProcessorException(ErrorStatus.NOT_FOUND_SUB_PROCESSOR);
             }
 
 
@@ -145,7 +145,7 @@ public class InternalBukkitStepInputAdapter implements StepInputAdapter {
 
         }
 
-        throw new NotFoundProcessorException(Excep.FATAL_NOT_FOUND_HANDLER);
+        throw new NotFoundProcessorException(ErrorStatus.FATAL_NOT_FOUND_HANDLER);
         /*return null;*/
     }
 

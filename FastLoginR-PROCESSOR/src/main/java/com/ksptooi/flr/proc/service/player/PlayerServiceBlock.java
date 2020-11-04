@@ -9,8 +9,8 @@ import com.ksptooi.flr.mapper.player.PlayerLocationMapper;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.proc.exception.AuthException;
-import com.ksptooi.util.date.DateUtil;
-import com.ksptooi.util.dictionary.Excep;
+import com.ksptooi.flr.util.DateUtil;
+import com.ksptooi.flr.entity.status.ErrorStatus;
 import com.ksptooi.flr.entity.status.PlayerStatus;
 import org.mybatis.guice.transactional.Transactional;
 import java.text.SimpleDateFormat;
@@ -42,7 +42,7 @@ public class PlayerServiceBlock implements PlayerService {
         FLRPlayer playerByName = mapper.getPlayerByName(player.getAccount());
 
         if(playerByName != null){
-            throw new AuthException(Excep.AUTH_ALREADY_REG);
+            throw new AuthException(ErrorStatus.AUTH_ALREADY_REG);
         }
 
 
@@ -74,7 +74,7 @@ public class PlayerServiceBlock implements PlayerService {
 
         //判断添加是否成功 如果不成功则回滚事务
         if(insertPlayer<1 || insertPlayerLoc<1 || insertDetail<1){
-            throw new AuthException(Excep.FATAL_DB);
+            throw new AuthException(ErrorStatus.FATAL_DB);
         }
 
         //添加成功则返回玩家实例
@@ -95,17 +95,17 @@ public class PlayerServiceBlock implements PlayerService {
 
         //玩家不存在
         if(playerByName == null){
-            throw new AuthException(Excep.AUTH_NO_REG);
+            throw new AuthException(ErrorStatus.AUTH_NO_REG);
         }
 
         //密码判断
         if(!playerByName.getPassword().equals(pwd)){
-            throw new AuthException(Excep.AUTH_PWD_INVALID);
+            throw new AuthException(ErrorStatus.AUTH_PWD_INVALID);
         }
 
         //已经登录
         if(playerByName.isLogin()){
-            throw new AuthException(Excep.AUTH_ALREADY_LOG);
+            throw new AuthException(ErrorStatus.AUTH_ALREADY_LOG);
         }
 
 

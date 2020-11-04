@@ -1,6 +1,6 @@
 package com.ksptooi.flr.dao.exception;
 
-import com.ksptooi.util.dictionary.Excep;
+import com.ksptooi.flr.entity.status.ErrorStatus;
 
 /**
  * 系统严重异常 - 数据库
@@ -12,12 +12,12 @@ public class DBException extends RuntimeException{
     private Integer errorCode = 509;
 
     public DBException(){
-        this.msg = Excep.FATAL_DB.getMessage();
-        this.errorCode = Excep.FATAL_DB.getErrorCode();
+        this.msg = ErrorStatus.FATAL_DB.getMessage();
+        this.errorCode = ErrorStatus.FATAL_DB.getErrorCode();
     }
 
 
-    public DBException(Excep status){
+    public DBException(ErrorStatus status){
         this.msg = status.getMessage();
         this.errorCode = status.getErrorCode();
     }

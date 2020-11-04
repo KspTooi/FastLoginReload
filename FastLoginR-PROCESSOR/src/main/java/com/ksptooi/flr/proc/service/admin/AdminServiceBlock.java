@@ -5,7 +5,7 @@ import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.mapper.player.PlayerDetailMapper;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.proc.exception.ServiceException;
-import com.ksptooi.util.dictionary.Excep;
+import com.ksptooi.flr.entity.status.ErrorStatus;
 
 public class AdminServiceBlock implements AdminService {
 
@@ -24,7 +24,7 @@ public class AdminServiceBlock implements AdminService {
         if (mapper.updatePlayer(playerByName) != 0) {
             return playerByName;
         } else {
-            throw new ServiceException(Excep.FATAL_DB);
+            throw new ServiceException(ErrorStatus.FATAL_DB);
         }
     }
 

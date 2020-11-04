@@ -1,6 +1,6 @@
-package com.ksptooi.util.dictionary;
+package com.ksptooi.flr.entity.status;
 
-public enum Excep {
+public enum ErrorStatus {
 
 
     AUTH_PWD_INVALID("无效的密码",400)
@@ -14,7 +14,7 @@ public enum Excep {
 
     ;
 
-    Excep(String message, Integer errorCode){
+    ErrorStatus(String message, Integer errorCode){
         this.message = message;
         this.errorCode = errorCode;
     }

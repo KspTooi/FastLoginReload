@@ -1,10 +1,10 @@
 package com.ksptooi.flr.proc.exception;
 
-import com.ksptooi.util.dictionary.Excep;
+import com.ksptooi.flr.entity.status.ErrorStatus;
 
 public class AdapterParameterException extends ServiceException{
 
-    public AdapterParameterException(Excep status) {
+    public AdapterParameterException(ErrorStatus status) {
         super(status);
     }
 

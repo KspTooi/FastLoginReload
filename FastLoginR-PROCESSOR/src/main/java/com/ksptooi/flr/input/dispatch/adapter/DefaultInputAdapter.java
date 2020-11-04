@@ -7,7 +7,7 @@ import com.ksptooi.flr.input.annotation.Params;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.aop.annotation.MethodJoinPoint;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
-import com.ksptooi.util.dictionary.Excep;
+import com.ksptooi.flr.entity.status.ErrorStatus;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -123,7 +123,7 @@ public class DefaultInputAdapter implements InputAdapter {
 
         }
 
-        throw new NotFoundProcessorException(Excep.FATAL_NOT_FOUND_HANDLER);
+        throw new NotFoundProcessorException(ErrorStatus.FATAL_NOT_FOUND_HANDLER);
     }
 
 

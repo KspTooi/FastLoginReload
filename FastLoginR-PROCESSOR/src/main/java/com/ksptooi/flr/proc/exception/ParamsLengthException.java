@@ -1,11 +1,11 @@
 package com.ksptooi.flr.proc.exception;
 
-import com.ksptooi.util.dictionary.Excep;
+import com.ksptooi.flr.entity.status.ErrorStatus;
 
 public class ParamsLengthException extends ServiceException{
 
 
-    public ParamsLengthException(Excep status) {
+    public ParamsLengthException(ErrorStatus status) {
         super(status);
     }
 

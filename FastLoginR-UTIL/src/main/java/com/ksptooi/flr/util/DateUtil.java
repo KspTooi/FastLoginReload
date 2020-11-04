@@ -1,4 +1,4 @@
-package com.ksptooi.util.date;
+package com.ksptooi.flr.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

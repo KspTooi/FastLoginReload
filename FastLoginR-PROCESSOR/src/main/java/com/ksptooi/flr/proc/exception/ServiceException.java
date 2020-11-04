@@ -1,13 +1,13 @@
 package com.ksptooi.flr.proc.exception;
 
-import com.ksptooi.util.dictionary.Excep;
+import com.ksptooi.flr.entity.status.ErrorStatus;
 
 public class ServiceException extends Exception{
 
     private String msg = "发生异常!";
     private Integer errorCode = -1;
 
-    public ServiceException(Excep status){
+    public ServiceException(ErrorStatus status){
         this.msg = status.getMessage();
         this.errorCode = status.getErrorCode();
     }

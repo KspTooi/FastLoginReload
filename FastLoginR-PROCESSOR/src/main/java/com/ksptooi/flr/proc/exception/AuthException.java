@@ -1,19 +1,19 @@
 package com.ksptooi.flr.proc.exception;
 
-import com.ksptooi.util.dictionary.Excep;
+import com.ksptooi.flr.entity.status.ErrorStatus;
 import org.bukkit.entity.Player;
 
 public class AuthException extends ServiceException {
 
     private Player player = null;
 
-    public AuthException(Excep status,Player player){
+    public AuthException(ErrorStatus status, Player player){
         super(status);
         this.player = player;
     }
 
 
-    public AuthException(Excep status){
+    public AuthException(ErrorStatus status){
         super(status);
     }
 

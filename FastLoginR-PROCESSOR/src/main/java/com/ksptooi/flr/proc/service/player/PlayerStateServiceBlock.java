@@ -30,6 +30,17 @@ public class PlayerStateServiceBlock implements PlayerStateService {
     PlayerDetailMapper detMapper = null;
 
     /**
+     * 玩家登入服务器时改变玩家数据库状态
+     *
+     * @param player
+     * @throws StateUpdateException 当数据库错误时抛出此异常
+     */
+    @Override
+    public void playerJoinStateChange(Player player) throws StateUpdateException {
+
+    }
+
+    /**
      * 玩家退出时改变玩家的数据库状态
      *
      * @param player

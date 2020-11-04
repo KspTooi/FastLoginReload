@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.entity.player.PlayerDetail;
 import com.ksptooi.flr.entity.player.PlayerLocation;
+import com.ksptooi.flr.proc.exception.StateUpdateException;
 import com.ksptooi.flr.proc.service.player.PlayerService;
 import com.ksptooi.flr.proc.service.player.PlayerStateService;
 import com.ksptooi.flr.util.DateUtil;
@@ -22,9 +23,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class PlayerStateListener implements Listener {
 
     @Inject
-    PlayerService service = null;
-
-    @Inject
     PlayerStateService stateService = null;
 
 
@@ -39,20 +37,13 @@ public class PlayerStateListener implements Listener {
     @EventHandler
     public void playerQuitEvent (PlayerQuitEvent event){
 
-        Player pl = event.getPlayer();
+        try{
 
-        FLRPlayer flrPlayer = service.getFLRPlayer(pl.getName());
+            stateService.playerQuitStateChange(event.getPlayer());
 
-        flrPlayer = DtoUtil.toPlayer(flrPlayer,pl);
-
-
-        //保存玩家位置
-        //locationService.updateLocation(playerLocation);
-
-        //保存玩家详细
-        //detailService.updateDetail(playerDetail);
-
-        //保存玩家
+        } catch (StateUpdateException e) {
+            e.printStackTrace();
+        }
 
     }
 

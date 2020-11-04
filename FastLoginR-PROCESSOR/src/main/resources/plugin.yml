@@ -1,6 +1,6 @@
 name: FastLoginR
 main: com.ksptooi.flr.starter.FastLoginR
-version: 1.4F.104
+version: 1.4F.105
 commands:
     login:
     l:

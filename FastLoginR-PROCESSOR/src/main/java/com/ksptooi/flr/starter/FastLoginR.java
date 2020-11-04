@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.4F.91";
+    public static final String currentVersion = "1.4F.104";
 
     public static final Injector injector= ProcModule.getInject();
 
@@ -34,7 +34,6 @@ public class FastLoginR extends JavaPlugin {
 
         InputDispatch instance = injector.getInstance(InputDispatch.class);
         instance.regProcessor(PlayerAccountProcessor.class);
-
 
 /*        InputAdapter instance = ProcModule.getInject().getInstance(InputAdapter.class);
         instance.regHandler(PlayerAccountProcessor.class);*/

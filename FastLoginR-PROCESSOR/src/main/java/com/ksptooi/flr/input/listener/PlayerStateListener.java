@@ -8,6 +8,7 @@ import com.ksptooi.flr.proc.service.player.PlayerService;
 import com.ksptooi.flr.proc.service.player.PlayerStateService;
 import com.ksptooi.flr.util.DateUtil;
 import com.ksptooi.flr.entity.status.PlayerStatus;
+import com.ksptooi.flr.util.DtoUtil;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,24 +40,11 @@ public class PlayerStateListener implements Listener {
     public void playerQuitEvent (PlayerQuitEvent event){
 
         Player pl = event.getPlayer();
-        Location loc = pl.getLocation();
 
         FLRPlayer flrPlayer = service.getFLRPlayer(pl.getName());
-        flrPlayer.setLeaveDate(DateUtil.getCurTimeString());
-        flrPlayer.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
 
-        PlayerLocation playerLocation = flrPlayer.getPlayerLocation();
-        playerLocation.setX(loc.getX());
-        playerLocation.setY(loc.getY());
-        playerLocation.setZ(loc.getZ());
-        playerLocation.setPitch((double) loc.getPitch());
-        playerLocation.setY((double) loc.getYaw());
+        flrPlayer = DtoUtil.toPlayer(flrPlayer,pl);
 
-        PlayerDetail playerDetail = flrPlayer.getPlayerDetail();
-        playerDetail.setExp((double) pl.getExp());
-        playerDetail.setFoodLevel((double) pl.getFoodLevel());
-        playerDetail.setHealthLevel(pl.getHealth());
-        playerDetail.setLevel((double) pl.getLevel());
 
         //保存玩家位置
         //locationService.updateLocation(playerLocation);

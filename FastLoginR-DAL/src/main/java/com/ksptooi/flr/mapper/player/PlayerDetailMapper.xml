@@ -20,7 +20,7 @@
 	</delete>
 
 	<update id="updateDetail">
-		UPDATE PLAYERDETAIL SET PID=#{pid},FOODLEVEL=#{foodlevel},HEALTLEVEL=#{healtlevel},OXYGENLEVEL=#{oxygenlevel},EXPLEVEL=#{explevel}
+		UPDATE PLAYERDETAIL SET PID=#{pid},FOODLEVEL=#{foodLevel},HEALTLEVEL=#{healthLevel},OXYGENLEVEL=#{oxygenLevel},EXP=#{exp}
 		WHERE ID=#{id}
 	</update>
 

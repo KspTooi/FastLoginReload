@@ -15,6 +15,8 @@ import com.ksptooi.flr.input.listener.PlayerStateListener;
 import com.ksptooi.flr.proc.aop.service.ServiceExceptionAOP;
 import com.ksptooi.flr.proc.service.player.PlayerService;
 import com.ksptooi.flr.proc.service.player.PlayerServiceBlock;
+import com.ksptooi.flr.proc.service.player.PlayerStateService;
+import com.ksptooi.flr.proc.service.player.PlayerStateServiceBlock;
 
 public class ProcModule extends AbstractModule {
 
@@ -27,7 +29,7 @@ public class ProcModule extends AbstractModule {
 
         bind(PlayerService.class).to(PlayerServiceBlock.class).in(Scopes.SINGLETON);
 
-        bind(PlayerStateListener.class).in(Scopes.SINGLETON);
+        bind(PlayerStateService.class).to(PlayerStateServiceBlock.class).in(Scopes.SINGLETON);
 
 
         //旧版适配器

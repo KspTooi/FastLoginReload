@@ -4,21 +4,24 @@ import com.google.inject.Injector;
 import com.ksptooi.flr.entity.model.Model;
 import com.ksptooi.flr.input.dispatch.InputDispatch;
 import com.ksptooi.flr.input.dispatch.adapter.InputAdapter;
+import com.ksptooi.flr.input.listener.PlayerStateListener;
 import com.ksptooi.flr.input.processor.PlayerAccountProcessor;
 import com.ksptooi.flr.proc.exception.AdapterParameterException;
 import com.ksptooi.flr.proc.exception.ParamsLengthException;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
+import com.ksptooi.flr.proc.service.player.PlayerStateService;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
 
 public class FastLoginR extends JavaPlugin {
 
-    public static final String currentVersion = "1.4F.105";
+    public static final String currentVersion = "1.4F.108";
 
     public static final Injector injector= ProcModule.getInject();
 
@@ -34,6 +37,11 @@ public class FastLoginR extends JavaPlugin {
 
         InputDispatch instance = injector.getInstance(InputDispatch.class);
         instance.regProcessor(PlayerAccountProcessor.class);
+
+        PlayerStateListener playerStateListener = new PlayerStateListener(injector.getInstance(PlayerStateService.class));
+
+        Bukkit.getPluginManager().registerEvents(playerStateListener,this);
+
 
 /*        InputAdapter instance = ProcModule.getInject().getInstance(InputAdapter.class);
         instance.regHandler(PlayerAccountProcessor.class);*/

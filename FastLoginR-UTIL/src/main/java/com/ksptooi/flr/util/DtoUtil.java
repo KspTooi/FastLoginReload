@@ -40,6 +40,7 @@ public class DtoUtil {
         loc.setZ(ploc.getZ());
         loc.setPitch((double) ploc.getPitch());
         loc.setYaw((double) ploc.getYaw());
+        loc.setWorld(ploc.getWorld().getName());
 
         //置入玩家详细
         detail.setLevel((double) player.getLevel());

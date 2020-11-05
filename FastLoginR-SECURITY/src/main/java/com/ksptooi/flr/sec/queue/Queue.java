@@ -12,10 +12,10 @@ public class Queue {
 
     private static final CopyOnWriteArrayList<Player> playerMessageQueue = new CopyOnWriteArrayList<Player>();
 
-    private static final HashMap<Player,Long> playerKickQueue = new HashMap<Player,Long>();
+    private static final HashMap<Player,Integer> playerKickQueue = new HashMap<Player,Integer>();
 
 
-    public static HashMap<Player,Long> getPlayerKickQueue() {
+    public static HashMap<Player,Integer> getPlayerKickQueue() {
         return playerKickQueue;
     }
 

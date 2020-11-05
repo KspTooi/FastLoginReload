@@ -10,7 +10,6 @@ import com.ksptooi.flr.proc.exception.ParamsLengthException;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.service.player.PlayerStateService;
 import com.ksptooi.flr.sec.input.listener.PlayerJoinListener;
-import com.ksptooi.flr.sec.queue.PlayerKickTask;
 import com.ksptooi.flr.sec.queue.PlayerMsgTask;
 import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 import com.ksptooi.flr.starter.module.export.StarterModule;
@@ -56,10 +55,8 @@ public class FastLoginBukkitStarter extends JavaPlugin {
 
 
         //启动队列线程
-        Thread playerMsgTh = new Thread(injector.getInstance(PlayerMsgTask.class));
-        playerMsgTh.start();
-        Thread playerCheckKickTh = new Thread(injector.getInstance(PlayerKickTask.class));
-        playerCheckKickTh.start();
+        Thread th = new Thread(injector.getInstance(PlayerMsgTask.class));
+        th.start();
 
 
 /*        InputAdapter instance = ProcModule.getInject().getInstance(InputAdapter.class);

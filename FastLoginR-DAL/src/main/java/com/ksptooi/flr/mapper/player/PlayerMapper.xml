@@ -51,21 +51,21 @@
 	<insert id="insertPlayer" useGeneratedKeys="true" keyProperty="pid" keyColumn="pid">
 		INSERT INTO PLAYER(
 		     ACCOUNT
+		    ,PLAYERNAME
 		    ,PASSWORD
-		    ,REGISTERSTATUS
 		    ,REGISTERDATE
 		    ,REGISTERIP
-		    ,LOGINSTATUS
+		    ,AUTHSTATUS
 		    ,LOGINCOUNT
 		    ,LASTLOGINDATE
 		    ,LEAVEDATE)
 		    VALUES(
 		    #{account}
+		    ,#{playerName}
 		    ,#{password}
-		    ,#{registerStatus}
 		    ,#{registerDate}
 		    ,#{registerIp}
-		    ,#{loginStatus}
+		    ,#{authStatus}
 		    ,#{loginCount}
 		    ,#{lastLoginDate}
 		    ,#{leaveDate})
@@ -79,11 +79,11 @@
 	<update id="updatePlayer">
 		UPDATE PLAYER SET
 			 ACCOUNT = #{account}
+		    ,PLAYERNAME = #{playerName}
 			,PASSWORD = #{password}
-			,REGISTERSTATUS = #{registerStatus}
 			,REGISTERDATE = #{registerDate}
 			,REGISTERIP = #{registerIp}
-			,LOGINSTATUS = #{loginStatus}
+			,AUTHSTATUS = #{authStatus}
 			,LOGINCOUNT = #{loginCount}
 			,LASTLOGINDATE = #{lastLoginDate}
 			,LEAVEDATE = #{leaveDate}

@@ -18,7 +18,6 @@ public class PlayerMapperT {
     PlayerMapper mapper = null;
 
 
-
     @Before
     public void before(){
         this.mapper = ProcModule.getInject().getInstance(PlayerMapper.class);

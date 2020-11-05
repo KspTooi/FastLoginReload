@@ -6,6 +6,7 @@ import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.sec.module.export.SecurityModule;
 import com.ksptooi.flr.sec.queue.Queue;
 import com.ksptooi.flr.util.DtoUtil;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -36,7 +37,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
      */
     @Override
     public void addToKickQueue(Player player) {
-        Queue.getPlayerKickQueue().put(player,60);
+        Queue.getPlayerKickQueue().put(player,System.currentTimeMillis() + (1000 * 60L));
     }
 
     /**
@@ -77,10 +78,10 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
     @Override
     public void refreshKickQueue() {
 
-        HashMap<Player, Integer> playerKickQueue = Queue.getPlayerKickQueue();
+        HashMap<Player, Long> playerKickQueue = Queue.getPlayerKickQueue();
 
         //检查已退出或已登录的玩家
-        for(Map.Entry<Player,Integer>entry:playerKickQueue.entrySet()){
+        for(Map.Entry<Player,Long>entry:playerKickQueue.entrySet()){
 
             FLRPlayer playerByAccount = mapper.getPlayerByAccount(DtoUtil.toPlayer(entry.getKey()).getAccount());
 
@@ -92,6 +93,11 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
             //已经退出
             if(!entry.getKey().isOnline()){
                 playerKickQueue.remove(entry.getKey());
+            }
+
+            // 玩家超时则踢出
+            if (entry.getValue() < System.currentTimeMillis()){
+                kickPlayer();
             }
 
         }
@@ -118,10 +124,10 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
     @Override
     public void kickPlayer() {
 
-        HashMap<Player, Integer> playerKickQueue = Queue.getPlayerKickQueue();
+        HashMap<Player, Long> playerKickQueue = Queue.getPlayerKickQueue();
 
         //找出超时的玩家
-        for(Map.Entry<Player,Integer>entry:playerKickQueue.entrySet()){
+        for(Map.Entry<Player,Long>entry:playerKickQueue.entrySet()){
 
             if(entry.getValue()<1){
                 kick(entry.getKey());

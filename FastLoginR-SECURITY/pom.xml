@@ -9,7 +9,24 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>FastLoginR-SECURE</artifactId>
+    <artifactId>FastLoginR-SECURITY</artifactId>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.ksptooi</groupId>
+            <artifactId>FastLoginR-ENTITY</artifactId>
+            <version>1.2-S</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ksptooi</groupId>
+            <artifactId>FastLoginR-DAL</artifactId>
+            <version>1.2-S</version>
+        </dependency>
+
+    </dependencies>
 
 
 </project>

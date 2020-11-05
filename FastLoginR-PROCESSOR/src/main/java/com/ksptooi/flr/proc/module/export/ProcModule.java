@@ -17,6 +17,7 @@ import com.ksptooi.flr.proc.service.player.PlayerService;
 import com.ksptooi.flr.proc.service.player.PlayerServiceBlock;
 import com.ksptooi.flr.proc.service.player.PlayerStateService;
 import com.ksptooi.flr.proc.service.player.PlayerStateServiceBlock;
+import com.ksptooi.flr.sec.module.export.SecurityModule;
 
 public class ProcModule extends AbstractModule {
 
@@ -30,6 +31,7 @@ public class ProcModule extends AbstractModule {
         bind(PlayerService.class).to(PlayerServiceBlock.class).in(Scopes.SINGLETON);
 
         bind(PlayerStateService.class).to(PlayerStateServiceBlock.class).in(Scopes.SINGLETON);
+
 
         //旧版适配器
         bind(InputAdapter.class).to(DefaultInputAdapter.class).in(Scopes.SINGLETON);
@@ -67,7 +69,7 @@ public class ProcModule extends AbstractModule {
         }
 
         //初始化inject
-        Injector injector = Guice.createInjector(new ProcModule(), new DalModule(), new MybatisModule(dbType));
+        Injector injector = Guice.createInjector(new ProcModule(), new DalModule(), new MybatisModule(dbType),new SecurityModule());
         inject = injector;
         return injector;
     }

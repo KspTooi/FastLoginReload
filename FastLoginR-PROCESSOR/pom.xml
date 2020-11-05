@@ -21,7 +21,11 @@
             <version>1.2-S</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.ksptooi</groupId>
+            <artifactId>FastLoginR-SECURITY</artifactId>
+            <version>1.2-S</version>
+        </dependency>
 
     </dependencies>
 

@@ -43,7 +43,7 @@
         <module>FastLoginR-DAL</module>
         <module>FastLoginR-ENTITY</module>
         <module>FastLoginR-PROCESSOR</module>
-        <module>FastLoginR-SECURE</module>
+        <module>FastLoginR-SECURITY</module>
         <module>FastLoginR-Util</module>
     </modules>
 

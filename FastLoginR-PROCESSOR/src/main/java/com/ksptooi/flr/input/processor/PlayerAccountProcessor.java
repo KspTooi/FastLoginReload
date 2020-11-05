@@ -74,7 +74,6 @@ public class PlayerAccountProcessor {
 
         try{
 
-
             FLRPlayer regPlayer = service.playerRegister((Player) sender,para[0]);
 
             if(regPlayer!=null){
@@ -82,8 +81,6 @@ public class PlayerAccountProcessor {
                 model.setFinish(true);
                 return model;
             }
-
-
 
 
         }catch (DBException dbException){

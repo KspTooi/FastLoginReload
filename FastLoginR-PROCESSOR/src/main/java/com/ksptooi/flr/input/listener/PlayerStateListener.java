@@ -27,6 +27,7 @@ public class PlayerStateListener implements Listener {
 
     @EventHandler
     public void playerLoginEvent(PlayerLoginEvent event){
+
     }
 
     /**

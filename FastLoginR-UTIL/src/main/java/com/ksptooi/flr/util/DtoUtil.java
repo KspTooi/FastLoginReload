@@ -12,6 +12,16 @@ import org.bukkit.entity.Player;
  */
 public class DtoUtil {
 
+
+    /**
+     * 将Bukkit玩家对象转换为Flr玩家对象
+     * @param player
+     * @return
+     */
+    public static FLRPlayer toPlayer(Player player){
+        return toPlayer(null,player);
+    }
+
     /**
      * 将Bukkit玩家对象转换为Flr玩家对象
      * @param player

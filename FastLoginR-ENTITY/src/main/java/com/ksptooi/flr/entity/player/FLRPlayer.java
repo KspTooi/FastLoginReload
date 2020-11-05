@@ -8,14 +8,14 @@ public class FLRPlayer {
     //玩家ID
     private Integer pid;
 
-    //玩家名称
+    //玩家凭据
     private String account;
+
+    //玩家名称
+    private String playerName;
 
     //玩家密码
     private String password;
-
-    //当前注册状态
-    private Integer registerStatus;
 
     //注册日期
     private String registerDate;
@@ -23,8 +23,8 @@ public class FLRPlayer {
     //注册IP地址
     private String registerIp;
 
-    //当前登录状态
-    private Integer loginStatus;
+    //授权状态
+    private Integer authStatus;
 
     //登录次数
     private Integer loginCount;
@@ -41,18 +41,19 @@ public class FLRPlayer {
     //玩家位置
     private PlayerLocation playerLocation = null;
 
+
     @Override
     public String toString() {
-        return "Player{" +
+        return "FLRPlayer{" +
                 "pid=" + pid +
                 ", account='" + account + '\'' +
+                ", playerName='" + playerName + '\'' +
                 ", password='" + password + '\'' +
-                ", registerstatus=" + registerStatus +
                 ", registerDate='" + registerDate + '\'' +
-                ", registerip='" + registerIp + '\'' +
-                ", loginstatus=" + loginStatus +
-                ", logincount=" + loginCount +
-                ", lastloginDate='" + lastLoginDate + '\'' +
+                ", registerIp='" + registerIp + '\'' +
+                ", authStatus=" + authStatus +
+                ", loginCount=" + loginCount +
+                ", lastLoginDate='" + lastLoginDate + '\'' +
                 ", leaveDate='" + leaveDate + '\'' +
                 ", playerDetail=" + playerDetail +
                 ", playerLocation=" + playerLocation +
@@ -75,20 +76,20 @@ public class FLRPlayer {
         this.account = account;
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Integer getRegisterStatus() {
-        return registerStatus;
-    }
-
-    public void setRegisterStatus(Integer registerStatus) {
-        this.registerStatus = registerStatus;
     }
 
     public String getRegisterDate() {
@@ -107,12 +108,12 @@ public class FLRPlayer {
         this.registerIp = registerIp;
     }
 
-    public Integer getLoginStatus() {
-        return loginStatus;
+    public Integer getAuthStatus() {
+        return authStatus;
     }
 
-    public void setLoginStatus(Integer loginStatus) {
-        this.loginStatus = loginStatus;
+    public void setAuthStatus(Integer authStatus) {
+        this.authStatus = authStatus;
     }
 
     public Integer getLoginCount() {
@@ -155,7 +156,6 @@ public class FLRPlayer {
         this.playerLocation = playerLocation;
     }
 
-
     /**
      * 玩家当前登录状态
      * @return 已登录返回true 未登录返回false
@@ -163,7 +163,7 @@ public class FLRPlayer {
     public boolean isLogin(){
 
 
-        if(this.loginStatus == PlayerStatus.LOGIN_SUCCESS.getCode()){
+        if(this.authStatus == PlayerStatus.LOGIN_SUCCESS.getCode()){
             return true;
         }
 
@@ -176,7 +176,7 @@ public class FLRPlayer {
      */
     public boolean isReg(){
 
-        if(this.registerStatus == PlayerStatus.REG_SUCCESS.getCode()){
+        if(this.authStatus == PlayerStatus.REG_SUCCESS.getCode()){
             return true;
         }
 

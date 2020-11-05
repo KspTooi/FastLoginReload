@@ -11,7 +11,6 @@ import com.ksptooi.flr.input.dispatch.adapter.InternalBukkitStepInputAdapter;
 import com.ksptooi.flr.input.dispatch.adapter.StepInputAdapter;
 import com.ksptooi.flr.input.dispatch.resolver.BasicModelResolver;
 import com.ksptooi.flr.input.dispatch.resolver.InputResultResolver;
-import com.ksptooi.flr.input.listener.PlayerStateListener;
 import com.ksptooi.flr.proc.aop.service.ServiceExceptionAOP;
 import com.ksptooi.flr.proc.service.player.PlayerService;
 import com.ksptooi.flr.proc.service.player.PlayerServiceBlock;
@@ -23,7 +22,9 @@ public class ProcModule extends AbstractModule {
 
     private static Injector inject = null;
 
-    private static String dbType = DatabaseType.H2;
+    private static final String moduleName = "Proc-Module";
+
+    private static ProcModule module = null;
 
     @Override
     protected void configure() {
@@ -51,15 +52,21 @@ public class ProcModule extends AbstractModule {
                 ,new ServiceExceptionAOP()
         );
 
-
     }
 
 
+    public static ProcModule getModule(){
 
-    //设置数据库的类型
-    public static void setDatabaseType(String typeString){
-        dbType = typeString;
+        if(module!=null){
+            return module;
+        }
+
+        module = new ProcModule();
+        System.out.println("[FastLoginR] Install Module "+moduleName+" Done!");
+        
+        return module;
     }
+
 
 
     public static Injector getInject(){
@@ -68,8 +75,9 @@ public class ProcModule extends AbstractModule {
             return inject;
         }
 
+
         //初始化inject
-        Injector injector = Guice.createInjector(new ProcModule(), new DalModule(), new MybatisModule(dbType),new SecurityModule());
+        Injector injector = Guice.createInjector(new ProcModule(),NDALModule.getModule(),new SecurityModule());
         inject = injector;
         return injector;
     }

@@ -16,7 +16,7 @@ public class DaoInjectTest {
         /*Injector injector = Guice.createInjector(new DalModule());*/
 
 
-        DalModule.install(DatabaseType.SQLITE);
+        //DalModule.install(DatabaseType.SQLITE);
 
         Injector inject = DalModule.getInject();
 

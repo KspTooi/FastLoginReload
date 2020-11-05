@@ -8,26 +8,34 @@ public class NDALModule extends XMLMyBatisModule {
 
     private String dbType = DatabaseType.H2;
 
-    NDALModule module = null;
+    private static NDALModule module = null;
+
+    private static final String moduleName = "Data-Access-Layer-Module";
+
+    private NDALModule(){}
+
+    private NDALModule(String dataBaseType){
+        this.dbType = dataBaseType;
+    }
 
 
     /**
      * 初始化模块
      * @return
      */
-    public NDALModule getModule() {
+    public static NDALModule getModule() {
 
+        if(module!=null){
+            return module;
+        }
 
-
-
+        //初始化模块
+        module = new NDALModule();
+        System.out.println("[FastLoginR] Install Module "+moduleName+" Done!");
         return module;
     }
 
-    public NDALModule(){}
 
-    public NDALModule(String dataBaseType){
-        this.dbType = dataBaseType;
-    }
 
     protected void initialize() {
 

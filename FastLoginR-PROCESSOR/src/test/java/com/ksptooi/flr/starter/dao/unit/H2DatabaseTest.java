@@ -12,7 +12,7 @@ public class H2DatabaseTest {
     @Test
     public void H2T(){
 
-        DalModule.install(DatabaseType.H2);
+        //DalModule.install(DatabaseType.H2);
         Injector inject = DalModule.getInject();
 
         PlayerMapper instance = inject.getInstance(PlayerMapper.class);

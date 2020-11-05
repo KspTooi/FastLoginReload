@@ -45,6 +45,7 @@
         <module>FastLoginR-PROCESSOR</module>
         <module>FastLoginR-SECURITY</module>
         <module>FastLoginR-Util</module>
+        <module>FastLoginR-Starter</module>
     </modules>
 
     <packaging>pom</packaging>

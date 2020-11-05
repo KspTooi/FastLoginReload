@@ -27,6 +27,7 @@ public class ServiceExceptionAOP implements MethodInterceptor {
             result = invocation.proceed();
 
         }catch (RuntimeException e){
+            e.printStackTrace();
             throw new DBException();
 
         }catch (AuthException authException){

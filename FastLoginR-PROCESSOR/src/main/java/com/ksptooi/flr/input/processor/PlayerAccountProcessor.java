@@ -71,15 +71,11 @@ public class PlayerAccountProcessor {
         Model model = new Model(sender);
 
 
-        FLRPlayer flrPlayer = new FLRPlayer();
-        flrPlayer.setAccount(sender.getName());
-        flrPlayer.setPassword(para[0]);
-
 
         try{
 
 
-            FLRPlayer regPlayer = service.playerRegister((Player) sender);
+            FLRPlayer regPlayer = service.playerRegister((Player) sender,para[0]);
 
             if(regPlayer!=null){
                 model.addMessage("注册成功!");

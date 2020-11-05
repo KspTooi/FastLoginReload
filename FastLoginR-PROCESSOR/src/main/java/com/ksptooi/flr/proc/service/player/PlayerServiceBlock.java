@@ -39,7 +39,7 @@ public class PlayerServiceBlock implements PlayerService {
      * @return 注册
      */
     @Override
-    public FLRPlayer playerRegister(Player bukkitPlayer) throws AuthException {
+    public FLRPlayer playerRegister(Player bukkitPlayer,String pwd) throws AuthException {
 
         FLRPlayer player = DtoUtil.toPlayer(null, bukkitPlayer);
 
@@ -54,6 +54,7 @@ public class PlayerServiceBlock implements PlayerService {
         int insertDetail = 0;
 
         //注册业务流程
+        player.setPassword(pwd);
         player.setLastLoginDate(DateUtil.getCurTimeString());
         player.setRegisterDate(DateUtil.getCurTimeString());
         player.setAuthStatus(AuthState.LOGIN_DONE.getCode());
@@ -72,7 +73,6 @@ public class PlayerServiceBlock implements PlayerService {
         PlayerDetail playerDetail = new PlayerDetail();
         playerDetail.setPid(player.getPid());
         insertDetail = detailMapper.insertDetail(playerDetail);
-
 
         //判断添加是否成功 如果不成功则回滚事务
         if(insertPlayer<1 || insertPlayerLoc<1 || insertDetail<1){

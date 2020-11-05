@@ -4,11 +4,12 @@ public class PlayerDetail {
 
     private Integer id;
     private Integer pid;
-    private Double foodLevel;
+    private Integer foodLevel;
     private Double healthLevel;
     private Double oxygenLevel;
-    private Double exp;
-    private Double level;
+    private Float exp;
+    private Integer level;
+    private String email;
 
     @Override
     public String toString() {
@@ -16,10 +17,11 @@ public class PlayerDetail {
                 "id=" + id +
                 ", pid=" + pid +
                 ", foodLevel=" + foodLevel +
-                ", healtLevel=" + healthLevel +
+                ", healthLevel=" + healthLevel +
                 ", oxygenLevel=" + oxygenLevel +
                 ", exp=" + exp +
                 ", level=" + level +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -39,11 +41,11 @@ public class PlayerDetail {
         this.pid = pid;
     }
 
-    public Double getFoodLevel() {
+    public Integer getFoodLevel() {
         return foodLevel;
     }
 
-    public void setFoodLevel(Double foodLevel) {
+    public void setFoodLevel(Integer foodLevel) {
         this.foodLevel = foodLevel;
     }
 
@@ -63,19 +65,27 @@ public class PlayerDetail {
         this.oxygenLevel = oxygenLevel;
     }
 
-    public Double getExp() {
+    public Float getExp() {
         return exp;
     }
 
-    public void setExp(Double exp) {
+    public void setExp(Float exp) {
         this.exp = exp;
     }
 
-    public Double getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(Double level) {
+    public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

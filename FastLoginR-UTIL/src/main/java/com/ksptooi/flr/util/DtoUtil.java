@@ -43,10 +43,10 @@ public class DtoUtil {
         loc.setWorld(ploc.getWorld().getName());
 
         //置入玩家详细
-        detail.setLevel((double) player.getLevel());
+        detail.setLevel(player.getLevel());
         detail.setHealthLevel(player.getHealth());
-        detail.setFoodLevel((double) player.getFoodLevel());
-        detail.setExp((double) player.getExp());
+        detail.setFoodLevel(player.getFoodLevel());
+        detail.setExp(player.getExp());
 
         //赋值给FlrPlayer
         flrPlayer.setPlayerLocation(loc);

@@ -3,9 +3,8 @@ package com.ksptooi.flr.proc.service.player;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.ksptooi.flr.entity.player.FLRPlayer;
-import com.ksptooi.flr.entity.player.PlayerLocation;
 import com.ksptooi.flr.entity.status.ErrorStatus;
-import com.ksptooi.flr.entity.status.PlayerStatus;
+import com.ksptooi.flr.entity.status.AuthState;
 import com.ksptooi.flr.mapper.player.PlayerDetailMapper;
 import com.ksptooi.flr.mapper.player.PlayerLocationMapper;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
@@ -13,7 +12,6 @@ import com.ksptooi.flr.proc.exception.StateUpdateException;
 import com.ksptooi.flr.util.DateUtil;
 import com.ksptooi.flr.util.DtoUtil;
 import org.bukkit.entity.Player;
-import org.h2.message.DbException;
 import org.mybatis.guice.transactional.Transactional;
 
 @Singleton
@@ -52,7 +50,7 @@ public class PlayerStateServiceBlock implements PlayerStateService {
         FLRPlayer flrPlayer = DtoUtil.toPlayer(mapper.getPlayerByName(player.getName()), player);
 
         //更新玩家状态
-        flrPlayer.setAuthStatus(PlayerStatus.LOGIN_FAILED.getCode());
+        flrPlayer.setAuthStatus(AuthState.LOGIN_UNDONE.getCode());
         //flrPlayer.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
         flrPlayer.setLeaveDate(DateUtil.getCurTimeString());
 

@@ -1,7 +1,7 @@
 package com.ksptooi.flr.entity.player;
 
 
-import com.ksptooi.flr.entity.status.PlayerStatus;
+import com.ksptooi.flr.entity.status.AuthState;
 
 public class FLRPlayer {
 
@@ -163,7 +163,7 @@ public class FLRPlayer {
     public boolean isLogin(){
 
 
-        if(this.authStatus == PlayerStatus.LOGIN_SUCCESS.getCode()){
+        if(this.authStatus == AuthState.LOGIN_DONE.getCode()){
             return true;
         }
 
@@ -176,7 +176,7 @@ public class FLRPlayer {
      */
     public boolean isReg(){
 
-        if(this.authStatus == PlayerStatus.REG_SUCCESS.getCode()){
+        if(this.authStatus == AuthState.REG_DONE.getCode()){
             return true;
         }
 

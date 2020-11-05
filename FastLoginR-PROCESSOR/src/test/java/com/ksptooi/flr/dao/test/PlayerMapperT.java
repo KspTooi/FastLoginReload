@@ -1,8 +1,7 @@
 package com.ksptooi.flr.dao.test;
 
-import com.google.inject.Injector;
 import com.ksptooi.flr.entity.player.FLRPlayer;
-import com.ksptooi.flr.entity.status.PlayerStatus;
+import com.ksptooi.flr.entity.status.AuthState;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.util.DateUtil;
@@ -32,7 +31,7 @@ public class PlayerMapperT {
         flrPlayer.setPlayerName(UUID.randomUUID().toString());
         flrPlayer.setPassword(UUID.randomUUID().toString());
         flrPlayer.setRegisterDate(DateUtil.getCurTimeString());
-        flrPlayer.setAuthStatus(PlayerStatus.REG_SUCCESS.getCode());
+        flrPlayer.setAuthStatus(AuthState.REG_DONE.getCode());
         flrPlayer.setLoginCount(1);
 
         Assert.assertEquals("单元测试失败",1,(long)mapper.insertPlayer(flrPlayer));

@@ -1,19 +1,22 @@
 package com.ksptooi.flr.entity.status;
 
-public enum PlayerStatus {
+public enum AuthState{
 
 
-    REG_FAILED("未注册",0)
-    ,REG_SUCCESS("已注册",1)
 
-    ,LOGIN_FAILED("未登录",0)
-    ,LOGIN_SUCCESS("已登录",1)
+    REG_UNDONE("未注册",100)
+    ,REG_DONE("已注册",101)
+
+    ,LOGIN_UNDONE("未登录",200)
+    ,LOGIN_DONE("已登录",201)
+
+    ,BAN("被封禁",300)
 
     ;
 
 
 
-    PlayerStatus(String desc, int code) {
+    AuthState(String desc, int code) {
         this.descript = desc;
         this.code = code;
     }

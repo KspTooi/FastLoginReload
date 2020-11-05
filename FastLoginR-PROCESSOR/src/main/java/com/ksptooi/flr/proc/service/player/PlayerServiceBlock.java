@@ -11,7 +11,7 @@ import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.proc.exception.AuthException;
 import com.ksptooi.flr.util.DateUtil;
 import com.ksptooi.flr.entity.status.ErrorStatus;
-import com.ksptooi.flr.entity.status.PlayerStatus;
+import com.ksptooi.flr.entity.status.AuthState;
 import org.mybatis.guice.transactional.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,7 +53,7 @@ public class PlayerServiceBlock implements PlayerService {
         //注册业务流程
         player.setLastLoginDate(DateUtil.getCurTimeString());
         player.setRegisterDate(DateUtil.getCurTimeString());
-        player.setAuthStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+        player.setAuthStatus(AuthState.LOGIN_DONE.getCode());
 /*        player.setRegisterStatus(PlayerStatus.REG_SUCCESS.getCode());
         player.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());*/
         player.setLoginCount(1);
@@ -116,7 +116,7 @@ public class PlayerServiceBlock implements PlayerService {
 
         //修改数据库中的登录状态
         //playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
-        playerByName.setAuthStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+        playerByName.setAuthStatus(AuthState.LOGIN_DONE.getCode());
 
         mapper.updatePlayer(playerByName);
 
@@ -145,7 +145,7 @@ public class PlayerServiceBlock implements PlayerService {
 
         playerByName.setLeaveDate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
         //playerByName.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
-        playerByName.setAuthStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+        playerByName.setAuthStatus(AuthState.LOGIN_DONE.getCode());
 
         return true;
     }

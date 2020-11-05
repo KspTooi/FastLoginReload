@@ -12,6 +12,8 @@ import com.ksptooi.flr.proc.exception.AuthException;
 import com.ksptooi.flr.util.DateUtil;
 import com.ksptooi.flr.entity.status.ErrorStatus;
 import com.ksptooi.flr.entity.status.AuthState;
+import com.ksptooi.flr.util.DtoUtil;
+import org.bukkit.entity.Player;
 import org.mybatis.guice.transactional.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,30 +35,29 @@ public class PlayerServiceBlock implements PlayerService {
 
     /**
      * 玩家注册
-     * @param player
+     * @param bukkitPlayer
      * @return 注册
      */
     @Override
-    public FLRPlayer playerRegister(FLRPlayer player) throws AuthException {
+    public FLRPlayer playerRegister(Player bukkitPlayer) throws AuthException {
 
-        FLRPlayer playerByName = mapper.getPlayerByName(player.getAccount());
+        FLRPlayer player = DtoUtil.toPlayer(null, bukkitPlayer);
 
-        if(playerByName != null){
+
+        //判断是否已经注册
+        if(mapper.getPlayerByAccount(player.getAccount()) != null){
             throw new AuthException(ErrorStatus.AUTH_ALREADY_REG);
         }
 
-
-        Integer insertPlayer = null;
-        Integer insertPlayerLoc = null;
-        Integer insertDetail = null;
+        int insertPlayer = 0;
+        int insertPlayerLoc = 0;
+        int insertDetail = 0;
 
         //注册业务流程
         player.setLastLoginDate(DateUtil.getCurTimeString());
         player.setRegisterDate(DateUtil.getCurTimeString());
         player.setAuthStatus(AuthState.LOGIN_DONE.getCode());
-/*        player.setRegisterStatus(PlayerStatus.REG_SUCCESS.getCode());
-        player.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());*/
-        player.setLoginCount(1);
+        player.setLoginCount(AuthState.DEFAULT_LOGIN_COUNT.getCode());
 
         //添加用户进表
         insertPlayer = mapper.insertPlayer(player);
@@ -92,7 +93,7 @@ public class PlayerServiceBlock implements PlayerService {
     public FLRPlayer playerLogin(String playerName, String pwd) throws AuthException {
 
 
-        FLRPlayer playerByName = mapper.getPlayerByName(playerName);
+        FLRPlayer playerByName = mapper.getPlayerByAccount(playerName);
 
         //玩家不存在
         if(playerByName == null){
@@ -141,7 +142,7 @@ public class PlayerServiceBlock implements PlayerService {
     @Override
     public boolean playerLogout(String playerName) {
 
-        FLRPlayer playerByName = mapper.getPlayerByName(playerName);
+        FLRPlayer playerByName = mapper.getPlayerByAccount(playerName);
 
         playerByName.setLeaveDate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
         //playerByName.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
@@ -157,7 +158,7 @@ public class PlayerServiceBlock implements PlayerService {
      */
     @Override
     public FLRPlayer getFLRPlayer(String playerName) {
-        return mapper.getPlayerByName(playerName);
+        return mapper.getPlayerByAccount(playerName);
     }
 
     @Override

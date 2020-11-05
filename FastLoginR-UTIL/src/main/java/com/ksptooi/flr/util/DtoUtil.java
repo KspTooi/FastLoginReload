@@ -32,7 +32,8 @@ public class DtoUtil {
 
         Location ploc = player.getLocation();
 
-        flrPlayer.setAccount(player.getName());
+        flrPlayer.setAccount(player.getName().toLowerCase());
+        flrPlayer.setPlayerName(player.getName());
 
         //置入玩家位置
         loc.setX(ploc.getX());

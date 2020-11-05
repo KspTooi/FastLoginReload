@@ -45,7 +45,7 @@ public class PlayerMapperT {
 
     @Test
     public void getPlayerByName(){
-        Assert.assertNotNull("单元测试失败",mapper.getPlayerByName("KspTooi"));
+        Assert.assertNotNull("单元测试失败",mapper.getPlayerByAccount("KspTooi"));
     }
 
 

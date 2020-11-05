@@ -12,6 +12,8 @@ public enum AuthState{
 
     ,BAN("被封禁",300)
 
+    ,DEFAULT_LOGIN_COUNT("默认登录计数",1)
+
     ;
 
 

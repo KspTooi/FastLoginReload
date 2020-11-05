@@ -33,7 +33,7 @@
 		WHERE P.PID = #{id}
 	</select>
 
-    <select id="getPlayerByName" resultMap="playerRM">
+    <select id="getPlayerByAccount" resultMap="playerRM">
 		SELECT p.*
 			 ,LOC.ID AS LID
 			 ,LOC.PID AS LPID

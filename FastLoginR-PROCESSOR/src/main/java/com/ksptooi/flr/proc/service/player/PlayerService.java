@@ -14,10 +14,10 @@ public interface PlayerService {
 
     /**
      * 玩家注册
-     * @param player
+     * @param bukkitPlayer
      * @return 注册
      */
-    FLRPlayer playerRegister(FLRPlayer player) throws AuthException;
+    FLRPlayer playerRegister(Player bukkitPlayer) throws AuthException;
 
     /**
      * 玩家登录

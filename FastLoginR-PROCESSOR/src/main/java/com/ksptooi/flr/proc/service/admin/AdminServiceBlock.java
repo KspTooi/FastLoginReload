@@ -19,7 +19,7 @@ public class AdminServiceBlock implements AdminService {
     @Override
     public FLRPlayer resetPlayerPwd(String playerName, String playerPwd) throws ServiceException {
 
-        FLRPlayer playerByName = mapper.getPlayerByName(playerName);
+        FLRPlayer playerByName = mapper.getPlayerByAccount(playerName);
         playerByName.setPassword(playerPwd);
         if (mapper.updatePlayer(playerByName) != 0) {
             return playerByName;
@@ -37,6 +37,6 @@ public class AdminServiceBlock implements AdminService {
      */
     @Override
     public FLRPlayer getFLRPlayer(String playerName) {
-        return mapper.getPlayerByName(playerName);
+        return mapper.getPlayerByAccount(playerName);
     }
 }

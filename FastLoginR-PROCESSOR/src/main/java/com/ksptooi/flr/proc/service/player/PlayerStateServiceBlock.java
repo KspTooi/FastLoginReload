@@ -47,7 +47,7 @@ public class PlayerStateServiceBlock implements PlayerStateService {
     public void playerQuitStateChange(Player player) throws StateUpdateException {
 
         //获取玩家最新状态
-        FLRPlayer flrPlayer = DtoUtil.toPlayer(mapper.getPlayerByName(player.getName()), player);
+        FLRPlayer flrPlayer = DtoUtil.toPlayer(mapper.getPlayerByAccount(player.getName()), player);
 
         //更新玩家状态
         flrPlayer.setAuthStatus(AuthState.LOGIN_UNDONE.getCode());

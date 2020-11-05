@@ -24,7 +24,7 @@ public interface PlayerMapper {
      * @param userName
      * @return 用户实例
      */
-    FLRPlayer getPlayerByName(@Param("account") String userName)throws RuntimeException;
+    FLRPlayer getPlayerByAccount(@Param("account") String userName)throws RuntimeException;
 
     /**
      * 加入新的用户

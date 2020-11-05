@@ -17,7 +17,7 @@ public class H2DatabaseTest {
 
         PlayerMapper instance = inject.getInstance(PlayerMapper.class);
 
-        FLRPlayer playerById = instance.getPlayerByName("KspTooi");
+        FLRPlayer playerById = instance.getPlayerByAccount("KspTooi");
         System.out.println(playerById);
 
 /*        try{

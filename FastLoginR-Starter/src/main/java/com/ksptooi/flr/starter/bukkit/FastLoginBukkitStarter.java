@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class FastLoginBukkitStarter extends JavaPlugin {
 
-    public static final String currentVersion = "1.4F.122";
+    public static final String currentVersion = "1.4F.130";
 
     public static final Injector injector= ProcModule.getInject();
 

@@ -13,31 +13,39 @@ public class DalModule extends AbstractModule{
 
     private static String dbType = DatabaseType.H2;
 
-
-    public static void install(String dbType){
-        DalModule.dbType = dbType;
-        Injector injector = Guice.createInjector(new DalModule(), new MybatisModule(dbType));
-        setInject(injector);
-    }
+    private static final String moduleName = "DataAccessLayer";
 
 
     //IOC配置
     protected void configure() {
-        bind(MybatisAccess.class).to(MybatisSqliteAccess.class).in(Scopes.SINGLETON);
+        //bind(MybatisAccess.class).to(MybatisSqliteAccess.class).in(Scopes.SINGLETON);
     }
 
 
     public static Injector getInject() {
 
-        if(inject == null){
-            throw new RuntimeException("当前模块没有初始化!");
+        System.out.println("[FastLoginR]Module-"+moduleName+" Install Done(Injector)");
+
+        if(inject != null){
+            return inject;
         }
 
-        return inject;
+        //初始化inject
+        Injector injector = Guice.createInjector(new NDALModule(dbType));
+        inject = injector;
+        return injector;
     }
 
-    public static void setInject(Injector inject) {
-        DalModule.inject = inject;
+    public static String getDbType() {
+        return dbType;
     }
 
+    public static void setDbType(String dbType) {
+        DalModule.dbType = dbType;
+    }
+
+    public static String getModuleName() {
+        return moduleName;
+    }
 }
+

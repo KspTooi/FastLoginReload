@@ -3,17 +3,31 @@ package com.ksptooi.flr.proc.module.export;
 import com.ksptooi.flr.dao.access.DatabaseType;
 import org.mybatis.guice.XMLMyBatisModule;
 
-public class MybatisModule extends XMLMyBatisModule {
+public class NDALModule extends XMLMyBatisModule {
 
 
-    private String dbType = DatabaseType.SQLITE;
+    private String dbType = DatabaseType.H2;
 
-    public MybatisModule(){}
+    NDALModule module = null;
 
-    public MybatisModule(String dataBaseType){
-        this.dbType = dataBaseType;
+
+    /**
+     * 初始化模块
+     * @return
+     */
+    public NDALModule getModule() {
+
+
+
+
+        return module;
     }
 
+    public NDALModule(){}
+
+    public NDALModule(String dataBaseType){
+        this.dbType = dataBaseType;
+    }
 
     protected void initialize() {
 

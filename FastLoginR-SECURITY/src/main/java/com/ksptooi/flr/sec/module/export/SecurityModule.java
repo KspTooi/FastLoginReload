@@ -38,11 +38,9 @@ public class SecurityModule extends AbstractModule {
 
         //玩家任务定时器服务
         bind(PlayerTaskQueueService.class).to(PlayerTaskQueueServiceBlock.class).in(Scopes.SINGLETON);
-
     }
 
     public static Injector getInject(){
-
 
 
         if(inject!=null){

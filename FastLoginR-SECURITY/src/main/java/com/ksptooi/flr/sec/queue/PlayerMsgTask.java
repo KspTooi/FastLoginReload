@@ -1,6 +1,8 @@
 package com.ksptooi.flr.sec.queue;
 
 
+import com.google.inject.Inject;
+import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 import org.bukkit.entity.Player;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -10,7 +12,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class PlayerMsgTask implements Runnable{
 
-    private static CopyOnWriteArrayList<Player> playerList = new CopyOnWriteArrayList<Player>();
+    @Inject
+    PlayerTaskQueueService taskQueueService = null;
+
 
     @Override
     public void run() {
@@ -33,34 +37,17 @@ public class PlayerMsgTask implements Runnable{
                 continue;
             }
 
+            taskQueueService.refreshMessageQueue();
+            taskQueueService.sendMessage("§e[FastLogin]§b你需要登录后才能操作,使用/login 密码 来登录");
 
-
-            playerList.forEach(pl -> {
-                pl.sendMessage("§e[FastLogin]§b你需要登录后才能操作,使用/login 密码 来登录");
-            });
 
             //超出间隔则向玩家发送信息
             second=0;
-
         }
 
     }
 
-    public static synchronized void addPlayer(Player player){
-        playerList.add(player);
-    }
 
-    public static synchronized void removePlayer(String playerName){
-
-        for(int i=0;i<playerList.size();i++){
-
-            if(playerList.get(i).getName().equalsIgnoreCase(playerName)){
-                playerList.remove(i);
-            }
-
-        }
-
-    }
 
 
 }

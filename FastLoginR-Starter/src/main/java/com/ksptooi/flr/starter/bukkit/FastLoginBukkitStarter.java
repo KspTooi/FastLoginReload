@@ -9,6 +9,9 @@ import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import com.ksptooi.flr.proc.exception.ParamsLengthException;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.service.player.PlayerStateService;
+import com.ksptooi.flr.sec.input.listener.PlayerJoinListener;
+import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
+import com.ksptooi.flr.starter.module.export.StarterModule;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -20,10 +23,15 @@ public class FastLoginBukkitStarter extends JavaPlugin {
 
     public static final String currentVersion = "1.4F.130";
 
-    public static final Injector injector= ProcModule.getInject();
+    //public static final Injector injector= ProcModule.getInject();
+    public static final Injector injector= StarterModule.getInjector();
+    
+    public static FastLoginBukkitStarter mainClass = null;
 
     @Override
     public void onEnable() {
+
+        mainClass = this;
 
         Logger logger = Bukkit.getLogger();
         logger.info("[FastLoginR]版本:"+currentVersion);
@@ -36,8 +44,14 @@ public class FastLoginBukkitStarter extends JavaPlugin {
         instance.regProcessor(PlayerAccountProcessor.class);
 
         PlayerStateListener playerStateListener = new PlayerStateListener(injector.getInstance(PlayerStateService.class));
+        PlayerJoinListener playerJoinListener = new PlayerJoinListener(injector.getInstance(PlayerTaskQueueService.class));
+
+
 
         Bukkit.getPluginManager().registerEvents(playerStateListener,this);
+        Bukkit.getPluginManager().registerEvents(playerJoinListener,this);
+
+
 
 
 /*        InputAdapter instance = ProcModule.getInject().getInstance(InputAdapter.class);

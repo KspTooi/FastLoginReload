@@ -10,6 +10,7 @@ import com.ksptooi.flr.proc.exception.ParamsLengthException;
 import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.service.player.PlayerStateService;
 import com.ksptooi.flr.sec.input.listener.PlayerJoinListener;
+import com.ksptooi.flr.sec.queue.PlayerMsgTask;
 import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 import com.ksptooi.flr.starter.module.export.StarterModule;
 import org.bukkit.Bukkit;
@@ -21,11 +22,11 @@ import java.util.logging.Logger;
 
 public class FastLoginBukkitStarter extends JavaPlugin {
 
-    public static final String currentVersion = "1.4F.130";
+    public static final String currentVersion = "1.5F.1";
 
     //public static final Injector injector= ProcModule.getInject();
     public static final Injector injector= StarterModule.getInjector();
-    
+
     public static FastLoginBukkitStarter mainClass = null;
 
     @Override
@@ -47,11 +48,15 @@ public class FastLoginBukkitStarter extends JavaPlugin {
         PlayerJoinListener playerJoinListener = new PlayerJoinListener(injector.getInstance(PlayerTaskQueueService.class));
 
 
-
+        //注册监听器
         Bukkit.getPluginManager().registerEvents(playerStateListener,this);
         Bukkit.getPluginManager().registerEvents(playerJoinListener,this);
 
 
+
+        //启动队列线程
+        Thread th = new Thread(injector.getInstance(PlayerMsgTask.class));
+        th.start();
 
 
 /*        InputAdapter instance = ProcModule.getInject().getInstance(InputAdapter.class);

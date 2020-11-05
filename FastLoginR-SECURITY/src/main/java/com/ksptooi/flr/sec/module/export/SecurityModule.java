@@ -11,6 +11,7 @@ import com.ksptooi.flr.sec.queue.PlayerKickTask;
 import com.ksptooi.flr.sec.queue.PlayerMsgTask;
 import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 import com.ksptooi.flr.sec.service.PlayerTaskQueueServiceBlock;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class SecurityModule extends AbstractModule {
 
@@ -19,6 +20,8 @@ public class SecurityModule extends AbstractModule {
     private static SecurityModule module = null;
 
     private static final String moduleName = "Security-Module";
+
+    private static JavaPlugin plugin = null;
 
     private SecurityModule(){
 
@@ -40,6 +43,8 @@ public class SecurityModule extends AbstractModule {
 
     public static Injector getInject(){
 
+
+
         if(inject!=null){
             return inject;
         }
@@ -48,6 +53,10 @@ public class SecurityModule extends AbstractModule {
         return inject;
     }
 
+    public static SecurityModule getModule(JavaPlugin plugins){
+        setPlugin(plugins);
+        return getModule();
+    }
 
     public static SecurityModule getModule(){
 
@@ -55,11 +64,18 @@ public class SecurityModule extends AbstractModule {
             return module;
         }
 
+
         module = new SecurityModule();
         System.out.println("[FastLoginR] Install Module "+moduleName+" Done!");
         return module;
     }
 
 
+    public static JavaPlugin getPlugin() {
+        return plugin;
+    }
 
+    public static void setPlugin(JavaPlugin plugin) {
+        SecurityModule.plugin = plugin;
+    }
 }

@@ -12,14 +12,19 @@ public class Queue {
 
     private static final CopyOnWriteArrayList<Player> playerMessageQueue = new CopyOnWriteArrayList<Player>();
 
-    private static final CopyOnWriteArrayList<HashMap<Player,Integer>> playerKickQueue = new CopyOnWriteArrayList<HashMap<Player,Integer>>();
+    private static final HashMap<Player,Integer> playerKickQueue = new HashMap<Player,Integer>();
 
 
-    public static CopyOnWriteArrayList<HashMap<Player, Integer>> getPlayerKickQueue() {
+    public static HashMap<Player,Integer> getPlayerKickQueue() {
         return playerKickQueue;
     }
 
     public static CopyOnWriteArrayList<Player> getPlayerMessageQueue() {
         return playerMessageQueue;
     }
+
+    public synchronized static void removeFromMsgQueue(int index){
+        playerMessageQueue.remove(index);
+    }
+
 }

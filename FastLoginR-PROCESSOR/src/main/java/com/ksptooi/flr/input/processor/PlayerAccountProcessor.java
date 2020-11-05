@@ -31,7 +31,6 @@ public class PlayerAccountProcessor {
                             ,@Params("params")String[] p
                             ,@Params("model") Model model) {
 
-
         Player pl = (Player) sender;
 
         try{

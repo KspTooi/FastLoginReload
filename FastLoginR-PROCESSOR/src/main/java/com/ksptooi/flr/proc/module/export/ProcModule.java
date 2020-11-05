@@ -31,7 +31,6 @@ public class ProcModule extends AbstractModule {
 
         bind(PlayerStateService.class).to(PlayerStateServiceBlock.class).in(Scopes.SINGLETON);
 
-
         //旧版适配器
         bind(InputAdapter.class).to(DefaultInputAdapter.class).in(Scopes.SINGLETON);
 

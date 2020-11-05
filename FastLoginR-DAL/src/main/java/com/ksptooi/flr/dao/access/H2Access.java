@@ -3,15 +3,17 @@ package com.ksptooi.flr.dao.access;
 public interface H2Access {
 
     /**
+     *  @V1.4F.109
+     *
      *  CREATE TABLE PUBLIC.Player (
      * 	PID INTEGER NOT NULL AUTO_INCREMENT,
-     * 	ACCOUNT VARCHAR(100),
-     * 	PASSWORD VARCHAR(2048),
-     * 	REGISTERSTATUS INTEGER,
-     * 	REGISTERDATE VARCHAR,
+     * 	ACCOUNT VARCHAR(100) NOT NULL,
+     * 	PLAYERNAME VARCHAR(100)NOT NULL,
+     * 	PASSWORD VARCHAR(2048) NOT NULL,
+     * 	REGISTERDATE VARCHAR NOT NULL,
      * 	REGISTERIP VARCHAR(100),
-     * 	LOGINSTATUS INTEGER,
-     * 	LOGINCOUNT INTEGER,
+     * 	STATUS INTEGER NOT NULL,
+     * 	LOGINCOUNT INTEGER NOT NULL,
      * 	LASTLOGINDATE VARCHAR,
      * 	LEAVEDATE VARCHAR,
      * 	CONSTRAINT NEWTABLE_PK PRIMARY KEY (PID)
@@ -20,21 +22,25 @@ public interface H2Access {
 
 
     /**
+     * @V1.4F.109
      *
-     * CREATE TABLE PUBLIC.PlayerDetail (
+     * CREATE TABLE PUBLIC.PlayerDetails (
      * ID INTEGER NOT NULL AUTO_INCREMENT,
      * PID INTEGER NOT NULL,
-     * FOODLEVEL DOUBLE,
+     * FOODLEVEL INTEGER,
      * HEALTLEVEL DOUBLE,
      * OXYGENLEVEL DOUBLE,
-     * EXP DOUBLE,
-     * LEVEL DOUBLE,
+     * EXP FLOAT,
+     * LEVEL INTEGER,
+     * EMAIL VARCHAR(100),
      * CONSTRAINT PLAYERDETAIL_PK PRIMARY KEY (ID)
      * );
      *
      */
 
     /**
+     * @V1.4F.109
+     * 
      * CREATE TABLE PUBLIC.PLAYERLOCATION (
      * ID INTEGER NOT NULL AUTO_INCREMENT,
      * PID INTEGER NOT NULL,
@@ -42,8 +48,8 @@ public interface H2Access {
      * X DOUBLE,
      * Y DOUBLE,
      * Z DOUBLE,
-     * PITCH DOUBLE,
-     * YAW DOUBLE,
+     * PITCH FLOAT,
+     * YAW FLOAT,
      * CONSTRAINT PLAYERLOC_PK PRIMARY KEY (ID)
      * );
      */

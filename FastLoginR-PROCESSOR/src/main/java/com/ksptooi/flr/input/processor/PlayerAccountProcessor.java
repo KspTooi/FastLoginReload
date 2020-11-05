@@ -79,7 +79,7 @@ public class PlayerAccountProcessor {
         try{
 
 
-            FLRPlayer regPlayer = service.playerRegister(flrPlayer);
+            FLRPlayer regPlayer = service.playerRegister((Player) sender);
 
             if(regPlayer!=null){
                 model.addMessage("注册成功!");

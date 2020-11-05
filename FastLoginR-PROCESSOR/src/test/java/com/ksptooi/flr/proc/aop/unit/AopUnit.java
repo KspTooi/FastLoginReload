@@ -16,7 +16,7 @@ public class AopUnit implements MethodInterceptor {
 
         PlayerService instance = ProcModule.getInject().getInstance(PlayerService.class);
 
-        instance.serviceMethod();
+
 
     }
 

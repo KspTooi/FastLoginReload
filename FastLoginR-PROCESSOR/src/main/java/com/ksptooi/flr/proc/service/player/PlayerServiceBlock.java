@@ -53,8 +53,9 @@ public class PlayerServiceBlock implements PlayerService {
         //注册业务流程
         player.setLastLoginDate(DateUtil.getCurTimeString());
         player.setRegisterDate(DateUtil.getCurTimeString());
-        player.setRegisterStatus(PlayerStatus.REG_SUCCESS.getCode());
-        player.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+        player.setAuthStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+/*        player.setRegisterStatus(PlayerStatus.REG_SUCCESS.getCode());
+        player.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());*/
         player.setLoginCount(1);
 
         //添加用户进表
@@ -114,7 +115,8 @@ public class PlayerServiceBlock implements PlayerService {
         playerByName.setLoginCount(playerByName.getLoginCount()+1);
 
         //修改数据库中的登录状态
-        playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+        //playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
+        playerByName.setAuthStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
 
         mapper.updatePlayer(playerByName);
 
@@ -142,7 +144,8 @@ public class PlayerServiceBlock implements PlayerService {
         FLRPlayer playerByName = mapper.getPlayerByName(playerName);
 
         playerByName.setLeaveDate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
-        playerByName.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
+        //playerByName.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
+        playerByName.setAuthStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
 
         return true;
     }

@@ -52,7 +52,8 @@ public class PlayerStateServiceBlock implements PlayerStateService {
         FLRPlayer flrPlayer = DtoUtil.toPlayer(mapper.getPlayerByName(player.getName()), player);
 
         //更新玩家状态
-        flrPlayer.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
+        flrPlayer.setAuthStatus(PlayerStatus.LOGIN_FAILED.getCode());
+        //flrPlayer.setLoginStatus(PlayerStatus.LOGIN_FAILED.getCode());
         flrPlayer.setLeaveDate(DateUtil.getCurTimeString());
 
         //更新数据库

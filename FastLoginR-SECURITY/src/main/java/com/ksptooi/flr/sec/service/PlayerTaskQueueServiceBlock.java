@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
+public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
 
     @Inject
     PlayerMapper mapper = null;
@@ -37,7 +37,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
      */
     @Override
     public void addToKickQueue(Player player) {
-        Queue.getPlayerKickQueue().put(player,System.currentTimeMillis() + (1000 * 60L));
+        Queue.getPlayerKickQueue().put(player, System.currentTimeMillis() + (1000 * 60L));
     }
 
     /**
@@ -51,19 +51,19 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
 
         Player player = null;
 
-        for(int i=0;i<messageQueue.size();i++){
+        for (int i = 0; i < messageQueue.size(); i++) {
 
             player = messageQueue.get(i);
 
             FLRPlayer playerByAccount = mapper.getPlayerByAccount(DtoUtil.toPlayer(player).getAccount());
 
             //已登录
-            if(playerByAccount.isLogin()){
+            if (playerByAccount.isLogin()) {
                 messageQueue.remove(i);
             }
 
             //已退出
-            if(!player.isOnline()){
+            if (!player.isOnline()) {
                 messageQueue.remove(i);
             }
 
@@ -81,24 +81,23 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
         HashMap<Player, Long> playerKickQueue = Queue.getPlayerKickQueue();
 
         //检查已退出或已登录的玩家
-        for(Map.Entry<Player,Long>entry:playerKickQueue.entrySet()){
+        for (Map.Entry<Player, Long> entry : playerKickQueue.entrySet()) {
 
             FLRPlayer playerByAccount = mapper.getPlayerByAccount(DtoUtil.toPlayer(entry.getKey()).getAccount());
 
             //已登录
-            if(playerByAccount.isLogin()){
+            if (playerByAccount.isLogin()) {
                 playerKickQueue.remove(entry.getKey());
             }
 
             //已经退出
-            if(!entry.getKey().isOnline()){
+            if (!entry.getKey().isOnline()) {
                 playerKickQueue.remove(entry.getKey());
             }
 
             // 玩家超时则踢出
-            if (entry.getValue() < System.currentTimeMillis()){
-                kickPlayer();
-            }
+            kickPlayer();
+
 
         }
 
@@ -127,22 +126,19 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
         HashMap<Player, Long> playerKickQueue = Queue.getPlayerKickQueue();
 
         //找出超时的玩家
-        for(Map.Entry<Player,Long>entry:playerKickQueue.entrySet()){
+        for (Map.Entry<Player, Long> entry : playerKickQueue.entrySet()) {
 
-            if(entry.getValue()<1){
+            if (entry.getValue() < System.currentTimeMillis()){
                 kick(entry.getKey());
                 playerKickQueue.remove(entry.getKey());
             }
-
         }
 
 
     }
 
 
-
-
-    public void kick(Player player){
+    public void kick(Player player) {
 
         Bukkit.getScheduler().runTask(SecurityModule.getPlugin(), new Runnable() {
 
@@ -154,7 +150,6 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService{
         });
 
     }
-
 
 
 }

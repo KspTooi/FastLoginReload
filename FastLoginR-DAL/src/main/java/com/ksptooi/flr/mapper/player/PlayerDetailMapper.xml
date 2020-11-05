@@ -6,21 +6,21 @@
 
 
 	<select id="getDetailByPID" resultType="com.ksptooi.flr.entity.player.PlayerDetail">
-		SELECT * FROM PLAYERDETAIL WHERE PID=#{pid}
+		SELECT * FROM PLAYERDETAILS WHERE PID=#{pid}
 	</select>
 
 
 	<insert id="insertDetail">
-		INSERT INTO PLAYERDETAIL(PID,FOODLEVEL,HEALTLEVEL,OXYGENLEVEL,EXP,LEVEL)
-		VALUES (#{pid},#{foodLevel},#{healthLevel},#{oxygenLevel},#{exp},#{level})
+		INSERT INTO PLAYERDETAILS(PID,FOODLEVEL,HEALTLEVEL,OXYGENLEVEL,EXP,LEVEL,EMAIL)
+		VALUES (#{pid},#{foodLevel},#{healthLevel},#{oxygenLevel},#{exp},#{level},#{email})
 	</insert>
 
 	<delete id="removeDetail">
-		DELETE FROM PLAYERDETAIL WHERE ID = #{id}
+		DELETE FROM PLAYERDETAILS WHERE ID = #{id}
 	</delete>
 
 	<update id="updateDetail">
-		UPDATE PLAYERDETAIL SET PID=#{pid},FOODLEVEL=#{foodLevel},HEALTLEVEL=#{healthLevel},OXYGENLEVEL=#{oxygenLevel},EXP=#{exp}
+		UPDATE PLAYERDETAILS SET PID=#{pid},FOODLEVEL=#{foodLevel},HEALTLEVEL=#{healthLevel},OXYGENLEVEL=#{oxygenLevel},EXP=#{exp},EMAIL=#{email}
 		WHERE ID=#{id}
 	</update>
 

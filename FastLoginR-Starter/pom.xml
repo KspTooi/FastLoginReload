@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.ksptooi</groupId>
             <artifactId>FastLoginR-PROCESSOR</artifactId>
-            <version>1.4F.122</version>
+            <version>1.2-S</version>
         </dependency>
 
 

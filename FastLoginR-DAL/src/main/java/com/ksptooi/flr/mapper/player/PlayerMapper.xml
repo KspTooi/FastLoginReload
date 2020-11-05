@@ -44,7 +44,7 @@
 		FROM PLAYER p
 				 LEFT JOIN PLAYERLOCATION loc ON p.PID = loc.PID
 				 LEFT JOIN PLAYERDETAILS det ON p.pid = det.PID
-		WHERE P.ACCOUNT = #{account}
+		WHERE P.ACCOUNT = LOWER(#{account})
 	</select>
 
 	<!--使用主键回填-->
@@ -60,7 +60,7 @@
 		    ,LASTLOGINDATE
 		    ,LEAVEDATE)
 		    VALUES(
-		    #{account}
+			LOWER(#{account})
 		    ,#{playerName}
 		    ,#{password}
 		    ,#{registerDate}
@@ -78,7 +78,7 @@
 
 	<update id="updatePlayer">
 		UPDATE PLAYER SET
-			 ACCOUNT = #{account}
+			 ACCOUNT = LOWER(#{account})
 		    ,PLAYERNAME = #{playerName}
 			,PASSWORD = #{password}
 			,REGISTERDATE = #{registerDate}

@@ -21,11 +21,11 @@ public interface PlayerService {
 
     /**
      * 玩家登录
-     * @param playerName
+     * @param playerAccount
      * @param pwd
      * @return 成功返回玩家实例 失败返回null
      */
-    FLRPlayer playerLogin(String playerName,String pwd) throws AuthException;
+    FLRPlayer playerLogin(String playerAccount,String pwd) throws AuthException;
 
     /**
      * 玩家登出
@@ -41,6 +41,4 @@ public interface PlayerService {
      */
     FLRPlayer getFLRPlayer(String playerName);
 
-
-    boolean serviceMethod();
 }

@@ -85,15 +85,14 @@ public class PlayerServiceBlock implements PlayerService {
 
     /**
      * 玩家登录
-     * @param playerName
+     * @param playerAccount
      * @param pwd
      * @return 成功返回玩家实例 失败返回null
      */
     @Override
-    public FLRPlayer playerLogin(String playerName, String pwd) throws AuthException {
+    public FLRPlayer playerLogin(String playerAccount, String pwd) throws AuthException {
 
-
-        FLRPlayer playerByName = mapper.getPlayerByAccount(playerName);
+        FLRPlayer playerByName = mapper.getPlayerByAccount(playerAccount);
 
         //玩家不存在
         if(playerByName == null){
@@ -116,21 +115,11 @@ public class PlayerServiceBlock implements PlayerService {
         playerByName.setLoginCount(playerByName.getLoginCount()+1);
 
         //修改数据库中的登录状态
-        //playerByName.setLoginStatus(PlayerStatus.LOGIN_SUCCESS.getCode());
         playerByName.setAuthStatus(AuthState.LOGIN_DONE.getCode());
 
         mapper.updatePlayer(playerByName);
 
         return playerByName;
-
-/*        try{
-
-
-
-        }catch (Exception runtimeException) {
-            runtimeException.printStackTrace();
-            throw new AuthException(Excep.FATAL_DB);
-        }*/
 
     }
 
@@ -159,14 +148,6 @@ public class PlayerServiceBlock implements PlayerService {
     @Override
     public FLRPlayer getFLRPlayer(String playerName) {
         return mapper.getPlayerByAccount(playerName);
-    }
-
-    @Override
-    public boolean serviceMethod() {
-
-        System.out.println("方法---->serviceMethod()运行中");
-
-        return false;
     }
 
 }

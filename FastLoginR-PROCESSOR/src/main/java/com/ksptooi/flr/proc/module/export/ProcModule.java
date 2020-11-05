@@ -26,6 +26,11 @@ public class ProcModule extends AbstractModule {
 
     private static ProcModule module = null;
 
+    private ProcModule(){
+
+    }
+
+
     @Override
     protected void configure() {
 
@@ -63,7 +68,7 @@ public class ProcModule extends AbstractModule {
 
         module = new ProcModule();
         System.out.println("[FastLoginR] Install Module "+moduleName+" Done!");
-        
+
         return module;
     }
 
@@ -77,7 +82,7 @@ public class ProcModule extends AbstractModule {
 
 
         //初始化inject
-        Injector injector = Guice.createInjector(new ProcModule(),NDALModule.getModule(),new SecurityModule());
+        Injector injector = Guice.createInjector(ProcModule.getModule(),NDALModule.getModule(),new SecurityModule());
         inject = injector;
         return injector;
     }

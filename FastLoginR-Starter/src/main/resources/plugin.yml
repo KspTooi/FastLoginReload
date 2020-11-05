@@ -1,0 +1,10 @@
+name: FastLoginR
+main: com.ksptooi.flr.starter.bukkit.FastLoginBukkitStarter
+version: 1.4F.122
+commands:
+    login:
+    l:
+    logout:
+    register:
+    reg:
+    changepwd:

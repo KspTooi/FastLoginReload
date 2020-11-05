@@ -31,7 +31,7 @@ public class DalModule extends AbstractModule{
         }
 
         //初始化inject
-        Injector injector = Guice.createInjector(new NDALModule(dbType));
+        Injector injector = Guice.createInjector(NDALModule.getModule());
         inject = injector;
         return injector;
     }

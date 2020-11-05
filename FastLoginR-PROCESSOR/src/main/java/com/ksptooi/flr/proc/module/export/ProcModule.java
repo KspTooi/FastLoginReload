@@ -82,7 +82,7 @@ public class ProcModule extends AbstractModule {
 
 
         //初始化inject
-        Injector injector = Guice.createInjector(ProcModule.getModule(),NDALModule.getModule(),new SecurityModule());
+        Injector injector = Guice.createInjector(ProcModule.getModule(),NDALModule.getModule(),SecurityModule.getModule());
         inject = injector;
         return injector;
     }

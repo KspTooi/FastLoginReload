@@ -29,7 +29,7 @@
 			 ,DET.*
 		FROM PLAYER p
 				 LEFT JOIN PLAYERLOCATION loc ON p.PID = loc.PID
-				 LEFT JOIN PLAYERDETAIL det ON p.pid = det.PID
+				 LEFT JOIN PLAYERDETAILS det ON p.pid = det.PID
 		WHERE P.PID = #{id}
 	</select>
 
@@ -43,7 +43,7 @@
 			 ,DET.*
 		FROM PLAYER p
 				 LEFT JOIN PLAYERLOCATION loc ON p.PID = loc.PID
-				 LEFT JOIN PLAYERDETAIL det ON p.pid = det.PID
+				 LEFT JOIN PLAYERDETAILS det ON p.pid = det.PID
 		WHERE P.ACCOUNT = #{account}
 	</select>
 

@@ -8,8 +8,9 @@ public class PlayerLocation {
     private Double x;
     private Double y;
     private Double z;
-    private Double pitch;
-    private Double yaw;
+    private Float pitch;
+    private Float yaw;
+
 
     @Override
     public String toString() {
@@ -73,19 +74,19 @@ public class PlayerLocation {
         this.z = z;
     }
 
-    public Double getPitch() {
+    public Float getPitch() {
         return pitch;
     }
 
-    public void setPitch(Double pitch) {
+    public void setPitch(Float pitch) {
         this.pitch = pitch;
     }
 
-    public Double getYaw() {
+    public Float getYaw() {
         return yaw;
     }
 
-    public void setYaw(Double yaw) {
+    public void setYaw(Float yaw) {
         this.yaw = yaw;
     }
 }

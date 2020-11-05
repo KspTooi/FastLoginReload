@@ -38,8 +38,8 @@ public class DtoUtil {
         loc.setX(ploc.getX());
         loc.setY(ploc.getY());
         loc.setZ(ploc.getZ());
-        loc.setPitch((double) ploc.getPitch());
-        loc.setYaw((double) ploc.getYaw());
+        loc.setPitch(ploc.getPitch());
+        loc.setYaw(ploc.getYaw());
         loc.setWorld(ploc.getWorld().getName());
 
         //置入玩家详细

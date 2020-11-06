@@ -12,6 +12,8 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
@@ -19,6 +21,10 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Inject
     PlayerMapper mapper = null;
 
+
+    CopyOnWriteArrayList<Player> mq = TaskQueue.getMQ();
+
+    ConcurrentHashMap<Player, Long> kq = TaskQueue.getKQ();
 
     /**
      * 将玩家加入消息队列
@@ -28,22 +34,11 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void addToMsgQueue(Player player) {
 
-        FLRPlayer flrPlayer = DtoUtil.toPlayer(player);
-
-        CopyOnWriteArraySet<Player> playerMQ = TaskQueue.getPlayerMessageQueue();
-
-        playerMQ.forEach(pl->{
-
-            if(player.getName().equals(flrPlayer.getAccount())){
-                return;
-            }
-
-        });
-
-        playerMQ.add(player);
+        mq.removeIf(pl->pl.getName().equalsIgnoreCase(player.getName()));
+        mq.add(player);
 
         System.out.println("加入玩家进消息队列:"+player.getName());
-        System.out.println("消息队列大小:"+ playerMQ.size());
+        System.out.println("消息队列大小:"+ mq.size());
     }
 
 
@@ -55,14 +50,15 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void addToKickQueue(Player player) {
 
-        FLRPlayer flrPlayer = DtoUtil.toPlayer(player);
+        for(Map.Entry<Player, Long> en:kq.entrySet()){
 
+            if(en.getKey().getName().equalsIgnoreCase(player.getName())){
+                kq.remove(en.getKey());
+            }
 
+        }
 
-
-
-        TaskQueue.getPlayerKickQueue().put(player, System.currentTimeMillis() + (1000 * 30L));
-
+        kq.put(player, System.currentTimeMillis() + (1000 * 30L));
 
 
         System.out.println("加入玩家进踢出队列:"+player.getName());
@@ -78,7 +74,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     public void refreshMessageQueue() {
 
 
-        CopyOnWriteArraySet<Player> messageQueue = TaskQueue.getPlayerMessageQueue();
+        CopyOnWriteArrayList<Player> messageQueue = TaskQueue.getPlayerMessageQueue();
 
 
         messageQueue.removeIf(player ->
@@ -98,25 +94,16 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void refreshKickQueue() {
 
-        HashMap<Player, Long> playerKickQueue = TaskQueue.getPlayerKickQueue();
 
-        //检查已登录或已退出的玩家
-        Iterator<Map.Entry<Player,Long>> it = playerKickQueue.entrySet().iterator();
+        for(Map.Entry<Player, Long> en:kq.entrySet()){
 
-        while (it.hasNext()){
+            String account = DtoUtil.toPlayer(en.getKey()).getAccount();
 
-            Map.Entry<Player, Long> next = it.next();
-
-            FLRPlayer playerByAccount = mapper.getPlayerByAccount(DtoUtil.toPlayer(next.getKey()).getAccount());
-
-            Player key = next.getKey();
-
-            if(playerByAccount.isLogin()){
-                it.remove();
+            if(!en.getKey().isOnline()){
+                kq.remove(en.getKey());
             }
-
-            if(!key.isOnline()){
-                it.remove();
+            if(mapper.getPlayerByAccount(account).isLogin()){
+                kq.remove(en.getKey());
             }
 
         }
@@ -143,18 +130,12 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void kickPlayer() {
 
-        HashMap<Player, Long> playerKickQueue = TaskQueue.getPlayerKickQueue();
 
+        for(Map.Entry<Player, Long> en:kq.entrySet()){
 
-        Iterator<Map.Entry<Player,Long>> it = playerKickQueue.entrySet().iterator();
-
-        while (it.hasNext()){
-
-            Map.Entry<Player, Long> next = it.next();
-
-            if(next.getValue() < System.currentTimeMillis()){
-                this.kick(next.getKey());
-                it.remove();
+            if(en.getValue() < System.currentTimeMillis()){
+                this.kick(en.getKey());
+                kq.remove(en.getKey());
             }
 
         }

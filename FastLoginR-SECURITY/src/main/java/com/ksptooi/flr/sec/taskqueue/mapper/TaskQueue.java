@@ -2,7 +2,9 @@ package com.ksptooi.flr.sec.taskqueue.mapper;
 
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -11,16 +13,26 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 public class TaskQueue {
 
-    private static final CopyOnWriteArraySet<Player> playerMessageQueue = new CopyOnWriteArraySet<Player>();
 
-    private static final HashMap<Player,Long> playerKickQueue = new HashMap<Player,Long>();
+    private static final CopyOnWriteArrayList<Player> playerMessageQueue = new CopyOnWriteArrayList<Player>();
+
+    private static final ConcurrentHashMap<Player,Long> playerKickQueue = new ConcurrentHashMap<Player,Long>();
 
 
-    public static HashMap<Player,Long> getPlayerKickQueue() {
+    public static CopyOnWriteArrayList<Player> getMQ(){
+        return playerMessageQueue;
+    }
+
+    public static ConcurrentHashMap<Player,Long> getKQ(){
         return playerKickQueue;
     }
 
-    public static CopyOnWriteArraySet<Player> getPlayerMessageQueue() {
+
+    public static ConcurrentHashMap<Player,Long> getPlayerKickQueue() {
+        return playerKickQueue;
+    }
+
+    public static CopyOnWriteArrayList<Player> getPlayerMessageQueue() {
         return playerMessageQueue;
     }
 

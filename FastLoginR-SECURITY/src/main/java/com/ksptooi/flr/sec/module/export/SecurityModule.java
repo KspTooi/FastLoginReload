@@ -5,8 +5,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Scopes;
 import com.ksptooi.flr.proc.module.export.NDALModule;
-import com.ksptooi.flr.sec.task.daemon.PlayerKickTask;
-import com.ksptooi.flr.sec.task.daemon.PlayerMsgTask;
+import com.ksptooi.flr.sec.task.daemon.PlayerKickTaskDaemon;
+import com.ksptooi.flr.sec.task.daemon.PlayerMsgTaskDaemon;
 import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 import com.ksptooi.flr.sec.service.PlayerTaskQueueServiceBlock;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,10 +29,10 @@ public class SecurityModule extends AbstractModule {
     protected void configure() {
 
         //玩家消息任务定时器
-        bind(PlayerMsgTask.class).in(Scopes.SINGLETON);
+        bind(PlayerMsgTaskDaemon.class).in(Scopes.SINGLETON);
 
         //玩家踢出任务定时器
-        bind(PlayerKickTask.class).in(Scopes.SINGLETON);
+        bind(PlayerKickTaskDaemon.class).in(Scopes.SINGLETON);
 
         //玩家任务定时器服务
         bind(PlayerTaskQueueService.class).to(PlayerTaskQueueServiceBlock.class).in(Scopes.SINGLETON);

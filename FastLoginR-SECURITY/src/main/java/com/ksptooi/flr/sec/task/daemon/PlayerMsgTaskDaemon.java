@@ -7,7 +7,7 @@ import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 /**
  * 玩家消息队列
  */
-public class PlayerMsgTask implements Runnable{
+public class PlayerMsgTaskDaemon implements Runnable{
 
     @Inject
     PlayerTaskQueueService taskQueueService = null;

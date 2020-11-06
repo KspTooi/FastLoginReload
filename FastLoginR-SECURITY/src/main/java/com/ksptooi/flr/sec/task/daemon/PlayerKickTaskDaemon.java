@@ -7,7 +7,7 @@ import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 /**
  * 玩家踢出队列
  */
-public class PlayerKickTask implements Runnable{
+public class PlayerKickTaskDaemon implements Runnable{
 
     @Inject
     PlayerTaskQueueService taskQueueService = null;
@@ -28,7 +28,7 @@ public class PlayerKickTask implements Runnable{
                 e.printStackTrace();
             }
 
-            System.out.println(second);
+
 
             //如果未超出间隔则继续循环
             if(second<interval){

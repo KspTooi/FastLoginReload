@@ -9,8 +9,8 @@ import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import com.ksptooi.flr.proc.exception.ParamsLengthException;
 import com.ksptooi.flr.proc.service.player.PlayerStateService;
 import com.ksptooi.flr.sec.input.listener.PlayerJoinListener;
-import com.ksptooi.flr.sec.task.daemon.PlayerKickTask;
-import com.ksptooi.flr.sec.task.daemon.PlayerMsgTask;
+import com.ksptooi.flr.sec.task.daemon.PlayerKickTaskDaemon;
+import com.ksptooi.flr.sec.task.daemon.PlayerMsgTaskDaemon;
 import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 import com.ksptooi.flr.starter.module.export.StarterModule;
 import org.bukkit.Bukkit;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 public class FastLoginBukkitStarter extends JavaPlugin {
 
-    public static final String currentVersion = "1.5F.4";
+    public static final String currentVersion = "1.5F.5";
 
     //public static final Injector injector= ProcModule.getInject();
     public static Injector injector = null;
@@ -54,9 +54,9 @@ public class FastLoginBukkitStarter extends JavaPlugin {
 
 
         //启动队列线程
-        Thread playerMsgTh = new Thread(injector.getInstance(PlayerMsgTask.class));
+        Thread playerMsgTh = new Thread(injector.getInstance(PlayerMsgTaskDaemon.class));
         playerMsgTh.start();
-        Thread playerCheckKickTh = new Thread(injector.getInstance(PlayerKickTask.class));
+        Thread playerCheckKickTh = new Thread(injector.getInstance(PlayerKickTaskDaemon.class));
         playerCheckKickTh.start();
 
 

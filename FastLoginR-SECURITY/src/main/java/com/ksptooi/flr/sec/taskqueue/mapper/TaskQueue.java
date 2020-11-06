@@ -27,17 +27,4 @@ public class TaskQueue {
         return playerKickQueue;
     }
 
-
-    public static ConcurrentHashMap<Player,Long> getPlayerKickQueue() {
-        return playerKickQueue;
-    }
-
-    public static CopyOnWriteArrayList<Player> getPlayerMessageQueue() {
-        return playerMessageQueue;
-    }
-
-    public synchronized static void removeFromMsgQueue(int index){
-        playerMessageQueue.remove(index);
-    }
-
 }

@@ -62,7 +62,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
 
 
         System.out.println("加入玩家进踢出队列:"+player.getName());
-        System.out.println("踢出队列大小:"+ TaskQueue.getPlayerKickQueue().size());
+        System.out.println("踢出队列大小:"+ kq.size());
 
     }
 
@@ -74,10 +74,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     public void refreshMessageQueue() {
 
 
-        CopyOnWriteArrayList<Player> messageQueue = TaskQueue.getPlayerMessageQueue();
-
-
-        messageQueue.removeIf(player ->
+        mq.removeIf(player ->
                 !player.isOnline()
                         ||mapper.getPlayerByAccount(
                                 DtoUtil.toPlayer(player).getAccount()
@@ -118,7 +115,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void sendMessage(String msg) {
 
-        TaskQueue.getPlayerMessageQueue().forEach(player -> {
+        mq.forEach(player -> {
             player.sendMessage(msg);
         });
 

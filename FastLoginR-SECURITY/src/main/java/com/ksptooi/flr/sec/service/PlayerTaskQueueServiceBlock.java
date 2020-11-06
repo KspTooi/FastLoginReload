@@ -95,10 +95,6 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
                 playerKickQueue.remove(entry.getKey());
             }
 
-            // 玩家超时则踢出
-            kickPlayer();
-
-
         }
 
     }

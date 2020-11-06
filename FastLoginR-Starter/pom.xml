@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>FastLoginR-Starter</artifactId>
-    <version>1.5F.1</version>
+    <version>1.5F.2</version>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -20,7 +20,6 @@
             <artifactId>FastLoginR-PROCESSOR</artifactId>
             <version>1.2-S</version>
         </dependency>
-
 
     </dependencies>
 

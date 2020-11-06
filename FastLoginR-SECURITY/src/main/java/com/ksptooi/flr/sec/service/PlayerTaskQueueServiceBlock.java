@@ -29,10 +29,23 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
      */
     @Override
     public void addToMsgQueue(Player player) {
-        Queue.getPlayerMessageQueue().add(player);
+
+        FLRPlayer flrPlayer = DtoUtil.toPlayer(player);
+
+        CopyOnWriteArraySet<Player> playerMQ = Queue.getPlayerMessageQueue();
+
+        playerMQ.forEach(pl->{
+
+            if(player.getName().equals(flrPlayer.getAccount())){
+                return;
+            }
+
+        });
+
+        playerMQ.add(player);
 
         System.out.println("加入玩家进消息队列:"+player.getName());
-        System.out.println("消息队列大小:"+Queue.getPlayerMessageQueue().size());
+        System.out.println("消息队列大小:"+ playerMQ.size());
     }
 
 

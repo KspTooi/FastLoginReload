@@ -36,11 +36,11 @@ public class PlayerKickTask implements Runnable{
                 continue;
             }
 
+            //超出间隔则检查玩家是否超时
             taskQueueService.refreshKickQueue();
             taskQueueService.kickPlayer();
 
 
-            //超出间隔则检查玩家是否超时
             second=0;
         }
 

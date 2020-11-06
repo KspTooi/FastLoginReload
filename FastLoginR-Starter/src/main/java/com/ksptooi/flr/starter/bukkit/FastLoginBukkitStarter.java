@@ -1,5 +1,6 @@
 package com.ksptooi.flr.starter.bukkit;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.ksptooi.flr.input.dispatch.InputDispatch;
 import com.ksptooi.flr.input.listener.PlayerStateListener;
@@ -23,17 +24,16 @@ import java.util.logging.Logger;
 
 public class FastLoginBukkitStarter extends JavaPlugin {
 
-    public static final String currentVersion = "1.5F.2";
+    public static final String currentVersion = "1.5F.4";
 
     //public static final Injector injector= ProcModule.getInject();
-    public static final Injector injector= StarterModule.getInjector();
-
-    public static FastLoginBukkitStarter mainClass = null;
+    public static Injector injector = null;
 
     @Override
     public void onEnable() {
 
-        mainClass = this;
+        injector = StarterModule.getInjector(this);
+
 
         Logger logger = Bukkit.getLogger();
         logger.info("[FastLoginR]版本:"+currentVersion);

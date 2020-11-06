@@ -40,7 +40,9 @@ public class PlayerJoinListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void playerLoginEvent(PlayerLoginEvent event){
 
-        Queue.getPlayerMessageQueue().add(event.getPlayer());
+        //Queue.getPlayerMessageQueue().add(event.getPlayer());
+        service.addToMsgQueue(event.getPlayer());
+        service.addToKickQueue(event.getPlayer());
 
     }
 

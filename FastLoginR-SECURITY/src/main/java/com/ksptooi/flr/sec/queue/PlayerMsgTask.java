@@ -40,7 +40,6 @@ public class PlayerMsgTask implements Runnable{
             taskQueueService.refreshMessageQueue();
             taskQueueService.sendMessage("§e[FastLogin]§b你需要登录后才能操作,使用/login 密码 来登录");
 
-
             //超出间隔则向玩家发送信息
             second=0;
         }

@@ -11,8 +11,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
 
@@ -28,7 +30,11 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void addToMsgQueue(Player player) {
         Queue.getPlayerMessageQueue().add(player);
+
+        System.out.println("加入玩家进消息队列:"+player.getName());
+        System.out.println("消息队列大小:"+Queue.getPlayerMessageQueue().size());
     }
+
 
     /**
      * 将玩家加入踢出队列
@@ -37,7 +43,12 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
      */
     @Override
     public void addToKickQueue(Player player) {
-        Queue.getPlayerKickQueue().put(player, System.currentTimeMillis() + (1000 * 60L));
+
+        Queue.getPlayerKickQueue().put(player, System.currentTimeMillis() + (1000 * 30L));
+
+        System.out.println("加入玩家进踢出队列:"+player.getName());
+        System.out.println("踢出队列大小:"+Queue.getPlayerKickQueue().size());
+
     }
 
     /**
@@ -47,27 +58,17 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void refreshMessageQueue() {
 
-        CopyOnWriteArrayList<Player> messageQueue = Queue.getPlayerMessageQueue();
 
-        Player player = null;
+        CopyOnWriteArraySet<Player> messageQueue = Queue.getPlayerMessageQueue();
 
-        for (int i = 0; i < messageQueue.size(); i++) {
 
-            player = messageQueue.get(i);
+        messageQueue.removeIf(player ->
+                !player.isOnline()
+                        ||mapper.getPlayerByAccount(
+                                DtoUtil.toPlayer(player).getAccount()
+                        ).isLogin()
+        );
 
-            FLRPlayer playerByAccount = mapper.getPlayerByAccount(DtoUtil.toPlayer(player).getAccount());
-
-            //已登录
-            if (playerByAccount.isLogin()) {
-                messageQueue.remove(i);
-            }
-
-            //已退出
-            if (!player.isOnline()) {
-                messageQueue.remove(i);
-            }
-
-        }
 
     }
 
@@ -80,19 +81,23 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
 
         HashMap<Player, Long> playerKickQueue = Queue.getPlayerKickQueue();
 
-        //检查已退出或已登录的玩家
-        for (Map.Entry<Player, Long> entry : playerKickQueue.entrySet()) {
+        //检查已登录或已退出的玩家
+        Iterator<Map.Entry<Player,Long>> it = playerKickQueue.entrySet().iterator();
 
-            FLRPlayer playerByAccount = mapper.getPlayerByAccount(DtoUtil.toPlayer(entry.getKey()).getAccount());
+        while (it.hasNext()){
 
-            //已登录
-            if (playerByAccount.isLogin()) {
-                playerKickQueue.remove(entry.getKey());
+            Map.Entry<Player, Long> next = it.next();
+
+            FLRPlayer playerByAccount = mapper.getPlayerByAccount(DtoUtil.toPlayer(next.getKey()).getAccount());
+
+            Player key = next.getKey();
+
+            if(playerByAccount.isLogin()){
+                it.remove();
             }
 
-            //已经退出
-            if (!entry.getKey().isOnline()) {
-                playerKickQueue.remove(entry.getKey());
+            if(!key.isOnline()){
+                it.remove();
             }
 
         }
@@ -121,15 +126,19 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
 
         HashMap<Player, Long> playerKickQueue = Queue.getPlayerKickQueue();
 
-        //找出超时的玩家
-        for (Map.Entry<Player, Long> entry : playerKickQueue.entrySet()) {
 
-            if (entry.getValue() < System.currentTimeMillis()){
-                kick(entry.getKey());
-                playerKickQueue.remove(entry.getKey());
+        Iterator<Map.Entry<Player,Long>> it = playerKickQueue.entrySet().iterator();
+
+        while (it.hasNext()){
+
+            Map.Entry<Player, Long> next = it.next();
+
+            if(next.getValue() < System.currentTimeMillis()){
+                this.kick(next.getKey());
+                it.remove();
             }
-        }
 
+        }
 
     }
 

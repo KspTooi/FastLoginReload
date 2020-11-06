@@ -31,10 +31,14 @@ public class PlayerKickTask implements Runnable{
                 e.printStackTrace();
             }
 
+            System.out.println(second);
+
             //如果未超出间隔则继续循环
             if(second<interval){
                 continue;
             }
+
+
 
             //超出间隔则检查玩家是否超时
             taskQueueService.refreshKickQueue();

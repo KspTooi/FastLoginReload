@@ -20,7 +20,7 @@ public class StarterModule extends AbstractModule {
 
     }
 
-    public static Injector getInjector(){
+    public static Injector getInjector(FastLoginBukkitStarter flbs){
 
         if(injector!=null){
             return injector;
@@ -28,7 +28,7 @@ public class StarterModule extends AbstractModule {
 
         injector = Guice.createInjector(NDALModule.getModule()
                 ,ProcModule.getModule()
-                ,SecurityModule.getModule(FastLoginBukkitStarter.mainClass)
+                ,SecurityModule.getModule(flbs)
         );
 
         return injector;

@@ -1,4 +1,4 @@
-package com.ksptooi.flr.sec.queue;
+package com.ksptooi.flr.sec.taskqueue.mapper;
 
 import org.bukkit.entity.Player;
 
@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 /**
  * 玩家操作队列
  */
-public class Queue {
+public class TaskQueue {
 
     private static final CopyOnWriteArraySet<Player> playerMessageQueue = new CopyOnWriteArraySet<Player>();
 

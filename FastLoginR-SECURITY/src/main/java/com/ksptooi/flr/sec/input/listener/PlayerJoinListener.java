@@ -1,6 +1,5 @@
 package com.ksptooi.flr.sec.input.listener;
 
-import com.ksptooi.flr.sec.queue.Queue;
 import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

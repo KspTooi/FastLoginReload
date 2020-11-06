@@ -4,16 +4,14 @@ import com.google.inject.Inject;
 import com.ksptooi.flr.entity.player.FLRPlayer;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.sec.module.export.SecurityModule;
-import com.ksptooi.flr.sec.queue.Queue;
+import com.ksptooi.flr.sec.taskqueue.mapper.TaskQueue;
 import com.ksptooi.flr.util.DtoUtil;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
@@ -32,7 +30,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
 
         FLRPlayer flrPlayer = DtoUtil.toPlayer(player);
 
-        CopyOnWriteArraySet<Player> playerMQ = Queue.getPlayerMessageQueue();
+        CopyOnWriteArraySet<Player> playerMQ = TaskQueue.getPlayerMessageQueue();
 
         playerMQ.forEach(pl->{
 
@@ -57,10 +55,18 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void addToKickQueue(Player player) {
 
-        Queue.getPlayerKickQueue().put(player, System.currentTimeMillis() + (1000 * 30L));
+        FLRPlayer flrPlayer = DtoUtil.toPlayer(player);
+
+
+
+
+
+        TaskQueue.getPlayerKickQueue().put(player, System.currentTimeMillis() + (1000 * 30L));
+
+
 
         System.out.println("加入玩家进踢出队列:"+player.getName());
-        System.out.println("踢出队列大小:"+Queue.getPlayerKickQueue().size());
+        System.out.println("踢出队列大小:"+ TaskQueue.getPlayerKickQueue().size());
 
     }
 
@@ -72,7 +78,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     public void refreshMessageQueue() {
 
 
-        CopyOnWriteArraySet<Player> messageQueue = Queue.getPlayerMessageQueue();
+        CopyOnWriteArraySet<Player> messageQueue = TaskQueue.getPlayerMessageQueue();
 
 
         messageQueue.removeIf(player ->
@@ -92,7 +98,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void refreshKickQueue() {
 
-        HashMap<Player, Long> playerKickQueue = Queue.getPlayerKickQueue();
+        HashMap<Player, Long> playerKickQueue = TaskQueue.getPlayerKickQueue();
 
         //检查已登录或已退出的玩家
         Iterator<Map.Entry<Player,Long>> it = playerKickQueue.entrySet().iterator();
@@ -125,7 +131,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void sendMessage(String msg) {
 
-        Queue.getPlayerMessageQueue().forEach(player -> {
+        TaskQueue.getPlayerMessageQueue().forEach(player -> {
             player.sendMessage(msg);
         });
 
@@ -137,7 +143,7 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void kickPlayer() {
 
-        HashMap<Player, Long> playerKickQueue = Queue.getPlayerKickQueue();
+        HashMap<Player, Long> playerKickQueue = TaskQueue.getPlayerKickQueue();
 
 
         Iterator<Map.Entry<Player,Long>> it = playerKickQueue.entrySet().iterator();

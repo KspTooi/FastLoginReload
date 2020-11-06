@@ -1,4 +1,4 @@
-package com.ksptooi.flr.sec.queue;
+package com.ksptooi.flr.sec.task;
 
 
 import com.google.inject.Inject;

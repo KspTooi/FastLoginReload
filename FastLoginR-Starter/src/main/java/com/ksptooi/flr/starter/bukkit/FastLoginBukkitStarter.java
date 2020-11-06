@@ -1,6 +1,5 @@
 package com.ksptooi.flr.starter.bukkit;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.ksptooi.flr.input.dispatch.InputDispatch;
 import com.ksptooi.flr.input.listener.PlayerStateListener;
@@ -8,11 +7,10 @@ import com.ksptooi.flr.input.processor.PlayerAccountProcessor;
 import com.ksptooi.flr.proc.exception.AdapterParameterException;
 import com.ksptooi.flr.proc.exception.NotFoundProcessorException;
 import com.ksptooi.flr.proc.exception.ParamsLengthException;
-import com.ksptooi.flr.proc.module.export.ProcModule;
 import com.ksptooi.flr.proc.service.player.PlayerStateService;
 import com.ksptooi.flr.sec.input.listener.PlayerJoinListener;
-import com.ksptooi.flr.sec.queue.PlayerKickTask;
-import com.ksptooi.flr.sec.queue.PlayerMsgTask;
+import com.ksptooi.flr.sec.task.PlayerKickTask;
+import com.ksptooi.flr.sec.task.PlayerMsgTask;
 import com.ksptooi.flr.sec.service.PlayerTaskQueueService;
 import com.ksptooi.flr.starter.module.export.StarterModule;
 import org.bukkit.Bukkit;

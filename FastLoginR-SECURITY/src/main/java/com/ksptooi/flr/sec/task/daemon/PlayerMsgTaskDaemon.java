@@ -12,9 +12,10 @@ public class PlayerMsgTaskDaemon implements Runnable{
     @Inject
     PlayerTaskQueueService taskQueueService = null;
 
-
     @Override
     public void run() {
+
+        System.out.println("[FastLoginR] DaemonThread - PlayerMsgTask Started");
 
         int second = 0;
         int interval = 8;

@@ -15,6 +15,8 @@ public class PlayerKickTaskDaemon implements Runnable{
     @Override
     public void run() {
 
+        System.out.println("[FastLoginR] DaemonThread - PlayerKickTask Started");
+
         int second = 0;
         int interval = 8;
 
@@ -27,7 +29,6 @@ public class PlayerKickTaskDaemon implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
 
 
             //如果未超出间隔则继续循环

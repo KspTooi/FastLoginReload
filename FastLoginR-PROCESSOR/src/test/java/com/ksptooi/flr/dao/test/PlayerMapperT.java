@@ -1,6 +1,7 @@
 package com.ksptooi.flr.dao.test;
 
 import com.ksptooi.flr.entity.player.FLRPlayer;
+import com.ksptooi.flr.entity.player.PlayerLocation;
 import com.ksptooi.flr.entity.status.AuthState;
 import com.ksptooi.flr.mapper.player.PlayerMapper;
 import com.ksptooi.flr.proc.module.export.ProcModule;
@@ -41,6 +42,9 @@ public class PlayerMapperT {
     @Test
     public void getPlayerById(){
         Assert.assertNotNull("单元测试失败",mapper.getPlayerById(1));
+
+        FLRPlayer kspTooi = mapper.getPlayerByAccount("KspTooi");
+
     }
 
     @Test

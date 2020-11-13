@@ -30,7 +30,7 @@ public class PlayerJoinListener implements Listener {
             if(pl.getName().toLowerCase().equalsIgnoreCase(PlayerName)){
                 event.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_OTHER);
                 event.setKickMessage("登录失败:相同用户名的玩家已经在游戏中!");
-            }
+             }
 
         }
 

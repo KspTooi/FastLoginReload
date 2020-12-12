@@ -8,6 +8,7 @@ import com.ksptooi.flr.input.annotation.Processor;
 import java.util.Arrays;
 
 @Processor
+@ProcessMapper("flr")
 public class TestProcessor {
 
 
@@ -20,7 +21,13 @@ public class TestProcessor {
         return model;
     }
 
+    @ProcessMapper("testCommand")
+    public Model testCommand(@Params("model")Model model,@Params("params")String[] p){
 
+        model.addMessage("这是一条测试命令");
+
+        return model;
+    }
 
 
 }

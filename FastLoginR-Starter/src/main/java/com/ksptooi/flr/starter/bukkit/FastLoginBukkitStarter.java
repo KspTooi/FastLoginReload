@@ -52,7 +52,6 @@ public class FastLoginBukkitStarter extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(playerJoinListener,this);
 
 
-
         //启动队列线程
         Thread playerMsgTh = new Thread(injector.getInstance(PlayerMsgTaskDaemon.class));
         playerMsgTh.start();
@@ -95,10 +94,7 @@ public class FastLoginBukkitStarter extends JavaPlugin {
         boolean b = false;
 
         try {
-
             b = instance.dispatchInputCommand(cmd.getName(), sender, cmd, label, args);
-
-
         } catch (AdapterParameterException e) {
             e.printStackTrace();
         } catch (NotFoundProcessorException | ParamsLengthException e) {

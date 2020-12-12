@@ -21,7 +21,6 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Inject
     PlayerMapper mapper = null;
 
-
     CopyOnWriteArrayList<Player> mq = TaskQueue.getMQ();
 
     ConcurrentHashMap<Player, Long> kq = TaskQueue.getKQ();
@@ -73,14 +72,9 @@ public class PlayerTaskQueueServiceBlock implements PlayerTaskQueueService {
     @Override
     public void refreshMessageQueue() {
 
-
-        mq.removeIf(player ->
-                !player.isOnline()
-                        ||mapper.getPlayerByAccount(
-                                DtoUtil.toPlayer(player).getAccount()
-                        ).isLogin()
+        mq.removeIf(player -> !player.isOnline()
+                ||mapper.getPlayerByAccount(DtoUtil.toPlayer(player).getAccount()).isLogin()
         );
-
 
     }
 

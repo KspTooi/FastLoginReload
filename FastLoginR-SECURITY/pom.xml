@@ -28,6 +28,12 @@
             <artifactId>FastLoginR-DAL</artifactId>
             <version>1.2-S</version>
         </dependency>
+        <dependency>
+            <groupId>com.ksptooi</groupId>
+            <artifactId>FastLoginR-Util</artifactId>
+            <version>1.2-S</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 

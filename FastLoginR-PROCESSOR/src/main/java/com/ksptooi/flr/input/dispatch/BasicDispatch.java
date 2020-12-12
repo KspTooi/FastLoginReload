@@ -33,9 +33,7 @@ public class BasicDispatch implements InputDispatch{
         Model model = null;
         ServiceException serviceException = null;
 
-
         processor = stepInputAdapter.findProcessor(name, sender, cmd, label, params);
-
 
         try{
 
@@ -78,7 +76,6 @@ public class BasicDispatch implements InputDispatch{
                 if (str.length < annotation.length()){
                     // 如果 注解填入的参数数量小于 当前 命令的参数数量则 抛出异常
                     throw new ParamsLengthException(annotation.value());
-
                 }
 
             }

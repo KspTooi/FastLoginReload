@@ -14,6 +14,8 @@ import com.ksptooi.flr.util.DtoUtil;
 import org.bukkit.entity.Player;
 import org.mybatis.guice.transactional.Transactional;
 
+import java.util.UUID;
+
 @Singleton
 @Transactional
 public class PlayerStateServiceBlock implements PlayerStateService {
@@ -45,6 +47,7 @@ public class PlayerStateServiceBlock implements PlayerStateService {
      */
     @Override
     public void playerQuitStateChange(Player player) throws StateUpdateException {
+
 
         //获取玩家最新状态
         FLRPlayer flrPlayer = DtoUtil.toPlayer(mapper.getPlayerByAccount(player.getName()), player);

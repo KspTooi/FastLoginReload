@@ -40,7 +40,6 @@ public class SecurityModule extends AbstractModule {
 
     public static Injector getInject(){
 
-
         if(inject!=null){
             return inject;
         }
@@ -59,7 +58,6 @@ public class SecurityModule extends AbstractModule {
         if(module!=null){
             return module;
         }
-
 
         module = new SecurityModule();
         System.out.println("[FastLoginR] Install Module "+moduleName+" Done!");

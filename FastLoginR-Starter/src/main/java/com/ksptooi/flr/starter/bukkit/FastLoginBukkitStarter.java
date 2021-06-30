@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 public class FastLoginBukkitStarter extends JavaPlugin {
 
-    public static final String currentVersion = "1.5F.5";
+    public static final String currentVersion = "1.5F.20";
 
     //public static final Injector injector= ProcModule.getInject();
     public static Injector injector = null;

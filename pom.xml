@@ -46,6 +46,7 @@
         <module>FastLoginR-SECURITY</module>
         <module>FastLoginR-Util</module>
         <module>FastLoginR-Starter</module>
+        <module>easydev-framework</module>
     </modules>
 
     <packaging>pom</packaging>

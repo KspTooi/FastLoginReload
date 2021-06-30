@@ -35,7 +35,6 @@ public class PlayerAccountProcessor {
 
         try{
 
-
             FLRPlayer player = service.playerLogin(pl.getName(), p[0]);
 
             model.addMessage("登录成功!");
